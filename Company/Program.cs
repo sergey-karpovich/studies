@@ -16,13 +16,13 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 // Подключение к базе данных SQLite
-// string databasePath="Company.db";
-// builder.Services.AddDbContext<CompanyContext>(options=>
-//     options.UseSqlite($"Data Source={databasePath}"));
+string databasePath="Company.db";
+builder.Services.AddDbContext<CompanyContext>(options=>
+    options.UseSqlite($"Data Source={databasePath}"));
 
 //Подключение к бд SQLServer
-string connection = builder.Configuration.GetConnectionString("DefaultConnection2");
-builder.Services.AddDbContext<CompanyContext>(options => options.UseSqlServer(connection));
+// string connection = builder.Configuration.GetConnectionString("DefaultConnection2");
+// builder.Services.AddDbContext<CompanyContext>(options => options.UseSqlServer(connection));
 
 builder.Services.AddTransient<IDataRepository,DataRepository>();
 builder.Services.AddTransient<MigrationsManager>();

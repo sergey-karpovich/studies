@@ -3,6 +3,16 @@
     ViewData["Title"] = "Home Page";  
     Layout="_Layout"; 
 }
+
+@* <div class="text-center">
+    @Html.Partial("Pages",Model)
+    @{
+        ViewBag.searches = new string[] { "Name", "Category.Name" };
+        ViewBag.sorts = new string[]{"Name","Category.Name",
+            "PurchasePrice","RetailPrice"};
+    }
+    @Html.Partial("PageOptions",Model)
+</div> *@
 <div class="m-1 p-2">
     <form asp-action="Index" method="get" class="form-inline">
         <label class="m-1">Title:</label>

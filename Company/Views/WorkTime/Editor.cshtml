@@ -1,41 +1,27 @@
-@model Employee
+@model IEnumerable<WorkTime>
 @{
-    int counter=0;
+
+    Layout="_Layout";
 }
-<form asp-action="Update" method="post">
-    <input type="hidden" asp-for="EmployeeId"/>
-    <input type="hidden" asp-for="LastName"/>
-    <input type="hidden" asp-for="FirstName"/>
-    <input type="hidden" asp-for="Title"/>
-    <input type="hidden" asp-for="TitleOfCourtesy"/>
-    <input type="hidden" asp-for="BirthDate"/>
-    <input type="hidden" asp-for="HireDate"/>
-    <input type="hidden" asp-for="Address"/>
-    <input type="hidden" asp-for="City"/>
-    <input type="hidden" asp-for="Region"/>
-    <input type="hidden" asp-for="Notes"/>
-    <input type="hidden" asp-for="PostalCode"/>
-    <input type="hidden" asp-for="HomePhone"/>
-    
-    @foreach (WorkTime p in Model.WorkTimes)
+<form asp-action="Update" method="post" >
+    @foreach (WorkTime p in Model)
+    /////////
     {
         <div class="row">
-            <input type="hidden" name="WorkTimes[@counter].Id" value="@p.Id" />
+            <input type="hidden" name="p.Id" value="@p.Id" />
             <div class="col">
-                <input name="WorkTimes[@counter].numMonth" value="@p.numMonth" class="form-control" />
+                <input name="p.numMonth" value="@p.numMonth" class="form-control" />
             </div>
             <div class="col">
-                <input name="WorkTimes[@counter].hours" value="@p.hours" class="form-control" />
+                <input name="p.hours" value="@p.hours" class="form-control" />
             </div>
             <div class="col">
-                <input name="WorkTimes[@counter].lastRate" value="@p.lastRate" class="form-control" />
+                <input name="p.lastRate" value="@p.lastRate" class="form-control" />
             </div>
             <div class="col">
-                <input name="WorkTimes[@counter].EmployeeId" value="@p.EmployeeId" class="form-control" />
+                <input name="p.EmployeeId" value="@p.EmployeeId" class="form-control" />
             </div>
-            @{
-                counter++; 
-            }
+            
         </div>
     }
     <div class="row">

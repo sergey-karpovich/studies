@@ -6,10 +6,10 @@
 @foreach(Employee e in Model){
     <h4 class="bg-info text-center text-white p-1">
         @e.FirstName @e.LastName
-        @* <a asp-action="Edit" asp-route-id="@e.EmployeeId"
+        <a asp-action="Edit" asp-route-id="@e.EmployeeId"
             class="btn btn-sm btn-warning">
             Edit
-        </a> *@
+        </a> 
     </h4>
     <div class="container-fluid">
         @if(e.WorkTimes==null||e.WorkTimes.Count()==0){
@@ -36,5 +36,10 @@
                 }
             }        
         }
-    </div>
+    </div>    
 }
+<div>
+    <a asp-action="NewMonth" class="btn btn-sm btn-warning">
+            New Month
+        </a>
+</div>

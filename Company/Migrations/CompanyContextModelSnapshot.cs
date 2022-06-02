@@ -3,7 +3,6 @@ using System;
 using Company.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -16,20 +15,14 @@ namespace Company.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.4")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
 
             modelBuilder.Entity("Company.Models.Employee", b =>
                 {
                     b.Property<long?>("EmployeeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("EmployeeID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("EmployeeId"), 1L, 1);
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar (60)");
@@ -73,7 +66,7 @@ namespace Company.Migrations
                     b.Property<string>("Region")
                         .HasColumnType("nvarchar (15)");
 
-                    b.Property<int?>("ReportsTo")
+                    b.Property<long?>("ReportsTo")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -95,10 +88,8 @@ namespace Company.Migrations
                 {
                     b.Property<long>("ProjectID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("INTEGER")
                         .HasColumnName("ProjectID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ProjectID"), 1L, 1);
 
                     b.Property<decimal?>("Budjet")
                         .HasColumnType("DECIMAL");
@@ -123,34 +114,72 @@ namespace Company.Migrations
                     b.ToTable("Projects");
                 });
 
+            modelBuilder.Entity("Company.Models.ProjectEmployeeJunction", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("EmployeeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("ProjectId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ProjectEmployeeJunction");
+                });
+
             modelBuilder.Entity("Company.Models.WorkTime", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                        .HasColumnType("INTEGER");
 
                     b.Property<long?>("EmployeeId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("hours")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal?>("lastRate")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal?>("money")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("numMonth")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("WorkTimes");
+                });
+
+            modelBuilder.Entity("Company.Models.ProjectEmployeeJunction", b =>
+                {
+                    b.HasOne("Company.Models.Employee", "Employee")
+                        .WithMany("ProjectsEmployees")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Company.Models.Project", "Project")
+                        .WithMany("ProjectsEmployees")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("Company.Models.WorkTime", b =>
@@ -164,7 +193,14 @@ namespace Company.Migrations
 
             modelBuilder.Entity("Company.Models.Employee", b =>
                 {
+                    b.Navigation("ProjectsEmployees");
+
                     b.Navigation("WorkTimes");
+                });
+
+            modelBuilder.Entity("Company.Models.Project", b =>
+                {
+                    b.Navigation("ProjectsEmployees");
                 });
 #pragma warning restore 612, 618
         }
