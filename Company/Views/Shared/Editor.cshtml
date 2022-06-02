@@ -1,0 +1,96 @@
+﻿@model Company.Models.Employee
+@{
+    ViewData["Title"] = ViewBag.CreateMode ? "Create" : "Edit";
+    Layout = "_Layout";
+}
+<form asp-action="@(ViewBag.CreateMode ? "Create" : "Edit")" method="post">
+    <input name="original.EmployeeId" value="@Model?.EmployeeId" type="hidden" />
+    <input name="original.FirstName" value="@Model?.FirstName" type="hidden"/>
+    <input name="original.LastName" value="@Model?.LastName" type="hidden"/>
+    <input name="original.Title" value="@Model?.Title" type="hidden"/>
+    <input name="orginal.TitleOfCourtesy" value="@Model?.TitleOfCourtesy" type="hidden"/> 
+    <input name="orginal.BirthDate" value="@Model?.BirthDate" type="hidden"/> 
+    <input name="original.HireDate" value="@Model?.HireDate" type="hidden"/>
+    <input name="original.Address" value="@Model?.Address" type="hidden"/>
+    <input name="original.City" value="@Model?.City" type="hidden"/>
+    <input name="original.Region" value="@Model?.Region" type="hidden" />
+    <input name="original.PostalCode" value="@Model?.PostalCode" type="hidden"/>
+    <input name="original.Country" value="@Model?.Country" type="hidden" />
+    <input name="orginal.HomePhone" value="@Model?.HomePhone" type="hidden"/> 
+    <input name="orginal.Extension" value="@Model?.Extension" type="hidden"/> 
+    <input name="orginal.Photo" value="@Model?.Photo" type="hidden"/> 
+    <input name="original.Notes" value="@Model?.Notes" type="hidden" />
+    <input name="original.ReportsTo" value="@Model?.ReportsTo" type="hidden"/>
+    <input name="original.PhotoPath" value="@Model?.PhotoPath" type="hidden"/>
+    
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="TitleOfCourtesy"></label>
+        <input asp-for="TitleOfCourtesy" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="BirthDate"></label>
+        <input asp-for="BirthDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="HireDate"></label>
+        <input asp-for="HireDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="City"></label>
+        <input asp-for="City" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Region"></label>
+        <input asp-for="Region" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PostalCode"></label>
+        <input asp-for="PostalCode" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Country"></label>
+        <input asp-for="Country" class="form-control" />
+    </div>
+     <div class="form-group">
+        <label asp-for="HomePhone"></label>
+        <input asp-for="HomePhone" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Extension"></label>
+        <input asp-for="Extension" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Photo"></label>
+        <input asp-for="Photo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ReportsTo"></label>
+        <input asp-for="ReportsTo" class="form-control" />
+    </div>    
+    <div class="form-group">
+        <label asp-for="PhotoPath"></label>
+        <input asp-for="PhotoPath" class="form-control" />
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+    
+    
+</form>

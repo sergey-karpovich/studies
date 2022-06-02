@@ -1,0 +1,40 @@
+@model IEnumerable<Company.Models.Employee>
+@{
+    ViewData["Title"]="WorkTime";
+    Layout="_Layout";
+}
+@foreach(Employee e in Model){
+    <h4 class="bg-info text-center text-white p-1">
+        @e.FirstName @e.LastName
+        @* <a asp-action="Edit" asp-route-id="@e.EmployeeId"
+            class="btn btn-sm btn-warning">
+            Edit
+        </a> *@
+    </h4>
+    <div class="container-fluid">
+        @if(e.WorkTimes==null||e.WorkTimes.Count()==0){
+            <div class="p-1 text-center">No data</div>
+        }else if(ViewBag.EmployeeEditId==e.EmployeeId){            
+            @Html.Partial("Editor",e);
+        }else {
+             <div class="row p-1">
+                    <div class="col">Id</div>
+                    <div class="col">numMonth</div>
+                    <div class="col">hours</div>
+                    <div class="col">lastRate</div>
+                    <div class="col">Emp.Name</div>
+             </div>
+            @foreach (WorkTime wt in e.WorkTimes){
+                @if(wt.EmployeeId==e.EmployeeId){
+                <div class="row p-1">
+                    <div class="col">@wt.Id</div>
+                    <div class="col">@wt.numMonth</div>
+                    <div class="col">@wt.hours</div>
+                    <div class="col">@wt.lastRate</div>
+                    <div class="col">@wt.Employee.FirstName</div>
+                </div>
+                }
+            }        
+        }
+    </div>
+}

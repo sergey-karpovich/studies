@@ -1,0 +1,40 @@
+@model Company.Models.Employee
+<div class="row">
+    <div>
+        @if(Model==null)
+        {
+            <h1>Employee</h1>
+            <div>No employee found.</div>
+        }
+        else{
+            <h1>@Model.FirstName @Model.LastName</h1>
+            <p>
+                <dl>
+                    <dt>Address</dt>
+                    <dd>@Model.Address</dd>
+                    <dt>BirthDate</dt>
+                    <dd>@Model.BirthDate</dd>
+                    <dt>City</dt>
+                    <dd>@Model.City</dd>
+                    <dt>Country</dt>
+                    <dd>@Model.Country</dd>
+                    <dt>HireDate</dt>
+                    <dd>@Model.HireDate</dd>
+                    <dt>HomePhone</dt>
+                    <dd>@Model.HomePhone</dd>
+                    <dt>Notes</dt>
+                    <dd>@Model.Notes</dd>                    
+                    <dt>Title</dt>
+                    <dd>@Model.Title</dd>
+                    <dt>PostalCode</dt>
+                    <dd>@Model.PostalCode</dd>
+                    <dt>ReportsTo</dt>
+                    <dd>@Model.ReportsTo</dd>
+                    <dt>TitleOfCourtesy</dt>
+                    <dd>@Model.TitleOfCourtesy</dd>
+                </dl>
+                <img src="~/images/1.jpg" alt="Photo" width="400" height="400"/>
+            </p>            
+        }
+    </div>
+</div>

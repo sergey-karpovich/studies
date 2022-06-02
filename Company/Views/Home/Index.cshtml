@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Company.Models.Employee>
+@{
+    ViewData["Title"] = "Home Page";  
+    Layout="_Layout"; 
+}
+<div class="m-1 p-2">
+    <form asp-action="Index" method="get" class="form-inline">
+        <label class="m-1">Title:</label>
+        <select name="title" class="form-control">
+            <option value="">All</option>
+            <option selected="@(ViewBag.title == "Sales Representative")">
+                Sales Representative
+            </option>
+            <option selected="@(ViewBag.title == "Inside Sales Coordinator")">Inside Sales Coordinator</option>
+            <option selected="@(ViewBag.title == "Sales Manager")">Sales Manager</option>
+            <option selected="@(ViewBag.title == "Vice President, Sales")">Vice President, Sales</option>
+            
+        </select>
+        <label class="m-1">Reports to:</label>
+        <input class="form-control" name="reportsTo" value="@ViewBag.reportsTo" />
+        <button class="btn btn-primary m-1">Filter</button>
+    </form>
+</div>
+
+<table class="table table-sm table-striped">
+    <thead>
+        <tr><th>ID</th><th>Name</th><th>Birth Date</th><th>Address</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model) {
+            <tr>
+                <td>@p.EmployeeId</td>
+                <td>@p.FirstName @p.LastName</td>
+                <td>@p.BirthDate</td>
+                <td>@p.Address</td>
+                <td>
+                    <form asp-action="Delete" method="post">
+                        <a asp-action="Edit" class="btn btn-sm btn-warning"
+                           asp-route-id="@p.EmployeeId">
+                            Edit
+                        </a>
+                        <input type="hidden" name="id" value="@p.EmployeeId" />
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Create" class="btn btn-primary">Create New Employee</a>

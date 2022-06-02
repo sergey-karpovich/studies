@@ -1,0 +1,34 @@
+@using Company.Models
+@model IEnumerable<Project>
+@{
+    ViewData["Title"]="Employee Project Junction";
+    Layout="_Layout";
+}
+<div class="container-fluid">
+    <h4 class="bg-primary p-3 text-white">Project - Employee junction</h4>
+    <table class="table table-strinped table-sm">
+        <tr>            
+            <th>Project</th>
+            <th>Employees</th>
+            <th>Add worktime</th>
+            <th></th>
+        </tr>
+        @foreach(Project p in Model)
+        {  
+            <tr>
+                <td>@p.ProjectName</td>
+                <td>
+                    @string.Join(", ", p.ProjectsEmployees.Select(c=>c.Employee.LastName))
+                </td>
+                <td><a asp-action="Edit" asp-route-id="@p.ProjectID" 
+                    class="btn btn-sm btn-primary">worktime</a></td>
+                <td class="text-center">
+                    <a asp-action="Edit" asp-route-id="@p.ProjectID" 
+                    class="btn btn-sm btn-primary">Edit</a>
+                </td>
+            </tr>          
+            
+        }        
+    </table>
+    
+</div>
