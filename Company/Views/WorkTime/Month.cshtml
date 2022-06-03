@@ -1,0 +1,36 @@
+@model  IEnumerable<WorkTime>
+@{
+    ViewData["Title"]="WorkTime";
+    Layout="_Layout";
+   
+}
+    @foreach(WorkTime wt in Model)
+    {    
+        <form asp-action="Month" method="post">
+        <h4 class="bg-info text-center text-white p-1">
+            @wt.Employee.FirstName @wt.Employee.LastName        
+        </h4>
+        <div class="container-fluid">           
+            <div class="row">
+                <input type="hidden" name="Id" value="@wt.Id" />
+                <div class="col">
+                    <input name="numMonth" value="@wt.numMonth" class="form-control" />
+                </div>
+                <div class="col">
+                    <input name="hours" value="@wt.hours" class="form-control" />
+                </div>
+                <div class="col">
+                    <input name="lastRate" value="@wt.lastRate" class="form-control" />
+                </div>
+                <div class="col">
+                    <input name="EmployeeId" value="@wt.EmployeeId" class="form-control" />
+                </div>                
+            </div>
+        </div>                   
+        <div class="text-center m-2">
+        <button type="submit" class="btn btn-primary">Save All</button>
+        <a asp-action="Index" class="btn btn-outline-primary">Cancel</a>
+    </div>
+    </form>
+    }
+    

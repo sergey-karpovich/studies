@@ -87,16 +87,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/git/projects/Рабочий проект/studies/Company/Views/WorkTime/Editor.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya1RpbWVcRWRpdG9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/git/projects/Рабочий проект/studies/Company/Views/WorkTime/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya1RpbWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/git/projects/Рабочий проект/studies/Company/Views/WorkTime/NewMonth.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya1RpbWVcTmV3TW9udGguY3NodG1s
+[C:/git/projects/Рабочий проект/studies/Company/Views/WorkTime/Month.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya1RpbWVcTW9udGguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/git/projects/Рабочий проект/studies/Company/Views/WorkTime/WorkTimeEditor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya1RpbWVcV29ya1RpbWVFZGl0b3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/git/projects/Рабочий проект/studies/Company/Views/_ViewImports.cshtml]

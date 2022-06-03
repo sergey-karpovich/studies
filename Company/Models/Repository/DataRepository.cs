@@ -121,7 +121,7 @@ namespace Company.Models
         {
              if(context.WorkTimes!=null) 
             {
-                return context.WorkTimes.ToArray();
+                return context.WorkTimes.Include(w=>w.Employee);
             }
             return new List<WorkTime>();
         }
@@ -130,7 +130,7 @@ namespace Company.Models
         {
              if(context.WorkTimes!=null) 
             {
-                return context.WorkTimes.First(w=>w.Id==id);
+                return context.WorkTimes.Find(id)??new WorkTime();
             }
             return new WorkTime();
         }
@@ -148,7 +148,15 @@ namespace Company.Models
         {
             if(context.WorkTimes!=null) 
             {
-                context.WorkTimes.Update(workTime);
+                WorkTime? newWt=context.WorkTimes.FirstOrDefault(wt=>wt.Id==workTime.Id);
+                if(newWt!=null)
+                {
+                    newWt.hours=workTime.hours;
+                    newWt.numMonth=workTime.numMonth;
+                    newWt.lastRate=workTime.lastRate;
+                    newWt.money=workTime.money;
+                    newWt.EmployeeId=workTime.EmployeeId;
+                }                   
                 context.SaveChanges();
             }
         }

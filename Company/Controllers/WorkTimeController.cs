@@ -2,28 +2,29 @@ using Company.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-namespace DataApp.Controllers{
-    public class WorkTimeController:Controller{        
+namespace DataApp.Controllers
+{
+    public class WorkTimeController:Controller
+    {        
         private IDataRepository dataRep;
-        public WorkTimeController(IDataRepository data){
-            
+        public WorkTimeController(IDataRepository data)
+        {            
             dataRep=data;
         }
-         public IActionResult Index(){
-            ViewBag.EmployeeEditId=TempData["EmployeeEditId"];
+         public IActionResult Index()
+         {           
+            ViewBag.month=(int)DateTime.Now.Month;
             return View(dataRep.GetAllEmployee());
         }
-        public IActionResult Edit(long id){
-            IEnumerable<WorkTime> wt=dataRep.GetWorkTimes().Where(e=>e.EmployeeId==id);
-            return View("Editor",wt);
+        public IActionResult Edit(long id)
+        {          
+            WorkTime wt=dataRep.GetWorkTime(id);           
+            return View("WorkTimeEditor",wt);
         }
         [HttpPost]
-        public IActionResult Update(Employee employee){            
-            if(employee.WorkTimes!=null)
-            {
-                foreach(WorkTime wt in employee.WorkTimes)
-                dataRep.UpdateWorkTime(wt);
-            }
+        public IActionResult Edit(WorkTime workTime)
+        { 
+            dataRep.UpdateWorkTime(workTime);           
             return RedirectToAction(nameof(Index));
         }
         public IActionResult NewMonth()
@@ -31,28 +32,25 @@ namespace DataApp.Controllers{
             IEnumerable<Employee> employees=dataRep.GetAllEmployee();
             int num=(int)DateTime.Now.Month;
             foreach(Employee e in employees)
-            {
-                
+            {                
                 WorkTime wt=new WorkTime(){numMonth=num, EmployeeId=e.EmployeeId};
                 dataRep.CreateWorkTime(wt);
             }
             IEnumerable<WorkTime> workTimes=dataRep.GetWorkTimes().Where(e=>e.numMonth==num);
             return View(workTimes);
         }
-        [HttpPost]
-        public IActionResult NewMonth(IEnumerable<Employee> employees)
+        public IActionResult Month()
         {
-            foreach(Employee e in employees)
-            {
-                if(e.WorkTimes!=null)
-                {
-                    foreach (WorkTime wt in e.WorkTimes)
-                    {
-                        dataRep.CreateWorkTime(wt); 
-                    }
-                }                               
-            }
-            return RedirectToAction(nameof(Index));
+            int num=(int)DateTime.Now.Month;
+            IEnumerable<WorkTime> month=dataRep.GetWorkTimes().Where(wt=>wt.numMonth==num);
+            return View(month);
+        }
+        [HttpPost]
+        public IActionResult Month(WorkTime workTime)
+        {
+           
+            dataRep.UpdateWorkTime(workTime);                    
+            return RedirectToAction(nameof(Month));
         }
         
     }
