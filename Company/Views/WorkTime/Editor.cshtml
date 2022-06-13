@@ -1,0 +1,42 @@
+@model IEnumerable<WorkTime>
+@{
+
+    Layout="_Layout";
+}
+<div class="row">
+    <div class="col">numMonth</div>
+    <div class="col">worked hours</div>
+    <div class="col">Rate</div>
+    <div class="col">EmployeeId</div>
+</div>
+@{ int i = 0; }
+<form asp-action="Update" method="post" >
+    @foreach (WorkTime p in Model)    
+    {
+        <div class="row">
+            <input type="hidden" name="Worktimes[@i].Id" value="@p.Id" />
+            <div class="col">
+                <input name="Worktimes[@i].numMonth" value="@p.numMonth" class="form-control" />
+            </div>
+            <div class="col">
+                <input name="Worktimes[@i].hours" value="@p.hours" class="form-control" />
+            </div>
+            <div class="col">
+                <input name="Worktimes[@i].lastRate" value="@p.lastRate" class="form-control" />
+            </div>
+            <div class="col">
+                <input name="Worktimes[@i].EmployeeId" value="@p.EmployeeId" class="form-control" />
+            </div>
+            
+        </div>
+        i++;
+    }
+    <div class="row">
+        <div class="col text m-1">
+            <button class="btn b-centertn-sm btn-danger" type="submit">
+                Save</button>
+            <a class="btn btn-sm btn-secondary" asp-action="Index">
+                Cancel</a>
+        </div>
+    </div>
+</form>

@@ -3,62 +3,43 @@
     ViewData["Title"]="WorkTime";
     Layout="_Layout";
 }
-@foreach(Employee e in Model)
-{
+@foreach(Employee e in Model){
     <h4 class="bg-info text-center text-white p-1">
         @e.FirstName @e.LastName
-        
+        <a asp-action="Edit" asp-route-id="@e.EmployeeId"
+            class="btn btn-sm btn-warning">
+            Edit
+        </a> 
     </h4>
-    <div class="row p-1">            
-            <div class="col">numMonth</div>
-            <div class="col">hours</div>
-            <div class="col">lastRate</div>
-            <div class="col">Emp.Name</div>
-            <div class="col">money</div>
-            <div class="col"></div>
-            <div class="col"></div>
-    </div> 
-    @foreach (WorkTime wt in e.WorkTimes)
-    {
-
     <div class="container-fluid">
-        @if(e.WorkTimes==null||e.WorkTimes.Count()==0)
-        {
+        @if(e.WorkTimes==null||e.WorkTimes.Count()==0){
             <div class="p-1 text-center">No data</div>
-        }       
-        else 
-        {             
-            <div class="row p-1">                
-                <div class="col">@wt.numMonth</div>
-                <div class="col">@wt.hours</div>
-                <div class="col">@wt.lastRate</div>
-                <div class="col">@wt.Employee.FirstName</div>
-                <div class="col">@wt.money</div>
-                <div class="col">
-                    <a asp-action="Edit" asp-route-id="@wt.Id"
-                        class="btn btn-sm btn-warning">
-                        Edit
-                    </a>
+        }else if(ViewBag.EmployeeEditId==e.EmployeeId){            
+            @Html.Partial("Editor",e);
+        }else {
+             <div class="row p-1">
+                    <div class="col">Id</div>
+                    <div class="col">numMonth</div>
+                    <div class="col">hours</div>
+                    <div class="col">lastRate</div>
+                    <div class="col">Emp.Name</div>
+             </div>
+            @foreach (WorkTime wt in e.WorkTimes){
+                @if(wt.EmployeeId==e.EmployeeId){
+                <div class="row p-1">
+                    <div class="col">@wt.Id</div>
+                    <div class="col">@wt.numMonth</div>
+                    <div class="col">@wt.hours</div>
+                    <div class="col">@wt.lastRate</div>
+                    <div class="col">@wt.Employee.FirstName</div>
                 </div>
-                 <div class="col">
-                    <a asp-action="Delete" asp-route-id="@wt.Id"
-                        class="btn btn-sm btn-danger">
-                        Delete
-                    </a>  
-                </div>
-            </div>
-            
-        } 
-    </div>          
-    }        
+                }
+            }        
+        }
+    </div>    
 }
 <div>
     <a asp-action="NewMonth" class="btn btn-sm btn-warning">
             New Month
-        </a>
-</div>
-<div>    
-    <a asp-action="Month" class="btn btn-sm btn-primary">
-            Today's Month
         </a>
 </div>

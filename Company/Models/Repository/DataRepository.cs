@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Company.Models.Pages;
 
 namespace Company.Models
 {
@@ -82,7 +83,11 @@ namespace Company.Models
             IQueryable<Project>data=context.Projects;
             return data;
         }
-
+        //страница с пейджингом
+        public PagedList<Project> GetProjects(QueryOptions options)
+        {
+            return new PagedList<Project>(context.Projects, options);
+        }
         public Project GetProject(long id)
         {
             return context.Projects.Find(id)??(new Project());
@@ -121,7 +126,7 @@ namespace Company.Models
         {
              if(context.WorkTimes!=null) 
             {
-                return context.WorkTimes.Include(w=>w.Employee);
+                return context.WorkTimes.ToArray();
             }
             return new List<WorkTime>();
         }
@@ -130,7 +135,7 @@ namespace Company.Models
         {
              if(context.WorkTimes!=null) 
             {
-                return context.WorkTimes.Find(id)??new WorkTime();
+                return context.WorkTimes.First(w=>w.Id==id);
             }
             return new WorkTime();
         }
@@ -148,15 +153,7 @@ namespace Company.Models
         {
             if(context.WorkTimes!=null) 
             {
-                WorkTime? newWt=context.WorkTimes.FirstOrDefault(wt=>wt.Id==workTime.Id);
-                if(newWt!=null)
-                {
-                    newWt.hours=workTime.hours;
-                    newWt.numMonth=workTime.numMonth;
-                    newWt.lastRate=workTime.lastRate;
-                    newWt.money=workTime.money;
-                    newWt.EmployeeId=workTime.EmployeeId;
-                }                   
+                context.WorkTimes.Update(workTime);
                 context.SaveChanges();
             }
         }

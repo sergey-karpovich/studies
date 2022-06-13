@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Company.Models;
+using Company.Models.Pages;
 
 namespace Company.Controllers{
     public class ProjectsController:Controller{
@@ -11,10 +12,14 @@ namespace Company.Controllers{
             _logger = logger;
             repository=rep;
         }
-        public IActionResult Index()
+        // public IActionResult Index()
+        // {
+        //     var model=repository.GetFilteredProjects();
+        //     return View(model);
+        // }
+        public IActionResult Index(QueryOptions options)
         {
-            var model=repository.GetFilteredProjects();
-            return View(model);
+            return View(repository.GetProjects(options));
         }
         public IActionResult Create()
         {

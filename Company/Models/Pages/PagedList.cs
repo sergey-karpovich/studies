@@ -3,6 +3,7 @@ using System.Linq;
 using System;
 using System.Linq.Expressions;
 using System.Diagnostics;
+
 namespace Company.Models.Pages
 {
     public class PagedList<T> : List<T>
@@ -11,6 +12,8 @@ namespace Company.Models.Pages
         {
             CurrentPage = options.CurrentPage;
             PageSize = options.PageSize;
+
+            //this doesn't using, becose I don't understand how it works
             Options=options;
             if (options != null)
             {
@@ -25,19 +28,17 @@ namespace Company.Models.Pages
                     query = Search(query, options.SearchPropertyName,
                         options.SearchTerm);
                 }
-            }
-            //Stopwatch sw=Stopwatch.StartNew();
-            //Console.Clear();
-            TotalPages = query.Count() / PageSize;
+            }   
+            int PS=query.Count()/ PageSize;        
+            TotalPages = query.Count()%PageSize==0?PS:PS+1;
             AddRange(query.Skip((CurrentPage - 1) * PageSize).Take(PageSize));
-            //Console.WriteLine($"Query Time: {sw.ElapsedMilliseconds} ms");
         }
         public int CurrentPage { get; set; }
         public int PageSize { get; set; }
-        public int TotalPages { get; set; }
-        public QueryOptions Options { get; set; }
+        public int TotalPages { get; set; }        
         public bool HasPreviousPage => CurrentPage > 1;
         public bool HasNextPage=>CurrentPage< TotalPages;
+        public QueryOptions Options { get; set; }
         private static IQueryable<T> Search(IQueryable<T> query,
             string propertyName, string searchTerm)
         {
@@ -63,7 +64,7 @@ namespace Company.Models.Pages
                 && method.GetGenericArguments().Length == 2 
                 && method.GetParameters().Length == 2)
                 .MakeGenericMethod(typeof(T), source.Type)
-                .Invoke(null, new object[] { query, lambda }) as IQueryable<T>;
+                .Invoke(null, new object[] { query, lambda }) as IQueryable<T> ;
         }
     }
 }

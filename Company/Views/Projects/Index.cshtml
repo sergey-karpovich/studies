@@ -1,11 +1,19 @@
-@model IEnumerable<Company.Models.Project>
+@model IEnumerable<Project>
 @{
     ViewData["Title"] = "Projects Page";  
     Layout="_Layout"; 
 }
+
 <table class="table table-sm table-striped">
     <thead>
-        <tr><th>ID</th><th>Name</th><th>Description</th><th>Date of adoption</th><th>Deadline</th><th>Budjet</th></tr>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Date of adoption</th>
+            <th>Deadline</th>
+            <th>Budjet</th>
+        </tr>
     </thead>
     <tbody>
         @foreach (var p in Model) {
@@ -34,3 +42,14 @@
 </table>
 <a asp-action="Create" class="btn btn-primary">Create New Project</a>
 <a asp-controller="ProjectEmployee" asp-action="Index" class="btn btn-primary">Assign employee</a>
+<br>
+<br>
+<div class="text-center" >
+@Html.Partial("Pages",Model)
+@* @{        
+    ViewBag.searches = new string[] { "Name", "Description" };       
+    ViewBag.sorts = new string[] { "Name", "Description",
+     "Date of adoption", "Deadline", "Budjet"};    
+} 
+@Html.Partial("PageOptions", Model) *@
+</div>
