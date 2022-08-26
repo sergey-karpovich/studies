@@ -1,0 +1,26 @@
+@page
+@using Packt.Shared
+@model NorthwindWeb.Pages.CustomersModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<div class="row">
+  <h1 class="display-2">Customers</h1>
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr><th>Company Name</th><th>Country</th></tr>
+    </thead>
+    <tbody>
+    @foreach(Customer customer in Model.Customers)
+    {
+      <tr>
+        <td>
+            <a class="btn btn-primary" asp-page="customer" asp-route-id="@customer.CustomerID">
+                @customer.CompanyName
+            </a>            
+        </td>
+        <td>@customer.Country</td>
+      </tr>
+    }    
+    </tbody>
+  </table>
+</div>
+    

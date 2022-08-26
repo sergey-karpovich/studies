@@ -1,0 +1,54 @@
+@model Packt.Shared.Customer
+<h3 class="p-2 bg-primary text-white text-center">Create customer</h3>
+
+<form asp-action="AddCustomer" method="post">
+    <div class="form-group">
+        <label asp-for="CustomerID"></label>
+        <input asp-for="CustomerID" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="CompanyName"></label>
+        <input asp-for="CompanyName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ContactName"></label>
+        <input asp-for="ContactName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ContactTitle"></label>
+        <input asp-for="ContactTitle" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" />
+    </div>    
+    <div class="form-group">
+        <label asp-for="City"></label>
+        <input asp-for="City" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Region"></label>
+        <input asp-for="Region" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PostalCode"></label>
+        <input asp-for="PostalCode" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Country"></label>
+        <input asp-for="Country" class="form-control" />
+    </div>
+      <div class="form-group">
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Fax"></label>
+        <input asp-for="Fax" class="form-control" />
+    </div>
+    
+    <div class="text-center m-2">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

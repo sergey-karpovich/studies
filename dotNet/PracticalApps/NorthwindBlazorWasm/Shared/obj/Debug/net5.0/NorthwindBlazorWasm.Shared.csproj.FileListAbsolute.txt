@@ -1,0 +1,12 @@
+C:\git\projects\PriceLessons\PracticalApps\NorthwindBlazorWasm\Shared\bin\Debug\net5.0\NorthwindBlazorWasm.Shared.deps.json
+C:\git\projects\PriceLessons\PracticalApps\NorthwindBlazorWasm\Shared\bin\Debug\net5.0\NorthwindBlazorWasm.Shared.dll
+C:\git\projects\PriceLessons\PracticalApps\NorthwindBlazorWasm\Shared\bin\Debug\net5.0\NorthwindBlazorWasm.Shared.pdb
+C:\git\projects\PriceLessons\PracticalApps\NorthwindBlazorWasm\Shared\obj\Debug\net5.0\NorthwindBlazorWasm.Shared.csproj.AssemblyReference.cache
+C:\git\projects\PriceLessons\PracticalApps\NorthwindBlazorWasm\Shared\obj\Debug\net5.0\NorthwindBlazorWasm.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\projects\PriceLessons\PracticalApps\NorthwindBlazorWasm\Shared\obj\Debug\net5.0\NorthwindBlazorWasm.Shared.AssemblyInfoInputs.cache
+C:\git\projects\PriceLessons\PracticalApps\NorthwindBlazorWasm\Shared\obj\Debug\net5.0\NorthwindBlazorWasm.Shared.AssemblyInfo.cs
+C:\git\projects\PriceLessons\PracticalApps\NorthwindBlazorWasm\Shared\obj\Debug\net5.0\NorthwindBlazorWasm.Shared.csproj.CoreCompileInputs.cache
+C:\git\projects\PriceLessons\PracticalApps\NorthwindBlazorWasm\Shared\obj\Debug\net5.0\NorthwindBlazorWasm.Shared.dll
+C:\git\projects\PriceLessons\PracticalApps\NorthwindBlazorWasm\Shared\obj\Debug\net5.0\refint\NorthwindBlazorWasm.Shared.dll
+C:\git\projects\PriceLessons\PracticalApps\NorthwindBlazorWasm\Shared\obj\Debug\net5.0\NorthwindBlazorWasm.Shared.pdb
+C:\git\projects\PriceLessons\PracticalApps\NorthwindBlazorWasm\Shared\obj\Debug\net5.0\ref\NorthwindBlazorWasm.Shared.dll

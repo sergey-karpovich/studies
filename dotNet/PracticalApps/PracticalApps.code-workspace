@@ -1,0 +1,47 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "exercise"
+		},
+		{
+			"path": "exercise2"
+		},
+		{
+			"path": "NorthwindCms"
+		},
+		{
+			"path": "NorthwindContextLib"
+		},
+		{
+			"path": "NorthwindEmployees"
+		},
+		{
+			"path": "NorthwindEntitiesLib"
+		},
+		{
+			"path": "NorthwindMvc"
+		},
+		{
+			"path": "NorthwindWeb"
+		},
+		{
+			"path": "SimpleWeb"
+		},
+		{
+			"path": "NorthwindService"
+		},
+		{
+			"path": "NorthwindML"
+		},
+		{
+			"path": "NorthwindBlazorServer"
+		},
+		{
+			"path": "NorthwindBlazorWasm"
+		}
+	],
+	"settings": {}
+}

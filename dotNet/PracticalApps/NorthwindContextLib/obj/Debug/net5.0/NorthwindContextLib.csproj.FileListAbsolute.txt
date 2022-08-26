@@ -1,0 +1,15 @@
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\bin\Debug\net5.0\NorthwindContextLib.deps.json
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\bin\Debug\net5.0\NorthwindContextLib.dll
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\bin\Debug\net5.0\NorthwindContextLib.pdb
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\bin\Debug\net5.0\NorthwindEntitiesLib.dll
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\bin\Debug\net5.0\NorthwindEntitiesLib.pdb
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\obj\Debug\net5.0\NorthwindContextLib.csproj.AssemblyReference.cache
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\obj\Debug\net5.0\NorthwindContextLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\obj\Debug\net5.0\NorthwindContextLib.AssemblyInfoInputs.cache
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\obj\Debug\net5.0\NorthwindContextLib.AssemblyInfo.cs
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\obj\Debug\net5.0\NorthwindContextLib.csproj.CoreCompileInputs.cache
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\obj\Debug\net5.0\NorthwindContextLib.csproj.CopyComplete
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\obj\Debug\net5.0\NorthwindContextLib.dll
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\obj\Debug\net5.0\refint\NorthwindContextLib.dll
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\obj\Debug\net5.0\NorthwindContextLib.pdb
+C:\git\projects\PriceLessons\PracticalApps\NorthwindContextLib\obj\Debug\net5.0\ref\NorthwindContextLib.dll

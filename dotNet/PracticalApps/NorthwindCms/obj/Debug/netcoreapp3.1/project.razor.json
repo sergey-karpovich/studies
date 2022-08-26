@@ -1,0 +1,125 @@
+{
+  "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\NorthwindCms.csproj",
+  "Configuration": {
+    "ConfigurationName": "MVC-3.0",
+    "LanguageVersion": "3.0",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-3.0"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 800
+  },
+  "RootNamespace": "NorthwindCms",
+  "Documents": [
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\DisplayTemplates\\YouTubeBlock.cshtml",
+      "TargetPath": "Views\\Cms\\DisplayTemplates\\YouTubeBlock.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Setup\\Index.cshtml",
+      "TargetPath": "Views\\Setup\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\DisplayTemplates\\VideoBlock.cshtml",
+      "TargetPath": "Views\\Cms\\DisplayTemplates\\VideoBlock.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\DisplayTemplates\\TextBlock.cshtml",
+      "TargetPath": "Views\\Cms\\DisplayTemplates\\TextBlock.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\Post.cshtml",
+      "TargetPath": "Views\\Cms\\Post.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\Category.cshtml",
+      "TargetPath": "Views\\Cms\\Category.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Shared\\Partial\\_Meta.cshtml",
+      "TargetPath": "Views\\Shared\\Partial\\_Meta.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\DisplayTemplates\\ImageGalleryBlock.cshtml",
+      "TargetPath": "Views\\Cms\\DisplayTemplates\\ImageGalleryBlock.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\DisplayTemplates\\AudioBlock.cshtml",
+      "TargetPath": "Views\\Cms\\DisplayTemplates\\AudioBlock.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\Archive.cshtml",
+      "TargetPath": "Views\\Cms\\Archive.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\DisplayTemplates\\HtmlBlock.cshtml",
+      "TargetPath": "Views\\Cms\\DisplayTemplates\\HtmlBlock.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\Catalog.cshtml",
+      "TargetPath": "Views\\Cms\\Catalog.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\DisplayTemplates\\SeparatorBlock.cshtml",
+      "TargetPath": "Views\\Cms\\DisplayTemplates\\SeparatorBlock.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\DisplayTemplates\\ImageBlock.cshtml",
+      "TargetPath": "Views\\Cms\\DisplayTemplates\\ImageBlock.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\Page.cshtml",
+      "TargetPath": "Views\\Cms\\Page.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\DisplayTemplates\\ColumnBlock.cshtml",
+      "TargetPath": "Views\\Cms\\DisplayTemplates\\ColumnBlock.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Cms\\DisplayTemplates\\QuoteBlock.cshtml",
+      "TargetPath": "Views\\Cms\\DisplayTemplates\\QuoteBlock.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\git\\projects\\Repos_книга_Прайс_с9\\PracticalApps\\NorthwindCms\\Views\\Shared\\Partial\\_Menu.cshtml",
+      "TargetPath": "Views\\Shared\\Partial\\_Menu.cshtml",
+      "FileKind": "mvc"
+    }
+  ],
+  "SerializationFormat": "0.2"
+}

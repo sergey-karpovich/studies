@@ -1,0 +1,37 @@
+@page
+@functions
+{
+    public string DayName { get; set; }
+    public void OnGet()
+    {
+        ViewData["Title"] = "Functions";
+        Model.DayName = DateTime.Now.ToString("dddd");
+    }
+}
+<div class="jumbotron">
+    <h1 class="display-3">Welcome!</h1>
+    <p class="lead">Повторение упражнений в веб-формате.</p>
+    <hr />
+
+
+
+    <p>
+        Сегодня @Model.DayName!
+    </p>
+    <p> <a class="btn btn-primary" href="primefactory">
+            Prime Factory
+        </a>    
+    <p>
+        <a class="btn btn-primary" href="index2">
+            Time
+        </a>
+    </p>
+    <p>
+        <a class="btn btn-primary" href="customers">
+            Learn more about our customers
+        </a>
+    </p>
+</div>
+
+
+</html>
