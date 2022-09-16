@@ -1,2 +1,2 @@
-# studies
-my study projects
+# my dotnet , java script, scss  study projects
+
