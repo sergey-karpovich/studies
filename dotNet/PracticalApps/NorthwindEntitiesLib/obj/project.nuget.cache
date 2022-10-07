@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3g6BnYKXK73asNn4Pxtms2dsCMSxs0bcJ40MGrnembXiJK++i4MjSUmIHrLCyKHGrFRhGssfHm9ftPnOhAKXvA==",
+  "dgSpecHash": "ImMZnzcwvVacGou/EZZnmYMrVHFDAZ7aX75P4Dl2IZQf0M3QJHx7L91sSAGTYco0CmHgJQYVDtASlXzkf+k2yw==",
   "success": true,
-  "projectFilePath": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindEntitiesLib\\NorthwindEntitiesLib.csproj",
+  "projectFilePath": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindEntitiesLib\\NorthwindEntitiesLib.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\юзер\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

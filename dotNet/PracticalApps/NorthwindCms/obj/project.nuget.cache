@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BwKgJIHg1/2+bSgTwQUHpCUakSOOrXRpWwFkgrI4344tGbmX56d7fUvRCgNIziGhTG1kuaf0UUjxVRdmjniFfw==",
+  "dgSpecHash": "8R2EK6AL+YcAWr4M6zVsT54GZ3BcBY3mVSXETWr+v9D+YOJN6BFY+6so0VqdNvZx5i4E+CyMaRq/YL4rqzGa7w==",
   "success": true,
-  "projectFilePath": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindCms\\NorthwindCms.csproj",
+  "projectFilePath": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindCms\\NorthwindCms.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\юзер\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

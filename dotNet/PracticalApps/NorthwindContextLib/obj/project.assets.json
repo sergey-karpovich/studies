@@ -1099,11 +1099,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindContextLib\\NorthwindContextLib.csproj",
+      "projectUniqueName": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindContextLib\\NorthwindContextLib.csproj",
       "projectName": "NorthwindContextLib",
-      "projectPath": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindContextLib\\NorthwindContextLib.csproj",
+      "projectPath": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindContextLib\\NorthwindContextLib.csproj",
       "packagesPath": "C:\\Users\\юзер\\.nuget\\packages\\",
-      "outputPath": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindContextLib\\obj\\",
+      "outputPath": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindContextLib\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -1125,8 +1125,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindEntitiesLib\\NorthwindEntitiesLib.csproj": {
-              "projectPath": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindEntitiesLib\\NorthwindEntitiesLib.csproj"
+            "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindEntitiesLib\\NorthwindEntitiesLib.csproj": {
+              "projectPath": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindEntitiesLib\\NorthwindEntitiesLib.csproj"
             }
           }
         }

@@ -8,105 +8,113 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Company
 build_property.RootNamespace = Company
-build_property.ProjectDir = c:\git\projects\Рабочий проект\Company\
+build_property.ProjectDir = C:\git\projects\PetProgects\studies\dotNet\Company\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = c:\git\projects\Рабочий проект\Company
+build_property.MSBuildProjectDirectory = C:\git\projects\PetProgects\studies\dotNet\Company
 build_property._RazorSourceGeneratorDebug = 
 
-[c:/git/projects/Рабочий проект/Company/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Home/Documents.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Home/Documents.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEb2N1bWVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Home/Employee.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Home/Employee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFbXBsb3llZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Home/Index.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Home/Privacy.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Home/Statistics.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Home/Statistics.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTdGF0aXN0aWNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Home/UpdateEmployee.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Home/UpdateEmployee.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVcGRhdGVFbXBsb3llZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Migrations/Index.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Migrations/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlncmF0aW9uc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/ProjectEmployee/Edit.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/ProjectEmployee/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdEVtcGxveWVlXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/ProjectEmployee/Index.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/ProjectEmployee/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdEVtcGxveWVlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Projects/Index.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Projects/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Shared/Editor.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Shared/Editor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVkaXRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Shared/Error.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Shared/PageOptions.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Shared/PageOptions.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhZ2VPcHRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Shared/Pages.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Shared/Pages.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhZ2VzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Shared/ProjectEditor.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Shared/ProjectEditor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFByb2plY3RFZGl0b3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Shared/_LoginPartial.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/WorkTime/Editor.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/WorkTime/Editor.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya1RpbWVcRWRpdG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/WorkTime/Index.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/WorkTime/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya1RpbWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/WorkTime/NewMonth.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/WorkTime/Month.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya1RpbWVcTW9udGguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/WorkTime/NewMonth.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya1RpbWVcTmV3TW9udGguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/_ViewImports.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/WorkTime/WorkTimeEditor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya1RpbWVcV29ya1RpbWVFZGl0b3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/_ViewStart.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/git/projects/Рабочий проект/Company/Views/Shared/_Layout.cshtml]
+[C:/git/projects/PetProgects/studies/dotNet/Company/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-on2nwf8po3

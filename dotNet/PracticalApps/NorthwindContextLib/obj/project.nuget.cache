@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uaNAZbdMxWn0yxB6dVaqZx+bW4btoQXHgHLTweQ0bInDN39EkaWnolUKxMLyuRQM2I9SU80huYJ+xFbgG1AUsw==",
+  "dgSpecHash": "lLozyhLyz+3CET+D8IIOKRnR6PWahr868dYezYqwD7LTh+4bmCjIKRXD3RD1W1QwR9UCijgXBh5OUeBD7Yg57g==",
   "success": true,
-  "projectFilePath": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindContextLib\\NorthwindContextLib.csproj",
+  "projectFilePath": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindContextLib\\NorthwindContextLib.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\юзер\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
