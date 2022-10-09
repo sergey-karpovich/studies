@@ -14,8 +14,12 @@ import employeeModule from './modules/employee/index.js';
         employee: employeeModule,
         // projects: projectsModule,
         // auth: authModule,
+    },    
+    state(){
+        return{
+            API_URL: 'https://localhost:7075/api',
+        };
     },
-    
     mutations: rootMutations,
     actions: rootActions,
     getters: rootGetters,

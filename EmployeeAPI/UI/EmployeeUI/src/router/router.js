@@ -1,8 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import NotFound from './pages/NotFound.vue';
+import NotFound from '../pages/NotFound.vue';
+
+import EmployeeList from '../pages/employee/EmployeeList.vue';
+import EmployeeDetail from '../pages/employee/EmployeeDetail.vue';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
@@ -11,22 +14,27 @@ const router = createRouter({
     {
       path: '/employee',
       name: 'employee',      
-      component: () => import('../pages/employee/EmployeeList.vue')
+      component: EmployeeList
+    },
+    {
+      path: '/employee/:id',
+      component: EmployeeDetail,
+      props: true,
     },
     {
       path: '/projects',
       name: 'projects',      
-      component: () => {title: "Projects"}
+      component: () => null
     },
     {
-      path: '/worktime',
-      name: 'worktime',      
-      component: () => {title:"worktime"}
+      path: '/workTime',
+      name: 'workTime',      
+      component: () => null
     },
     {
-      path: '/printreport',
-      name: 'printreport',      
-      component: () => {title: "print report"}
+      path: '/printReport',
+      name: 'printReport',      
+      component: () => null
     },
     { path: '/:notFound(.*)', component: NotFound },
   ]

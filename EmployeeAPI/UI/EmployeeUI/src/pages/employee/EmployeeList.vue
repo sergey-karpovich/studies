@@ -1,10 +1,11 @@
 <template>
     <div>
-        <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
+        <base-dialog :show="!!error" title="An error occurred!" 
+        @close="handleError">
         <p>{{ error }}</p>
         </base-dialog>
         <section>
-            <coach-filter @change-filter="setFilters"></coach-filter>
+            <!-- <coach-filter @change-filter="setFilters"></coach-filter> -->
         </section>
         <section> 
             <base-card>
@@ -14,14 +15,15 @@
             <div v-if="isLoading">
                 <base-spinner></base-spinner>
             </div>
-                <ul v-else-if="hasEmployee">
-                    <coach-item v-for="employee in employees" 
+                <ul v-else-if="hasEmployees">
+                    <employee-item v-for="employee in employees" 
                     :key="employee.EmployeeId" 
                     :id="employee.EmployeeId" 
                     :first-name="employee.firstName" 
                     :last-name="employee.lastName" 
-                    
-                    ></coach-item>
+                    :hire-date="employee.hireDate"
+                    :title="employee.title"
+                    ></employee-item>
                 </ul>
                 <h3 v-else>No employee found.</h3>
             </base-card>
@@ -30,12 +32,11 @@
 </template>
 
 <script>
-import EmployeeItem from './EmployeeItem.vue'
-
+import EmployeeItem from './EmployeeItem.vue';
 
 export default {
     components: {
-        CoachItem,
+        EmployeeItem,
         
     },
     data(){
@@ -46,24 +47,30 @@ export default {
         }
     },
     computed: {  
+        employees(){
+            return this.$store.getters['employee/employees']
+        } ,
+        hasEmployees(){
+            return !this.isLoading && this.employees.length>0;
+        },
     },
     methods: {
-        
-        async loadCoaches(refresh = false){
+        async loadEmployee(){
             this.isLoading = true;
             try{
-                await this.$store.dispatch('coaches/loadCoaches', {forceRefresh: refresh});
+                await this.$store.dispatch('employee/loadEmployees')
             } catch (error){
-                this.error=error.message || 'Something went wrong!';
+                this.error = error.message || 'Something went wrong!';
             }
-            this.isLoading = false;
+            this.isLoading=false
         },
+        
         handleError() {
             this.error = null;
         }
     },
     created(){
-        this.loadCoaches();
+        this.loadEmployee();
     }
 }
 </script>

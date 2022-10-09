@@ -27,3 +27,12 @@ npm run dev
 ```sh
 npm run build
 ```
+
+<!-- 
+"dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173"
+    
+"devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.3",
+    "vite": "^3.0.9" -->

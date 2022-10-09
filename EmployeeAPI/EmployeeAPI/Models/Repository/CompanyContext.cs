@@ -10,17 +10,17 @@ namespace EmployeeAPI.Models.Repository
         public DbSet<Project>? Projects { get; set; }
         public DbSet<WorkTime>? WorkTimes { get; set; }
 
-               
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        // not working
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
              
-            modelBuilder.Entity<Employee>().HasData(
-                new Employee[]
-                {
-                new Employee { EmployeeId=1, LastName="Tom", Title="test data title"},
-                new Employee { EmployeeId=2, LastName="Alice", Title="test data title"},
-                new Employee { EmployeeId=3, LastName="Sam", Title="test data title"},                
-                });
-        }
+        //    modelBuilder.Entity<Employee>().HasData(
+        //        new Employee[]
+        //        {
+        //        new Employee { EmployeeId=1, LastName="Tom", Title="test data title"},
+        //        new Employee { EmployeeId=2, LastName="Alice", Title="test data title"},
+        //        new Employee { EmployeeId=3, LastName="Sam", Title="test data title"},                
+        //        });
+        //}
     }
 }
