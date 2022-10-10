@@ -1,11 +1,11 @@
-import axios from 'axios';
+
 export default {
     async loadEmployees(context) {
         // if(!payload.forceRefresh && !context.getters.shouldUpdate){
         //     return;
         // }
         const url = context.rootGetters.url;
-        const response = await axios.get(
+        const response = await this.axios.get(
             `${url}/employee`
         );
         // console.log(response);       

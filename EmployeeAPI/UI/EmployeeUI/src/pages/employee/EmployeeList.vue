@@ -5,7 +5,12 @@
         <p>{{ error }}</p>
         </base-dialog>
         <section>
+            <base-card v-if="isCreating" title="Create New Employee" 
+                >   
+                <employee-form @close="closeCreateForm"></employee-form>
+            </base-card>
             <!-- <coach-filter @change-filter="setFilters"></coach-filter> -->
+            <base-button @click="openForm">New Employee</base-button>
         </section>
         <section> 
             <base-card>
@@ -32,18 +37,19 @@
 </template>
 
 <script>
-import EmployeeItem from './EmployeeItem.vue';
+import EmployeeItem from '../../components/employees/EmployeeItem.vue';
+import EmployeeForm from '../../components/employees/EmployeeForm.vue';
 
 export default {
     components: {
         EmployeeItem,
-        
+        EmployeeForm,
     },
     data(){
         return {
             isLoading: false,
             error: null,
-            
+            creating: false
         }
     },
     computed: {  
@@ -53,6 +59,9 @@ export default {
         hasEmployees(){
             return !this.isLoading && this.employees.length>0;
         },
+        isCreating(){
+            return this.creating
+        } ,
     },
     methods: {
         async loadEmployee(){
@@ -67,6 +76,13 @@ export default {
         
         handleError() {
             this.error = null;
+        },
+        openForm(){
+            console.log('openForm');
+            this.creating=true;
+        },
+        closeCreateForm(){
+            this.creating = false;
         }
     },
     created(){

@@ -3,6 +3,7 @@ import NotFound from '../pages/NotFound.vue';
 
 import EmployeeList from '../pages/employee/EmployeeList.vue';
 import EmployeeDetail from '../pages/employee/EmployeeDetail.vue';
+import ProjectList from '../pages/projects/ProjectList.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -24,7 +25,7 @@ const router = createRouter({
     {
       path: '/projects',
       name: 'projects',      
-      component: () => null
+      component: () => ProjectList
     },
     {
       path: '/workTime',

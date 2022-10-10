@@ -4,6 +4,8 @@ import App from './App.vue'
 import router from './router/router.js'
 import store from './store/index.js'
 
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 import './assets/main.css'
 
@@ -17,6 +19,7 @@ const app = createApp(App)
 
 app.use(router)
 app.use(store)
+app.use(VueAxios, axios)
 
 app.component('base-card', BaseCard);
 app.component('base-button', BaseButton);

@@ -18,6 +18,7 @@ import employeeModule from './modules/employee/index.js';
     state(){
         return{
             API_URL: 'https://localhost:7075/api',
+            PHOTO_URL: '',
         };
     },
     mutations: rootMutations,

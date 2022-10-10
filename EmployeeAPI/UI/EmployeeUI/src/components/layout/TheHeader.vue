@@ -7,10 +7,10 @@
                     <router-link to="/employee" >All Employee</router-link>
                 </li>
              
-                <li v-if="isLoggedIn">
+                <li>
                     <router-link to="/projects">Projects</router-link>
                 </li>
-                <li v-else>
+                <li>
                   <router-link to="/auth">Login</router-link>
                 </li>
                 <li v-if="isLoggedIn">
