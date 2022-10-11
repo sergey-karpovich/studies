@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EmployeeAPI.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,23 +15,24 @@ namespace EmployeeAPI.Migrations
                 {
                     EmployeeID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LastName = table.Column<string>(type: "nvarchar (20)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar (10)", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar (30)", nullable: true),
-                    TitleOfCourtesy = table.Column<string>(type: "nvarchar (25)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar (20)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar (1000)", nullable: true),
+                    Rate = table.Column<decimal>(type: "decimal", nullable: true),
+                    Areas = table.Column<string>(type: "nvarchar (100)", nullable: true),
                     BirthDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     HireDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    HomePhone = table.Column<string>(type: "nvarchar (50)", nullable: true),
+                    PhotoPath = table.Column<string>(type: "nvarchar (1000)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar (60)", nullable: true),
                     City = table.Column<string>(type: "nvarchar (15)", nullable: true),
                     Region = table.Column<string>(type: "nvarchar (15)", nullable: true),
                     PostalCode = table.Column<string>(type: "nvarchar (10)", nullable: true),
                     Country = table.Column<string>(type: "nvarchar (15)", nullable: true),
-                    HomePhone = table.Column<string>(type: "nvarchar (24)", nullable: true),
                     Extension = table.Column<string>(type: "nvarchar (4)", nullable: true),
                     Photo = table.Column<byte[]>(type: "image", nullable: true),
                     Notes = table.Column<string>(type: "ntext", nullable: true),
-                    ReportsTo = table.Column<int>(type: "int", nullable: true),
-                    PhotoPath = table.Column<string>(type: "nvarchar (255)", nullable: true)
+                    ReportsTo = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -102,21 +103,6 @@ namespace EmployeeAPI.Migrations
                         principalColumn: "ProjectID",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "EmployeeID", "Address", "BirthDate", "City", "Country", "Extension", "FirstName", "HireDate", "HomePhone", "LastName", "Notes", "Photo", "PhotoPath", "PostalCode", "Region", "ReportsTo", "Title", "TitleOfCourtesy" },
-                values: new object[] { 1L, null, null, null, null, null, null, null, null, "Tom", null, null, null, null, null, null, "test data title", null });
-
-            migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "EmployeeID", "Address", "BirthDate", "City", "Country", "Extension", "FirstName", "HireDate", "HomePhone", "LastName", "Notes", "Photo", "PhotoPath", "PostalCode", "Region", "ReportsTo", "Title", "TitleOfCourtesy" },
-                values: new object[] { 2L, null, null, null, null, null, null, null, null, "Alice", null, null, null, null, null, null, "test data title", null });
-
-            migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "EmployeeID", "Address", "BirthDate", "City", "Country", "Extension", "FirstName", "HireDate", "HomePhone", "LastName", "Notes", "Photo", "PhotoPath", "PostalCode", "Region", "ReportsTo", "Title", "TitleOfCourtesy" },
-                values: new object[] { 3L, null, null, null, null, null, null, null, null, "Sam", null, null, null, null, null, null, "test data title", null });
 
             migrationBuilder.CreateIndex(
                 name: "LastName",

@@ -5,14 +5,14 @@
         </base-dialog>
         <base-spinner v-if="isLoaded"></base-spinner>
         <base-card>
-            <h2>Register as a coach now!</h2>
-            <coach-form @submit-coach="submitCoach"></coach-form>
+            <h2>Register employee</h2>
+            <employee-form @close="closeCreateForm" @submit-employee="submitEmployee"></employee-form>
         </base-card>
     </section>
 </template>
 
 <script>
-import CoachForm from '../../components/coaches/CoachForm.vue';
+import EmployeeForm from '../../components/employees/EmployeeForm.vue';
 
 export default {
     components: {
@@ -26,13 +26,13 @@ export default {
     },
     
     methods: {
-        async submitCoach(coach){
-            // console.log(coach);
-            this.isLoaded=true;
+        async submitEmployee(employee){
+             this.isLoaded=true;
             
             try{
-                await this.$store.dispatch('coaches/registerCoach',coach);
-                this.$router.replace('/coaches');
+                console.log(employee);
+                await this.$store.dispatch('employee/registerEmployee', employee);
+                this.$router.replace('/employee');
            
             } catch (error){
                 this.error=error.message || 'Something went wrong!';
@@ -42,6 +42,9 @@ export default {
         },
         handleError(){
             this.error=null;
+        },
+        closeCreateForm(){
+            this.$router.replace('/employee');
         }
     } 
 }

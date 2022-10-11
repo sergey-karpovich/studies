@@ -5,12 +5,11 @@
         <p>{{ error }}</p>
         </base-dialog>
         <section>
-            <base-card v-if="isCreating" title="Create New Employee" 
-                >   
-                <employee-form @close="closeCreateForm"></employee-form>
-            </base-card>
+            <!-- <base-card v-if="isCreating" title="Create New Employee" >   
+                <employee-form @close="closeCreateForm" @submit-employee="submitEmployee"></employee-form>
+            </base-card> -->
             <!-- <coach-filter @change-filter="setFilters"></coach-filter> -->
-            <base-button @click="openForm">New Employee</base-button>
+            <base-button link to="/employee/register">New Employee</base-button>
         </section>
         <section> 
             <base-card>
@@ -26,8 +25,14 @@
                     :id="employee.EmployeeId" 
                     :first-name="employee.firstName" 
                     :last-name="employee.lastName" 
+                    :description="employee.description"
+                    :rate="employee.rate"
+                    :areas="employee.areas"
+                    :birth-date="employee.birthDate"
                     :hire-date="employee.hireDate"
-                    :title="employee.title"
+                    :home-phone="employee.homePhone"
+                    :PhotoFileName="employee.photoPath"
+                    @deleteEmployee="deleteEmployee"
                     ></employee-item>
                 </ul>
                 <h3 v-else>No employee found.</h3>
@@ -38,18 +43,17 @@
 
 <script>
 import EmployeeItem from '../../components/employees/EmployeeItem.vue';
-import EmployeeForm from '../../components/employees/EmployeeForm.vue';
 
 export default {
     components: {
         EmployeeItem,
-        EmployeeForm,
+        
     },
     data(){
         return {
             isLoading: false,
             error: null,
-            creating: false
+            
         }
     },
     computed: {  
@@ -59,15 +63,13 @@ export default {
         hasEmployees(){
             return !this.isLoading && this.employees.length>0;
         },
-        isCreating(){
-            return this.creating
-        } ,
+        
     },
     methods: {
         async loadEmployee(){
             this.isLoading = true;
             try{
-                await this.$store.dispatch('employee/loadEmployees')
+                await this.$store.dispatch('employee/loadEmployees');
             } catch (error){
                 this.error = error.message || 'Something went wrong!';
             }
@@ -77,12 +79,15 @@ export default {
         handleError() {
             this.error = null;
         },
-        openForm(){
-            console.log('openForm');
-            this.creating=true;
-        },
-        closeCreateForm(){
-            this.creating = false;
+       
+        async deleteEmployee(id){
+            this.isLoading = true;
+            try{
+                await this.$store.dispatch('employee/deleteEmployee',id);
+            } catch (error){
+                this.error = error.message || 'Something went wrong!';
+            }
+            this.isLoading=false
         }
     },
     created(){

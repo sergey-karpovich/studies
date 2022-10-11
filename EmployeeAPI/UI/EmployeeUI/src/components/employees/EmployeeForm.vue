@@ -59,26 +59,27 @@
                 <input type="tel" id="phoneNumber" v-model.number="phoneNumber.val" />
             </div>
             <div class="form-control">
-                <img :src="PhotoPath+PhotoFileName" alt="photo" width="100" height="100" />
+                <img :src="imageURL" alt="photo" width="100" height="100" />
                 <input type="file" @change="imageUpload">
             </div>
             <p v-if="!formIsValid">Please fix the above errors and submit again.</p>
-            <div class="buttons">
-                <base-button >Register</base-button>
-                <base-button class="close" mode="outline" @click="closeForm">Close</base-button>
-            </div>
         </form>
+        <div class="buttons">
+            <base-button @click="submitForm">Register</base-button>
+            <base-button mode="outline" @click="closeForm">Close</base-button>
+        </div>
     </div>
 
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-    emits: ['submit-employee'],
+    emits: ['submit-employee', 'close'],
     data() {
         return {
             PhotoPath: this.$store.state.PHOTO_URL,
-            PhotoFileName: '',
+            PhotoFileName: 'anonymous.png',
 
             firstName: {
                 val: '',
@@ -101,11 +102,11 @@ export default {
                 isValid: true
             },
             birthDate: {
-                val: new Date(),
+                val: null,
                 isValid: true
             },
             hireDate: {
-                val: new Date(),
+                val: null,
                 isValid: true
             },
             phoneNumber: {
@@ -138,11 +139,12 @@ export default {
                 hourlyRate: this.rate.val,
                 areas: this.areas.val,
                 birthDate: this.birthDate.val,
-                hireDate: this.hireDate.val
+                hireDate: this.hireDate.val,
+                photoPath: this.photoPath.val,
             };
 
-            // this.$emit('submit-employee', formData);
-            console.log(formData);
+           this.$emit('submit-employee', formData);
+            // console.log(formData);
         },
         validateForm() {
             this.formIsValid = true;
@@ -167,20 +169,29 @@ export default {
                 this.formIsValid = false;
             }
         },
-        imageUpload(event) {
-            let formData = new FormData();
-            formData.append('file', event.target.files[0]);
-            this.axios.post(
-                this.$store.state.API_URL + "employee/savefile",
+        imageUpload(event){
+            let formData=new FormData();
+            formData.append('file',event.target.files[0]);
+            axios.post(
+                this.$store.state.API_URL+"/employee/savefile",
                 formData)
-                .then((response) => {
-                    this.PhotoFileName = response.data;
+                .then((response)=>{
+                    // console.log(response.data);
+                    this.photoPath.val=response.data;
+                    this.PhotoFileName=response.data;
                 });
         },
         closeForm(){
             return this.$emit('close');
+        }, 
+       
+    },
+    computed:{
+        imageURL(){
+            return  this.PhotoPath+this.PhotoFileName;
         }
-    }
+    },
+    
 }
 </script>
 

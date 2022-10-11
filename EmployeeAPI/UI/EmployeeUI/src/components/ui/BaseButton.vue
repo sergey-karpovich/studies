@@ -70,4 +70,11 @@ button:active {
 .outline:active {
   background-color: #edd2ff;
 }
+.attention {
+  background-color: #f07979;
+  border-color: rgb(250, 0, 0)
+}
+.attention:hover {
+  background-color: #922727;
+}
 </style>

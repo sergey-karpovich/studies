@@ -8,4 +8,7 @@ export default {
     setFetchTimestamp(state){
         state.lastFetch = new Date().getTime();
     },
+    deleteEmployee(state,id){
+        state.employees = state.employees.filter(emp=>emp.EmployeeId!=id);
+    }
 };

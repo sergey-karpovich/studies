@@ -34,6 +34,9 @@ namespace EmployeeAPI.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar (60)");
 
+                    b.Property<string>("Areas")
+                        .HasColumnType("nvarchar (100)");
+
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("datetime");
 
@@ -42,6 +45,9 @@ namespace EmployeeAPI.Migrations
 
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar (15)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar (1000)");
 
                     b.Property<string>("Extension")
                         .HasColumnType("nvarchar (4)");
@@ -53,7 +59,7 @@ namespace EmployeeAPI.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("HomePhone")
-                        .HasColumnType("nvarchar (24)");
+                        .HasColumnType("nvarchar (50)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar (20)");
@@ -65,22 +71,19 @@ namespace EmployeeAPI.Migrations
                         .HasColumnType("image");
 
                     b.Property<string>("PhotoPath")
-                        .HasColumnType("nvarchar (255)");
+                        .HasColumnType("nvarchar (1000)");
 
                     b.Property<string>("PostalCode")
                         .HasColumnType("nvarchar (10)");
+
+                    b.Property<decimal?>("Rate")
+                        .HasColumnType("decimal");
 
                     b.Property<string>("Region")
                         .HasColumnType("nvarchar (15)");
 
                     b.Property<int?>("ReportsTo")
                         .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar (30)");
-
-                    b.Property<string>("TitleOfCourtesy")
-                        .HasColumnType("nvarchar (25)");
 
                     b.HasKey("EmployeeId");
 
@@ -89,26 +92,6 @@ namespace EmployeeAPI.Migrations
                     b.HasIndex(new[] { "PostalCode" }, "PostalCodeEmployees");
 
                     b.ToTable("Employees");
-
-                    b.HasData(
-                        new
-                        {
-                            EmployeeId = 1L,
-                            LastName = "Tom",
-                            Title = "test data title"
-                        },
-                        new
-                        {
-                            EmployeeId = 2L,
-                            LastName = "Alice",
-                            Title = "test data title"
-                        },
-                        new
-                        {
-                            EmployeeId = 3L,
-                            LastName = "Sam",
-                            Title = "test data title"
-                        });
                 });
 
             modelBuilder.Entity("EmployeeAPI.Models.Project", b =>

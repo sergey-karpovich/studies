@@ -1,14 +1,24 @@
 <template>
     <li>
-        <h3>{{ fullName }}</h3>
+      <div class="flex-row">
+        <div >
+          <h3>{{ fullName }}</h3>
+          <h4>{{ description }}</h4>
+          <h4>{{ rate }}</h4>
+          <h4>{{ areas }}</h4>
+        <h4>{{ birthDate }}</h4>
         <h4>{{ hireDate }}</h4>
-        <h4>{{ title }}</h4>
-        <div>
-            <!-- <base-badge v-for="area in areas" :key="area" :type="area" :title="area"></base-badge> -->
-        </div>
+        <h4>{{ homePhone }}</h4>
+      </div>
+      <div>
+        <img class="image-employee" :src="PhotoPath+photoName" alt="photo" 
+        width="200" height="200" />
+      </div> 
+      
+    </div>
         <div class="actions">
             <base-button link :to="employeeDetailsLink">Edit</base-button>
-            <base-button link :to="employeeDetailsLink">Delete</base-button>
+            <base-button mode="attention" @click="deleteEmployee">Delete</base-button>
             <base-button link :to="employeeDetailsLink">View Details</base-button>
         </div>
     </li>
@@ -16,15 +26,32 @@
 
 <script>
 export default {
-    props: ['id', 'firstName', 'lastName', 'hireDate', 'title']      ,
-    computed: {
-        fullName(){
-            return this.firstName + ' ' + this.lastName;
-        },        
-        employeeDetailsLink(){
-            return this.$route.path + '/' + this.id; 
-        }
+  emits:['deleteEmployee'],
+  data(){
+    return {
+      PhotoPath: this.$store.state.PHOTO_URL,
+      photoName: this.PhotoFileName?this.PhotoFileName:'anonymous.png',
     }
+  },
+  props: ['id', 'firstName', 'lastName',  'description','rate','areas','birthDate','hireDate','homePhone','PhotoFileName']      ,
+  computed: {
+      fullName(){
+          return this.firstName + ' ' + this.lastName;
+      },        
+      employeeDetailsLink(){
+          return this.$route.path + '/' + this.id; 
+      }
+  },
+  methods:{
+    deleteEmployee(){
+      if (confirm("Delete employee?")) {
+        this.$emit('deleteEmployee',this.id)
+      }
+    }
+  },
+  created(){
+    // console.log(this.PhotoFileName);
+  }
 }
 </script>
 
@@ -52,5 +79,12 @@ div {
 .actions {
   display: flex;
   justify-content: flex-end;
+}
+ 
+.flex-row{
+  display: flex;
+  
+  justify-content:space-between;
+  
 }
 </style>

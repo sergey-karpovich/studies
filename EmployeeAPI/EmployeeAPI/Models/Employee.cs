@@ -16,18 +16,26 @@ namespace EmployeeAPI.Models
         [Key]
         [Column("EmployeeID")]
         public long? EmployeeId { get; set; }
-        [Column(TypeName = "nvarchar (20)")]
-        public string? LastName { get; set; }
         [Column(TypeName = "nvarchar (10)")]
         public string? FirstName { get; set; }
-        [Column(TypeName = "nvarchar (30)")]
-        public string? Title { get; set; }
-        [Column(TypeName = "nvarchar (25)")]
-        public string? TitleOfCourtesy { get; set; }
+        [Column(TypeName = "nvarchar (20)")]
+        public string? LastName { get; set; }
+        [Column(TypeName = "nvarchar (1000)")]
+        public string? Description { get; set; }
+        [Column(TypeName = "decimal")]
+        public decimal? Rate { get; set; }
+        [Column(TypeName = "nvarchar (100)")]
+        public string? Areas { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? BirthDate { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? HireDate { get; set; }
+        [Column(TypeName = "nvarchar (50)")]
+        public string? HomePhone { get; set; }
+        [Column(TypeName = "nvarchar (1000)")]
+        public string? PhotoPath { get; set; }
+
+
         [Column(TypeName = "nvarchar (60)")]
         public string? Address { get; set; }
         [Column(TypeName = "nvarchar (15)")]
@@ -38,8 +46,6 @@ namespace EmployeeAPI.Models
         public string? PostalCode { get; set; }
         [Column(TypeName = "nvarchar (15)")]
         public string? Country { get; set; }
-        [Column(TypeName = "nvarchar (24)")]
-        public string? HomePhone { get; set; }
         [Column(TypeName = "nvarchar (4)")]
         public string? Extension { get; set; }
         [Column(TypeName = "image")]
@@ -48,8 +54,6 @@ namespace EmployeeAPI.Models
         public string? Notes { get; set; }
         [Column(TypeName = "int")]
         public long? ReportsTo { get; set; }
-        [Column(TypeName = "nvarchar (255)")]
-        public string? PhotoPath { get; set; }
         public IEnumerable<WorkTime>? WorkTimes { get; set; }
         public IEnumerable<ProjectEmployeeJunction>?
             ProjectsEmployees

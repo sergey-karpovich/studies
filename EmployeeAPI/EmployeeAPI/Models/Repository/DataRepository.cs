@@ -38,12 +38,12 @@ namespace EmployeeAPI.Models.Repository
         {
             return context.Employees.Find(id) ?? (new Employee());
         }
-        public IEnumerable<Employee> GetFilteredEmployee(string? title = null,
+        public IEnumerable<Employee> GetFilteredEmployee(string? area = null,
            int? reportsTo = null)
         {
             IQueryable<Employee> data = context.Employees;
-            if (title != null)
-                data = data.Where(p => p.Title == title);
+            if (area != null)
+                data = data.Where(p => p.Areas.Contains(area));
             if (reportsTo != null)
                 data = data.Where(p => p.ReportsTo == reportsTo);
             return data;
@@ -54,23 +54,24 @@ namespace EmployeeAPI.Models.Repository
                 originalEmployee = context.Employees.Find(changeEmployee) ?? new Employee();
             else
                 context.Employees.Attach(originalEmployee);
-            originalEmployee.Address = changeEmployee.Address;
-            originalEmployee.BirthDate = changeEmployee.BirthDate;
-            originalEmployee.City = changeEmployee.City;
-            originalEmployee.Country = changeEmployee.Country;
-            originalEmployee.Extension = changeEmployee.Extension;
             originalEmployee.FirstName = changeEmployee.FirstName;
+            originalEmployee.LastName = changeEmployee.LastName;
+            originalEmployee.Description = changeEmployee.Description;
+            originalEmployee.Areas = changeEmployee.Areas;
+            originalEmployee.Rate = changeEmployee.Rate;
+            originalEmployee.BirthDate = changeEmployee.BirthDate;
             originalEmployee.HireDate = changeEmployee.HireDate;
             originalEmployee.HomePhone = changeEmployee.HomePhone;
-            originalEmployee.LastName = changeEmployee.LastName;
-            originalEmployee.Notes = changeEmployee.Notes;
-            originalEmployee.Photo = changeEmployee.Photo;
             originalEmployee.PhotoPath = changeEmployee.PhotoPath;
-            originalEmployee.PostalCode = changeEmployee.PostalCode;
+
+            originalEmployee.Address = changeEmployee.Address;
+            originalEmployee.City = changeEmployee.City;
             originalEmployee.Region = changeEmployee.Region;
-            originalEmployee.ReportsTo = changeEmployee.ReportsTo;
-            originalEmployee.Title = changeEmployee.Title;
-            originalEmployee.TitleOfCourtesy = changeEmployee.TitleOfCourtesy;
+            originalEmployee.PostalCode = changeEmployee.PostalCode;
+            originalEmployee.Country = changeEmployee.Country;
+            originalEmployee.Extension = changeEmployee.Extension;
+            originalEmployee.Photo = changeEmployee.Photo;
+            originalEmployee.Notes = changeEmployee.Notes;
             context.SaveChanges();
         }
         public Project GetProject(long id)
