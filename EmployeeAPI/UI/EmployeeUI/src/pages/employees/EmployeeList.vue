@@ -9,7 +9,7 @@
                 <employee-form @close="closeCreateForm" @submit-employee="submitEmployee"></employee-form>
             </base-card> -->
             <!-- <coach-filter @change-filter="setFilters"></coach-filter> -->
-            <base-button link to="/employee/register">New Employee</base-button>
+            <base-button link to="/employee/register" >New Employee</base-button>
         </section>
         <section> 
             <base-card>
@@ -30,7 +30,7 @@
                     :areas="employee.areas"
                     :birth-date="employee.birthDate"
                     :hire-date="employee.hireDate"
-                    :home-phone="employee.homePhone"
+                    :phone-number="employee.phoneNumber"
                     :PhotoFileName="employee.photoPath"
                     @deleteEmployee="deleteEmployee"
                     ></employee-item>
@@ -48,7 +48,7 @@ export default {
     components: {
         EmployeeItem,
         
-    },
+    },    
     data(){
         return {
             isLoading: false,

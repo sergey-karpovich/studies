@@ -16,9 +16,9 @@ namespace EmployeeAPI.Models
         [Key]
         [Column("EmployeeID")]
         public long? EmployeeId { get; set; }
-        [Column(TypeName = "nvarchar (10)")]
+        [Column(TypeName = "nvarchar (100)")]
         public string? FirstName { get; set; }
-        [Column(TypeName = "nvarchar (20)")]
+        [Column(TypeName = "nvarchar (100)")]
         public string? LastName { get; set; }
         [Column(TypeName = "nvarchar (1000)")]
         public string? Description { get; set; }
@@ -36,17 +36,17 @@ namespace EmployeeAPI.Models
         public string? PhotoPath { get; set; }
 
 
-        [Column(TypeName = "nvarchar (60)")]
+        [Column(TypeName = "nvarchar (150)")]
         public string? Address { get; set; }
-        [Column(TypeName = "nvarchar (15)")]
+        [Column(TypeName = "nvarchar (150)")]
         public string? City { get; set; }
-        [Column(TypeName = "nvarchar (15)")]
+        [Column(TypeName = "nvarchar (150)")]
         public string? Region { get; set; }
-        [Column(TypeName = "nvarchar (10)")]
+        [Column(TypeName = "nvarchar (100)")]
         public string? PostalCode { get; set; }
-        [Column(TypeName = "nvarchar (15)")]
+        [Column(TypeName = "nvarchar (150)")]
         public string? Country { get; set; }
-        [Column(TypeName = "nvarchar (4)")]
+        [Column(TypeName = "nvarchar (100)")]
         public string? Extension { get; set; }
         [Column(TypeName = "image")]
         public byte[]? Photo { get; set; }

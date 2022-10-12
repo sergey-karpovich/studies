@@ -6,7 +6,11 @@
         <base-spinner v-if="isLoaded"></base-spinner>
         <base-card>
             <h2>Register employee</h2>
-            <employee-form @close="closeCreateForm" @submit-employee="submitEmployee"></employee-form>
+            <employee-form 
+                @close="closeCreateForm" 
+                @submit-employee="submitEmployee"
+                :id="id"
+                ></employee-form>
         </base-card>
     </section>
 </template>
@@ -15,6 +19,8 @@
 import EmployeeForm from '../../components/employees/EmployeeForm.vue';
 
 export default {
+    props:['id'],
+
     components: {
         EmployeeForm,
     } ,
@@ -22,17 +28,21 @@ export default {
         return {
             isLoaded: false,
             error: null,
+            
         }
-    },
-    
+    },    
     methods: {
         async submitEmployee(employee){
              this.isLoaded=true;
             
             try{
-                console.log(employee);
-                await this.$store.dispatch('employee/registerEmployee', employee);
-                this.$router.replace('/employee');
+                if(this.id){
+                    await this.$store.dispatch('employee/updateEmployee', employee);
+                    this.$router.replace('/employee');
+                } else {
+                    await this.$store.dispatch('employee/registerEmployee', employee);
+                    this.$router.replace('/employee');
+                }
            
             } catch (error){
                 this.error=error.message || 'Something went wrong!';
@@ -46,7 +56,8 @@ export default {
         closeCreateForm(){
             this.$router.replace('/employee');
         }
-    } 
+    } ,
+   
 }
 </script>
 

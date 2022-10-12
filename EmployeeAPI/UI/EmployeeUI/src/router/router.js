@@ -28,6 +28,11 @@ const router = createRouter({
       component: EmployeeRegistration,
     },
     {
+      path: '/employee/edit/:id',
+      component: EmployeeRegistration,
+      props: true
+    },
+    {
       path: '/projects',
       name: 'projects',      
       component: () => ProjectList
