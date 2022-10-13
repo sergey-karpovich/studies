@@ -4,7 +4,7 @@
     class="mx-auto"
   >
     <v-img
-      :src="PhotoPath+selectedEmployee.PhotoPath"
+      :src="PhotoPath"
       height="300px"
       dark
     >
@@ -13,6 +13,7 @@
           <v-btn
             dark
             icon
+            router to="/employee"
           >
             <v-icon>mdi-chevron-left</v-icon>
           </v-btn>
@@ -38,15 +39,16 @@
 
         <v-spacer></v-spacer>
 
-        <v-card-title class="black--text pl-12 pt-12">
-          <div class="text-h4 pl-12 pt-12">
-            {{ fullName }}
-          </div>
-        </v-card-title>
       </v-row>
     </v-img>
-
+    
     <v-list two-line>
+      <v-card-title class="black--text pl-12 pt-1">
+        <div class="text-h4 pl-1 pt-1">
+          {{ fullName }}
+        </div>
+      </v-card-title>
+
       <v-list-item>
         <v-list-item-icon>
           <v-icon color="indigo">
@@ -65,7 +67,10 @@
       </v-list-item>
 
       <v-list-item>
-        <v-list-item-action></v-list-item-action>
+        <v-list-item-action><span class="material-icons">
+          description
+          </span>
+        </v-list-item-action>
 
         <v-list-item-content>
           <v-list-item-title>{{ selectedEmployee.description }}</v-list-item-title>
@@ -76,11 +81,11 @@
       <v-divider inset></v-divider>
 
       <v-list-item>
-        <v-list-item-icon>
-          <v-icon color="indigo">
-            mdi-money
-          </v-icon>
-        </v-list-item-icon>
+        
+        <v-list-item-action><span class="material-icons">
+          attach_money
+          </span>
+        </v-list-item-action>
 
         <v-list-item-content>
           <v-list-item-title>{{ selectedEmployee.rate }}</v-list-item-title>
@@ -89,7 +94,9 @@
       </v-list-item>
 
       <v-list-item>
-        <v-list-item-action></v-list-item-action>
+        <v-list-item-action><span class="material-icons">
+        cake
+        </span></v-list-item-action>
 
         <v-list-item-content>
           <v-list-item-title>{{ selectedEmployee.birthDate}}</v-list-item-title>
@@ -98,30 +105,27 @@
       </v-list-item>
 
       <v-list-item>
-        <v-list-item-action></v-list-item-action>
-
+        <v-list-item-action><span class="material-icons">
+        handshake
+        </span></v-list-item-action>
+        
         <v-list-item-content>
           <v-list-item-title>{{ selectedEmployee.hireDate}}</v-list-item-title>
           <v-list-item-subtitle>Hire Date</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
-        <v-list-group
-          :value="true"
-          no-action
-          sub-group
-        >
-            <template v-slot:activator>
-                <v-list-item-content>
-                <v-list-item-title>Areas</v-list-item-title>
-                </v-list-item-content>
-            </template>
-            <v-list-item
-            v-for="area in selectedEmployee.areas"
-            :key="area"
-            link>
-                <v-list-item-title v-text="area"></v-list-item-title>
-            </v-list-item>
-        </v-list-group>
+      <v-list-item>
+      <v-list-item-action>
+        <span class="material-icons">
+        area_chart
+        </span>
+      </v-list-item-action>
+      <v-list-item-content>
+        <v-list-item-title>{{ selectedEmployee.areas}}</v-list-item-title>
+        <v-list-item-subtitle>Areas</v-list-item-subtitle>
+      </v-list-item-content>
+      
+        </v-list-item>
 
       <v-divider inset></v-divider>
 
@@ -159,7 +163,7 @@ export default {
          search(key, inputArray)  {
             for (let i=0; i < inputArray.length; i++) {
                 if (inputArray[i].EmployeeId == key) {
-                    console.log(inputArray[i]);
+                    //console.log(inputArray[i]);
                     return inputArray[i];
 
                 }
@@ -169,9 +173,10 @@ export default {
     },
 
     beforeMount(){
-        
-        const emp = this.selectedEmployee = this.$store.getters['employee/employees']
-        this.selectedEmployee = this.search(this.id, emp);
+      const emp = this.selectedEmployee = this.$store.getters['employee/employees']
+      this.selectedEmployee = this.search(this.id, emp);
+      this.PhotoPath+=this.selectedEmployee.photoPath?this.selectedEmployee.photoPath:'anonymous.png';
+      // console.log(this.PhotoPath);
     },
 }
 </script>

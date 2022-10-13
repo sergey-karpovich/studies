@@ -29,6 +29,7 @@
         outlined
         rounded
         text
+        router :to="employeeEditLink"
       >
         Edit
       </v-btn>
@@ -36,6 +37,7 @@
         outlined
         rounded
         text
+        @click="deleteEmployee"
       >
       Delete
       </v-btn>
@@ -43,6 +45,7 @@
         outlined
         rounded
         text
+        router :to="employeeDetailsLink"
       >
       View Details
       </v-btn>

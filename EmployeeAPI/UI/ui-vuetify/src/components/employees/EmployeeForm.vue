@@ -1,5 +1,104 @@
 <template>
-    <div class="content">
+    <v-form
+    ref="form"
+    v-model="valid"
+    lazy-validation
+    @submit.prevent="submitForm"
+  >
+    <v-text-field
+        v-model.trim="firstName.val"
+      :counter="20"
+      :rules="nameRules"
+      label="First Name"
+      required
+    ></v-text-field>
+    <v-text-field
+        v-model.trim="lastName.val"
+      :counter="20"
+      :rules="nameRules"
+      label="Last Name"
+      required
+    ></v-text-field>
+
+    <v-text-field
+        v-model.trim="description.val"
+      :rules="nameRules"
+      label="Description"
+      required
+    ></v-text-field>
+
+    <v-text-field
+        v-model.number="rate.val"
+      :rules="number"
+      label="Hour rate"      
+    ></v-text-field>
+
+    <v-card>
+    <v-container fluid>
+      <v-row
+        align="center"
+      >
+        <v-col cols="12">
+          <v-autocomplete
+            v-model="areas.val"
+            :items="items"
+            outlined
+            dense
+            chips
+            small-chips
+            label="Outlined"
+            multiple
+          ></v-autocomplete>
+        </v-col>
+        
+      </v-row>
+    </v-container>
+  </v-card>
+  <div class="form-control">
+                <label for="birthDate">Birth date</label>
+                <input type="date" id="birthDate" v-model="birthDate.val" />
+            </div>
+            <div class="form-control">
+                <label for="hireDate">Hire date</label>
+                <input type="date" id="hireDate" v-model="hireDate.val" />
+            </div>
+            <div class="form-control">
+                <label for="phoneNumber">Phone number</label>
+                <input type="tel" id="phoneNumber" v-model.number="phoneNumber.val" />
+            </div>
+
+    <div class="form-control">
+        <img :src="imageURL" alt="photo" width="100" height="100" />
+        <input type="file" @change="imageUpload">
+    </div>
+    <p v-if="!formIsValid">Please fix the above errors and submit again.</p>
+    <v-btn
+        v-if="id!=0"
+        :disabled="!valid"
+        color="success"
+        class="mr-4"
+        @click="submitForm"
+    >
+        Update
+    </v-btn>
+    <v-btn
+        v-else
+      :disabled="!valid"
+      color="success"
+      class="mr-4"
+      @click="submitForm"
+    >
+        Register
+    </v-btn>
+
+    <v-btn
+      color="warning"
+      @click="closeForm"
+    >
+      Close form
+    </v-btn>
+  </v-form>
+    <!-- <div class="content">
         <form @submit.prevent="submitForm">
             <div class="form-control" :class="{invalid: !firstName.isValid}">
                 <label for="firstName">First Name</label>
@@ -69,7 +168,7 @@
             <base-button @click="submitForm" v-else>Register</base-button>
             <base-button mode="outline" @click="closeForm">Close</base-button>
         </div>
-    </div>
+    </div> -->
 
 </template>
 
@@ -82,6 +181,9 @@ export default {
         return {
             PhotoPath: this.$store.state.PHOTO_URL,
             PhotoFileName: 'anonymous.png',
+            items: ['frontend', 'backend', 'deploying specialist', 'others'],
+      
+      
             employee: null,
             firstName: {
                 val: '',
@@ -214,7 +316,8 @@ export default {
         }  
     },
     beforeMount(){
-        if(this.id){
+        if(this.id!=0){
+            console.log(this.id);
             this.firstName.val= this.employee.firstName;
             this.lastName.val= this.employee.lastName;
             this.description.val= this.employee.description;
