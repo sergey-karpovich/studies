@@ -1,8 +1,11 @@
 export default {
-    addRequest(state,request){
-        state.requests.push(request);
+    addProject(state, project){
+        state.projects.push(project);
     },
-    loadRequests(state, payload){
-        state.requests=payload;
+    loadProject(state, payload){
+        state.projects=payload;
+    },
+    deleteProject(state,id){
+        state.projects = state.projects.filter(emp=>emp.ProjectId!=id);
     }
 }

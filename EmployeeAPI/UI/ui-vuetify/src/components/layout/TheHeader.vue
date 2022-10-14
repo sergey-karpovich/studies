@@ -70,6 +70,16 @@ export default {
           link:'/projects',
           icon:'event',
         },
+        {
+          title: 'Work Time',
+          link:'/timeTracking',
+          icon:'schedule',
+        },
+        {
+          title: 'Reports',
+          link:'/printReport',
+          icon:'print',
+        },
 
       ]
     }

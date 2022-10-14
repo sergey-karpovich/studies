@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 export default {
     async loadEmployees(context) {
         const url = context.rootGetters.url;
@@ -33,7 +34,7 @@ export default {
             employees.push(employee);
         }        
         context.commit('setEmployees', employees);
-
+        
         // context.commit('setFetchTimestamp');
     },
     async registerEmployee(context, employee){
@@ -61,9 +62,9 @@ export default {
             ProjectsEmployees: null
         }        
         const response = await axios.post(url+'/employee/', 
-           employeeData
+        employeeData
         );
-       
+        
         if(!response.status=== 200){
             const error = new Error(response.message || 'Failed to fetch!');
             throw error;
@@ -94,14 +95,27 @@ export default {
             ReportsTo: null,
             WorkTimes: null,
             ProjectsEmployees: null
-        }        
-        const response = await axios.put(url+'/employee/', 
-           employeeData
-        );
-       
-        if(!response.status=== 200){
-            const error = new Error(response.message || 'Failed to fetch!');
-            throw error;
+        }
+        // console.log(employeeData);
+        const  response = await axios.put(url+'/employee/', employeeData);
+        // если будет ошибка на сервере то все зависнет. 
+        // надо будет разобраться с promises и сделать таймер
+        // также надо на сервере организовать отлов ошибок
+        // const timeout=function(sec){
+        //     return new Promise(function(_, reject){
+        //         setTimeout(function(){
+        //             reject( new Error('Request took too long'))
+        //         }, sec*1000)
+        //     })
+        // }
+        // const some = Promise.race( timeout(5)).catch(err=>{
+            //     const error = new Error(err.message || 'Failed to fetch!');
+            //     throw error;
+            // });       
+            
+            if(response&&!response.status=== 200){
+                const error = new Error(response.message || 'Failed to fetch!');
+                throw error;
         }
     },
     async deleteEmployee(context,id){
@@ -112,6 +126,6 @@ export default {
         }
         context.commit('deleteEmployee',id);
     }
-
+    
     
 }

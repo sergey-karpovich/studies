@@ -6,7 +6,7 @@ import rootActions from './actions.js';
 import rootGetters from './getters.js';
 
 import employeeModule from './modules/employee/index.js';
-// import projectsModule from './modules/projects/index.js';
+import projectsModule from './modules/projects/index.js';
 // import authModule from './modules/auth/index.js';
 
 Vue.use(Vuex)
@@ -14,7 +14,7 @@ Vue.use(Vuex)
 const store=new Vuex.Store({
     modules:{
         employee: employeeModule,
-        // projects: projectsModule,
+        projects: projectsModule,
         // auth: authModule,
     },    
     state(){

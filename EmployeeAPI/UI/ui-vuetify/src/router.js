@@ -7,7 +7,8 @@ import EmployeeList from './pages/employees/EmployeeList.vue';
 import EmployeeDetail from './pages/employees/EmployeeDetail.vue';
 import ProjectList from './pages/projects/ProjectList.vue';
 import EmployeeRegistration from './pages/employees/EmployeeRegistration.vue';
-
+import TimeTracking from './pages/workTime/TimeTracking.vue';
+import PrintReport from './pages/reports/PrintReports.vue';
 
 Vue.use(Router)
 
@@ -29,12 +30,12 @@ export default new Router({
       component: EmployeeDetail,
       props: true,
     },
-    {
-      // какого-то хера не работает маршрут
-      path: '/employee/register',
-      component: EmployeeRegistration,
-      props: true,      
-    },
+    // {
+    //   // какого-то хера не работает маршрут
+    //   path: '/employee/register',
+    //   component: EmployeeRegistration,
+    //   props: true,      
+    // },
     {
       path: '/employee/edit/:id',
       component: EmployeeRegistration,
@@ -46,14 +47,14 @@ export default new Router({
       component:  ProjectList
     },
     {
-      path: '/workTime',
-      name: 'workTime',      
-      component: () => null
+      path: '/timeTracking',
+      name: 'timeTracking',      
+      component: TimeTracking
     },
     {
       path: '/printReport',
       name: 'printReport',      
-      component: () => null
+      component: PrintReport
     },
     { path: '/:notFound(.*)', component: NotFound },
   ]

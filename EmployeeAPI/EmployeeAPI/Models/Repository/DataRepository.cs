@@ -74,6 +74,10 @@ namespace EmployeeAPI.Models.Repository
             originalEmployee.Notes = changeEmployee.Notes;
             context.SaveChanges();
         }
+        public IEnumerable<Project> GetProjects()
+        {
+            return context.Projects;
+        }
         public Project GetProject(long id)
         {
             return context.Projects.Find(id) ?? (new Project());
@@ -94,12 +98,12 @@ namespace EmployeeAPI.Models.Repository
                 originalProject = context.Projects.Find(changeProject) ?? new Project();
             else
                 context.Projects.Attach(originalProject);
-            originalProject.ProjectName = changeProject.ProjectName;
-            originalProject.Description = changeProject.Description;
-            originalProject.DateOfAdoption = changeProject.DateOfAdoption;
-            originalProject.Deadline = changeProject.Deadline;
-            originalProject.Budjet = changeProject.Budjet;
-            context.SaveChanges();
+                originalProject.ProjectName = changeProject.ProjectName;
+                originalProject.Description = changeProject.Description;
+                originalProject.DateOfAdoption = changeProject.DateOfAdoption;
+                originalProject.Deadline = changeProject.Deadline;
+                originalProject.Budjet = changeProject.Budjet;
+                context.SaveChanges();
         }
 
         public void DeleteProject(long id)
@@ -117,13 +121,13 @@ namespace EmployeeAPI.Models.Repository
             return new List<WorkTime>();
         }
 
-        public WorkTime GetWorkTime(long id)
+        public IEnumerable<WorkTime> GetWorkTime(long id)
         {
             if (context.WorkTimes != null)
             {
-                return context.WorkTimes.First(w => w.Id == id);
+                return context.WorkTimes.Where(w => w.EmployeeId == id);
             }
-            return new WorkTime();
+            return new List<WorkTime>();
         }
 
         public void CreateWorkTime(WorkTime newWT)

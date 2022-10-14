@@ -1,24 +1,31 @@
 <template>
-  <div>
-    <div v-if="show" @click="tryClose" class="backdrop"></div>
-    <transition name="dialog">
-      <dialog open v-if="show">
-        <header>
-          <slot name="header">
-            <h2>{{ title }}</h2>
-        </slot>
-      </header>
-      <section>
-        <slot></slot>
-      </section>
-      <menu v-if="!fixed">
-        <slot name="actions">
-          <base-button @click="tryClose">Close</base-button>
-        </slot>
-      </menu>
-    </dialog>
-  </transition>
-</div>
+<v-row justify="space-around">
+    <v-col cols="auto">
+      <v-dialog
+        transition="dialog-bottom-transition"
+        max-width="600"
+        v-model="value"
+      >               
+          <v-card>
+            <v-toolbar
+              color="error"
+              dark
+            >{{ title }}</v-toolbar>
+            <v-card-text>
+              <div class="text-h5 pa-1">
+                <slot></slot>
+              </div>
+            </v-card-text>
+            <v-card-actions class="justify-end">
+              <v-btn
+                text
+                @click="tryClose"
+              >Close</v-btn>
+            </v-card-actions>
+          </v-card>        
+      </v-dialog>
+    </v-col>   
+  </v-row>
 </template>
 
 <script>
@@ -31,19 +38,21 @@ export default {
     title: {
       type: String,
       required: false,
-    },
-    fixed: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
+    },    
+  },
+  data(){
+    return {
+      value: false
+    }
+  },
+  watch:{
+    show(){
+      this.value=this.show
+    }
   },
   emits: ['close'],
   methods: {
-    tryClose() {
-      if (this.fixed) {
-        return;
-      }
+    tryClose() {      
       this.$emit('close');
     },
   },

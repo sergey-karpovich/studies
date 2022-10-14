@@ -1,38 +1,42 @@
 <template>
     <v-form
-    ref="form"
-    v-model="valid"
+    ref="form"    
     lazy-validation
     @submit.prevent="submitForm"
   >
     <v-text-field
         v-model.trim="firstName.val"
-      :counter="20"
-      :rules="nameRules"
+      :counter="20"     
       label="First Name"
       required
+      :rules="nameRules"
     ></v-text-field>
     <v-text-field
         v-model.trim="lastName.val"
-      :counter="20"
-      :rules="nameRules"
+      :counter="20"     
       label="Last Name"
       required
+      :rules="nameRules"
     ></v-text-field>
 
     <v-text-field
-        v-model.trim="description.val"
-      :rules="nameRules"
+        v-model.trim="description.val"     
       label="Description"
       required
     ></v-text-field>
 
-    <v-text-field
-        v-model.number="rate.val"
-      :rules="number"
-      label="Hour rate"      
-    ></v-text-field>
-
+    <v-label>{{ rate.val }}$/hour</v-label>
+    <v-slider
+        v-model="rate.val"
+        :rules="rateRules"
+        color="orange"
+        label="Rate per hour"
+        hint="Be honest"
+        min="1"
+        max="100"
+        thumb-label
+    ></v-slider>
+    
     <v-card>
     <v-container fluid>
       <v-row
@@ -48,6 +52,7 @@
             small-chips
             label="Outlined"
             multiple
+            :rules="areasRules"
           ></v-autocomplete>
         </v-col>
         
@@ -73,8 +78,7 @@
     </div>
     <p v-if="!formIsValid">Please fix the above errors and submit again.</p>
     <v-btn
-        v-if="id!=0"
-        :disabled="!valid"
+        v-if="id!=0"        
         color="success"
         class="mr-4"
         @click="submitForm"
@@ -82,8 +86,7 @@
         Update
     </v-btn>
     <v-btn
-        v-else
-      :disabled="!valid"
+        v-else      
       color="success"
       class="mr-4"
       @click="submitForm"
@@ -97,79 +100,7 @@
     >
       Close form
     </v-btn>
-  </v-form>
-    <!-- <div class="content">
-        <form @submit.prevent="submitForm">
-            <div class="form-control" :class="{invalid: !firstName.isValid}">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" v-model.trim="firstName.val" @blur="clearValidity('firstName')" />
-                <p v-if="!firstName.isValid">First name must not be empty.</p>
-            </div>
-            <div class="form-control" :class="{invalid: !lastName.isValid}">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" v-model.trim="lastName.val" @blur="clearValidity('lastName')" />
-                <p v-if="!lastName.isValid">Last name must not be empty.</p>
-            </div>
-            <div class="form-control" :class="{invalid: !description.isValid}">
-                <label for="description">Description</label>
-                <textarea id="description" rows="2" v-model.trim="description.val"
-                    @blur="clearValidity('description')"></textarea>
-                <p v-if="!description.isValid">Description must not be empty.</p>
-            </div>
-            <div class="form-control" :class="{invalid: !rate.isValid}">
-                <label for="rate">Hourly Rate</label>
-                <input type="number" id="rate" v-model.number="rate.val" @blur="clearValidity('rate')" />
-                <p v-if="!description.isValid">Description must not be empty.</p>
-            </div>
-            <div class="form-control" :class="{invalid: !areas.isValid}">
-                <h3>Areas of Expertise</h3>
-                <div>
-                    <input type="checkbox" id="frontend" value="frontend" v-model="areas.val"
-                        @blur="clearValidity('areas')">
-                    <label for="frontend">Frontend Development</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="backend" value="backend" v-model="areas.val"
-                        @blur="clearValidity('areas')">
-                    <label for="backend">Backend Development</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="deployment" value="deployment" v-model="areas.val"
-                        @blur="clearValidity('areas')">
-                    <label for="deployment">Deployment specialist</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="others" value="others" v-model="areas.val"
-                        @blur="clearValidity('areas')">
-                    <label for="others">Others </label>
-                </div>
-                <p v-if="!areas.isValid">At least one expertise must be checked.</p>
-            </div>
-            <div class="form-control">
-                <label for="birthDate">Birth date</label>
-                <input type="date" id="birthDate" v-model="birthDate.val" />
-            </div>
-            <div class="form-control">
-                <label for="hireDate">Hire date</label>
-                <input type="date" id="hireDate" v-model="hireDate.val" />
-            </div>
-            <div class="form-control">
-                <label for="phoneNumber">Phone number</label>
-                <input type="tel" id="phoneNumber" v-model.number="phoneNumber.val" />
-            </div>
-            <div class="form-control">
-                <img :src="imageURL" alt="photo" width="100" height="100" />
-                <input type="file" @change="imageUpload">
-            </div>
-            <p v-if="!formIsValid">Please fix the above errors and submit again.</p>
-        </form>
-        <div class="buttons">
-            <base-button @click="submitForm" v-if="id">Update</base-button>
-            <base-button @click="submitForm" v-else>Register</base-button>
-            <base-button mode="outline" @click="closeForm">Close</base-button>
-        </div>
-    </div> -->
-
+  </v-form>    
 </template>
 
 <script>
@@ -182,7 +113,16 @@ export default {
             PhotoPath: this.$store.state.PHOTO_URL,
             PhotoFileName: 'anonymous.png',
             items: ['frontend', 'backend', 'deploying specialist', 'others'],
-      
+            nameRules:[
+                v => !!v || 'Name is required',
+                v => (v && v.length <= 20) || 'Name must be less than 10 characters',
+            ],
+            rateRules: [
+            val => val > 5 &&val<100 || `I don't believe you!`,
+          ],
+          areasRules:[
+            val=>val.length>0|| 'At least one area'
+          ],
       
             employee: null,
             firstName: {
@@ -198,7 +138,7 @@ export default {
                 isValid: true
             },
             rate: {
-                val: null,
+                val: 0,
                 isValid: true
             },
             areas: {
@@ -264,7 +204,8 @@ export default {
             if(this.id){
                 formData.EmployeeId=this.id;
             }
-           this.$emit('submit-employee', formData);
+
+            this.$emit('submit-employee', formData);
         },
         validateForm() {
             this.formIsValid = true;
@@ -310,19 +251,18 @@ export default {
             return  this.PhotoPath+this.PhotoFileName;
         }
     },
-     created(){
-        if(this.id){
-            this.employee =  this.$store.state.employee.employees.find(emp=>emp.EmployeeId==this.id);
-        }  
+     created(){        
     },
     beforeMount(){
         if(this.id!=0){
-            console.log(this.id);
+            this.employee =  this.$store.state.employee.employees.find(emp=>emp.EmployeeId==this.id);
+            if(!this.employee) return;
             this.firstName.val= this.employee.firstName;
             this.lastName.val= this.employee.lastName;
             this.description.val= this.employee.description;
             this.rate.val= +this.employee.rate;
-            this.areas.val= this.employee.areas.split(',');
+            const areasTemp=this.employee.areas
+            this.areas.val= areasTemp.includes(',')? areasTemp.split(','):[areasTemp];
             this.birthDate.val = this.formatDate(this.employee.birthDate);
             this.hireDate.val= this.formatDate(this.employee.hireDate);
             this.phoneNumber.val= +this.employee.phoneNumber;
@@ -333,10 +273,6 @@ export default {
 </script>
 
 <style scoped>
-
-.content {
-   
-}
 .form-control {
     margin: 0.1rem 0;
 }

@@ -37,6 +37,7 @@ export default {
              this.isLoaded=true;
             
             try{
+                
                 if(this.id){
                     await this.$store.dispatch('employee/updateEmployee', employee);
                     this.$router.replace('/employee');

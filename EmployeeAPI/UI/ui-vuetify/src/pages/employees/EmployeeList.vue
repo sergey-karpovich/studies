@@ -3,7 +3,7 @@
         <base-dialog :show="!!error" title="An error occurred!" 
         @close="handleError">
         <p>{{ error }}</p>
-        </base-dialog>
+        </base-dialog>       
         <section>            
             <v-btn router to="/employee/edit/0" >New Employee</v-btn>
         </section>

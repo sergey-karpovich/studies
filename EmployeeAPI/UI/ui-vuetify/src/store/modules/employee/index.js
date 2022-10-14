@@ -13,10 +13,11 @@ export default {
                     firstName: 'Maximilian',
                     lastName: 'Schwarzmuller',
                     phoneNumber: 1111111,
+                    rate: 14,
                     birthDate: '01.01.2020',
                     hireDate: '01.01.2020',
                     description: 
-                        "I'm Maximilian and I've worked as a freelance web developer for years.",
+                    "I'm Maximilian and I've worked as a freelance web developer for years.",
                     areas: ['frontend','backend'],
                 },
                 {
@@ -26,6 +27,7 @@ export default {
                     phoneNumber: 1111111,
                     birthDate: '01.01.2020',
                     hireDate: '01.01.2020',
+                    rate: 14,
                     description: 
                         "I'm Sergey and I want to work as a  web developer.",
                     areas: ['frontend','backend'],

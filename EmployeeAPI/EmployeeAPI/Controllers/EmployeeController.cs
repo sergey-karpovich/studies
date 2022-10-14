@@ -1,23 +1,19 @@
 ﻿using EmployeeAPI.Models;
 using EmployeeAPI.Models.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class EmployeeController : ControllerBase
-    {
-        private readonly IConfiguration _configuration;
+    {        
         private readonly IWebHostEnvironment _env;
         private IDataRepository repository;
-        public EmployeeController(
-            IConfiguration configuration,
+        public EmployeeController(            
             IWebHostEnvironment env,
             IDataRepository rep)
-        {
-            _configuration = configuration;
+        {           
             _env = env;
             repository = rep;
         }
