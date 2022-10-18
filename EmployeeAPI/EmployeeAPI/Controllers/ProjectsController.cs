@@ -27,7 +27,7 @@ namespace EmployeeAPI.Controllers
             if (project != null)
             {
                 repository.CreateProject(project);
-                return new JsonResult("Added Successfully");
+                return new JsonResult(project);
             }
             else
             {
@@ -39,10 +39,11 @@ namespace EmployeeAPI.Controllers
         {
             if (newProject != null)
             {
-                var oldEmployee = repository.GetProject((long)newProject.ProjectID);
+                var oldProject = repository.GetProject((long)newProject.ProjectID);
 
-                repository.UpdateProject(newProject, oldEmployee);
-                return new JsonResult("Updated Successfully");
+                repository.UpdateProject(newProject, oldProject);
+                var answer = repository.GetProject((long)newProject.ProjectID);
+                return new JsonResult(answer);
             }
             else
             {

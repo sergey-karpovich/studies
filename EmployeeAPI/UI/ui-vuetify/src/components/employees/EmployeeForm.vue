@@ -251,8 +251,7 @@ export default {
             return  this.PhotoPath+this.PhotoFileName;
         }
     },
-     created(){        
-    },
+    
     beforeMount(){
         if(this.id!=0){
             this.employee =  this.$store.state.employee.employees.find(emp=>emp.EmployeeId==this.id);

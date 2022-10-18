@@ -8,7 +8,7 @@ export default {
         // }
         
         const response = await axios.get(
-            url+'/projects'
+            url+'/projectEmployee'
         );      
 
         if(!response.status===200){
@@ -26,7 +26,7 @@ export default {
                 DateOfAdoption: response.data[p].DateOfAdoption,
                 Deadline: response.data[p].Deadline,
                 Description: response.data[p].Description,
-                ProjectsEmployees: response.data[p].ProjectsEmployees
+                Employees: response.data[p].Employees
             }
             projects.push(project);
         }
@@ -40,16 +40,20 @@ export default {
             const error = new Error(response.message || 'Failed to fetch!');
             throw error;
         }
+        context.commit('addProject', response.data)
     },
 
     async updateProject(context, project){
         const url=context.rootGetters.url+'/projects/';
+        console.log('actions', project);
         const response=await axios.put(url, project);
 
         if(response&&!response.status=== 200){
             const error = new Error(response.message || 'Failed to fetch!');
             throw error;
         }
+
+        context.commit('updateProject', response.data)
     },
 
     async deleteProject(context, id){
@@ -59,6 +63,20 @@ export default {
             throw error;
         }
         context.commit('deleteProject', id)
-    }
+    },
+    async updateJunction(context, id, eids)
+    {
+        const request={
+            id: id,
+            eids: eids,
+        }
+        const url=context.rootGetters.url+'/projectEmployee';
+        const response=await axios.put(url,request);
+        if(!response.status === 200){
+            const error = new Error(response.message || 'Failed to fetch!');
+            throw error;
+        }
+        context.commit('updateProject',response)
+    },
    
 }

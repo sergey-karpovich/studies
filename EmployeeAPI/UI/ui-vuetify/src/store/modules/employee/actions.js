@@ -30,6 +30,7 @@ export default {
                 hireDate: response.data[emp].HireDate,
                 phoneNumber: response.data[emp].HomePhone,
                 photoPath: response.data[emp].PhotoPath,
+                // ProjectsEmployees: response.data[emp].ProjectsEmployees,
             };
             employees.push(employee);
         }        
@@ -125,7 +126,8 @@ export default {
             throw error;
         }
         context.commit('deleteEmployee',id);
-    }
+    },
+    
     
     
 }

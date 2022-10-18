@@ -20,8 +20,9 @@ namespace EmployeeAPI.Models
         public DateTime? Deadline { get; set; }
         [Column(TypeName = "DECIMAL")]
         public decimal? Budjet { get; set; }
-        public IEnumerable<ProjectEmployeeJunction>?
-            ProjectsEmployees
-        { get; set; }
+        public ICollection<Employee> Employees { get; set; } =new List<Employee>();
+        //public IEnumerable<ProjectEmployeeJunction>?
+        //    ProjectsEmployees
+        //{ get; set; }
     }
 }

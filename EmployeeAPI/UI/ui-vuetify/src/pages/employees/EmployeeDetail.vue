@@ -173,7 +173,7 @@ export default {
     },
 
     beforeMount(){
-      const emp = this.selectedEmployee = this.$store.getters['employee/employees']
+      const emp = this.$store.getters['employee/employees']
       this.selectedEmployee = this.search(this.id, emp);
       this.PhotoPath+=this.selectedEmployee.photoPath?this.selectedEmployee.photoPath:'anonymous.png';
       // console.log(this.PhotoPath);

@@ -103,6 +103,7 @@ namespace EmployeeAPI.Models.Repository
                 originalProject.DateOfAdoption = changeProject.DateOfAdoption;
                 originalProject.Deadline = changeProject.Deadline;
                 originalProject.Budjet = changeProject.Budjet;
+            originalProject.Employees = changeProject.Employees;
                 context.SaveChanges();
         }
 

@@ -51,30 +51,6 @@
       </v-btn>
     </v-card-actions>
   </v-card>
-
-    <!-- <li>
-      <div class="flex-row">
-        <div >
-          <h3>{{ fullName }}</h3>
-          <h4><strong>Description: </strong>{{ description }}</h4>
-          <h4>Rate: {{ rate }}</h4>
-          <h4>Areas: {{ areas }}</h4>
-        <h4>Birth Date: {{ birthDate }}</h4>
-        <h4>Hire Date: {{ hireDate }}</h4>
-        <h4>Phone Number: {{ phoneNumber }}</h4>
-      </div>
-      <div>
-        <img class="image-employee" :src="PhotoPath+photoName" alt="photo" 
-        width="200" height="200" />
-      </div> 
-      
-    </div>
-        <div class="actions">
-            <base-button link :to="employeeEditLink"  >Edit</base-button>
-            <base-button mode="attention" @click="deleteEmployee">Delete</base-button>
-            <base-button link :to="employeeDetailsLink">View Details</base-button>
-        </div>
-    </li> -->
 </template>
 
 <script>
@@ -104,11 +80,7 @@ export default {
         this.$emit('deleteEmployee',this.id)
       }
     }
-  },
-  created(){
-    // console.log(this.PhotoFileName);
-  },
-  
+  }, 
 }
 </script>
 

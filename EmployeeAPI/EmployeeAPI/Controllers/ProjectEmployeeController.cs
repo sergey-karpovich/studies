@@ -18,23 +18,40 @@ namespace EmployeeAPI.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            var table = context.Projects.Include(prop=>prop.ProjectsEmployees);
+            var table = context.Projects
+                .Include(prop => prop.Employees)                
+                .ToArray(); 
             return new JsonResult(table);
         }
         [HttpPut]
         public JsonResult Put(answer answer)
         {
             Project project = context.Set<Project>()
-                .Include(s => s.ProjectsEmployees)
+                .Include(s => s.Employees)
                 .First(s => s.ProjectID == answer.Id);
-            
-            project.ProjectsEmployees = answer.pids.Select(pid =>
-                new ProjectEmployeeJunction
+            List<Employee> employees = new List<Employee>(); 
+            foreach(var id in answer.eids)
+            {
+                try
                 {
-                    ProjectId = answer.Id,
-                    EmployeeId = pid
-                })
-                .ToList();
+                    Employee employee = context.Employees
+                        .FirstOrDefault(e=>e.EmployeeId==id);
+                    employees.Add(employee);
+                } catch
+                {
+                    Console.WriteLine("Something went wrong");
+                }
+                
+            }
+            project.Employees = employees;
+
+            //project.ProjectsEmployees = answer.eids.Select(eid =>
+            //    new ProjectEmployeeJunction
+            //    {
+            //        ProjectId = answer.Id,
+            //        EmployeeId = eid
+            //    })
+            //    .ToList();
             context.SaveChanges();
             return new JsonResult(project);
         }
@@ -42,6 +59,6 @@ namespace EmployeeAPI.Controllers
     public class answer
     {
         public long Id { get; set; }
-        public long[] pids { get; set; }
+        public long[] eids { get; set; }
     }
 }

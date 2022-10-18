@@ -120,7 +120,7 @@ export default {
                 this.loading=true;
                 const project={
                     ProjectName: this.ProjectName,
-                    Budget: this.Budget,
+                    Budjet: this.Budget,
                     DateOfAdoption: this.DateOfAdoption,
                     Deadline: this.Deadline,
                     Description: this.Description,

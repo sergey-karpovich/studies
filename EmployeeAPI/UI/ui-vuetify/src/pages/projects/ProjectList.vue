@@ -9,12 +9,79 @@
                 <p>{{ error }}</p>
             </base-dialog>
         </v-layout>
+        <v-layout row justify-center>
+            <ProjectForm @projectAdded="projectAdded"></ProjectForm>
+        </v-layout>
 
         <v-layout row justify-center>
-            <ProjectForm @projectAdded="snackbar=true"></ProjectForm>
-        </v-layout>
-        <v-layout row justify-center>
-            <v-card class="mx-1" min-width="350">
+
+            
+
+
+            <v-card sm12 md6 class="mx-1" min-width="400" max-width="400"            
+            v-for="project in selectedProject" :key="project.ProjectID"> 
+                <v-layout column v-if="!edit">
+                    <div class="text-left" >
+
+                        <v-chip >
+                            Selected Project
+                        </v-chip>
+                    </div>                   
+                    <v-flex xs12 md6 ma-2>
+                        <div class="caption grey--text">Project name</div>
+                        <div>{{ project.ProjectName }}</div>
+                    </v-flex>
+                    <v-flex xs12 md6 ma-2>
+                        <div class="caption grey--text">Project budget</div>
+                        <div>{{ project.Budjet }}$</div>
+                    </v-flex>
+                    <v-flex xs12 md6 ma-2>
+                        <div class="caption grey--text">Date of adoption</div>
+                        <div>{{ formatDate(project.DateOfAdoption) }}</div>
+                    </v-flex>
+                    <v-flex xs12 md6 ma-2>
+                        <div class="caption grey--text">Deadline</div>
+                        <div>By {{ formatDate(project.Deadline) }}</div>
+                    </v-flex>
+                    <v-flex xs12 md6 ma-2>
+                        <div class="caption grey--text">Description</div>
+                        <div>{{ project.Description }}</div>
+                    </v-flex>                                  
+                    <v-expansion-panels>
+                        <v-expansion-panel >
+                            <v-expansion-panel-header>
+                                Employees
+                            </v-expansion-panel-header>
+                            <v-expansion-panel-content v-for="(employee,i) in project.Employees" :key="i">
+                                {{ employee.FirstName +' '+employee.LastName}}
+                            </v-expansion-panel-content>
+                        </v-expansion-panel>
+                    </v-expansion-panels>                    
+                </v-layout>
+                
+                <v-layout v-else>
+                    <ProjectEmployeeForm 
+                    :id="selectedProject[0].ProjectID"
+                    @closeEdit="edit=!edit"
+                    ></ProjectEmployeeForm>
+                </v-layout>
+
+                
+
+                <v-divider></v-divider>
+
+                <v-card-actions v-if="!edit">
+                    <v-btn color="primary" @click="edit=!edit">
+                        Edit
+                    </v-btn>
+                    <v-btn color="error" @click="deleteProject">
+                        delete
+                    </v-btn>
+                </v-card-actions>
+
+            </v-card>
+
+            <v-card sm12 md6 class="mx-1" min-width="400">
                 <div v-if="isLoading">
                     <base-spinner></base-spinner>
                 </div>
@@ -64,60 +131,6 @@
             </v-card>
 
 
-
-            <v-card class="mx-1" max-width="400"
-            v-for="project in selectedProject" :key="project.ProjectID"> 
-                <v-layout column>
-                    <div class="text-left" >
-
-                        <v-chip >
-                            Selected Project
-                        </v-chip>
-                    </div>                   
-                    <v-flex xs12 md6 ma-2>
-                        <div class="caption grey--text">Project name</div>
-                        <div>{{ project.ProjectName }}</div>
-                    </v-flex>
-                    <v-flex xs12 md6 ma-2>
-                        <div class="caption grey--text">Project budget</div>
-                        <div>{{ project.Budjet }}$</div>
-                    </v-flex>
-                    <v-flex xs12 md6 ma-2>
-                        <div class="caption grey--text">Date of adoption</div>
-                        <div>{{ formatDate(project.DateOfAdoption) }}</div>
-                    </v-flex>
-                    <v-flex xs12 md6 ma-2>
-                        <div class="caption grey--text">Deadline</div>
-                        <div>By {{ formatDate(project.Deadline) }}</div>
-                    </v-flex>
-                    <v-flex xs12 md6 ma-2>
-                        <div class="caption grey--text">Description</div>
-                        <div>{{ project.Description }}</div>
-                    </v-flex>                                  
-                    <v-expansion-panels>
-                        <v-expansion-panel v-for="(employee,i) in project.ProjectsEmployees" :key="i">
-                            <v-expansion-panel-header>
-                                {{ employee.FirstName }}
-                            </v-expansion-panel-header>
-                        </v-expansion-panel>
-                    </v-expansion-panels>
-                    
-                </v-layout>
-
-                
-
-                <v-divider></v-divider>
-
-                <v-card-actions>
-                    <v-btn color="primary">
-                        Edit
-                    </v-btn>
-                    <v-btn color="error">
-                        delete
-                    </v-btn>
-                </v-card-actions>
-
-            </v-card>
         </v-layout>
     </v-container>
 </template>
@@ -125,11 +138,14 @@
 <script>
 import { format } from 'date-fns';
 import ProjectForm from '@/components/projects/ProjectForm.vue'
+import ProjectEmployeeForm from '@/components/projects/ProjectEmployeeForm.vue'
 export default {
     components: {
         ProjectForm,
+        ProjectEmployeeForm,
     },
     data: () => ({
+        edit: false,
         isLoading: false,
         error: null,
         snackbar: false,
@@ -140,7 +156,7 @@ export default {
             DateOfAdoption: '01.01.2020',
             Deadline: '01.01.2020',
             Description: 'some description',
-            ProjectsEmployees: '',
+            Employees: '',
         }],        
         
         model: null,       
@@ -156,9 +172,10 @@ export default {
     },    
     watch: {
         model() {
-            this.$store.commit('projects/selectProject',this.model);
+            this.$store.commit('projects/selectProject', this.model);
             this.selectedProject = [(this.$store.getters['projects/projectByNumber'])]
-        }
+        },
+        
     },
     methods: {
         handleError() {
@@ -168,6 +185,7 @@ export default {
             this.isLoading = true;
             try {
                 await this.$store.dispatch('projects/loadProjects');
+                await this.$store.dispatch('employee/loadEmployees');
             } catch (error) {
                 this.error = error.message || 'Something went wrong!';
             }
@@ -175,7 +193,23 @@ export default {
         },
         formatDate(date) {
             return format(new Date(date), 'do MMM yyyy')
-        }
+        },
+        projectAdded(){
+            this.snackbar=true;
+        },
+        async deleteProject(){
+            this.isLoading = true;
+            if (confirm("Delete project?")){
+                try{
+                    console.log(this.selectedProject[0].ProjectID)
+                    await  this.$store.dispatch('projects/deleteProject', this.selectedProject[0].ProjectID);
+                } catch (error){
+                    this.error = error.message || 'Something went wrong!';
+                }
+            }
+            this.isLoading=false
+        },
+
 
     },
     created() {
