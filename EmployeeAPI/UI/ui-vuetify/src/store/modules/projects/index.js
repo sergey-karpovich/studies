@@ -7,7 +7,7 @@ export default {
     state(){
         return{ 
             projects: [],
-             
+            selectedProject: '', 
         }
     },
     mutations: projectsMutations,

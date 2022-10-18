@@ -1,29 +1,59 @@
 <template>
     <v-container>
-
+        <v-snackbar v-model="snackbar" :timeout="4000" top color="success">
+            <span>Awesome! You added a new project.</span>
+            <v-btn color="success lighten-1" @click="snackbar=false">Close</v-btn>
+        </v-snackbar>
         <v-layout row>
             <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
                 <p>{{ error }}</p>
             </base-dialog>
         </v-layout>
-        <v-layout row ma-3>
-            <v-btn @click="create">New Project</v-btn>
-        </v-layout>
-        
+
         <v-layout row justify-center>
-            <v-card class="mx-1" min-width="300" max-width="400">
+            <ProjectForm @projectAdded="snackbar=true"></ProjectForm>
+        </v-layout>
+        <v-layout row justify-center>
+            <v-card class="mx-1" min-width="350">
                 <div v-if="isLoading">
                     <base-spinner></base-spinner>
                 </div>
                 <v-list v-else-if="hasProject">
                     <v-list-item-group v-model="model" mandatory color="indigo">
-                        <v-list-item v-for="(project) in projects" :key="project.ProjectID">
-                            <!-- <v-list-item-icon>
-                                <v-icon v-text=""></v-icon>
-                            </v-list-item-icon> -->
 
+                        <v-layout row mb-1 mr-2>
+                            <v-subheader>
+                                <v-tooltip top>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn v-bind="attrs" small v-on="on" @click="sortBy('title')">
+                                            <v-icon left>expand_more</v-icon>
+                                            <span class="caption text-lowercase">Project name</span>
+                                        </v-btn>
+                                    </template>
+                                    <span>Sort projects by project name</span>
+                                </v-tooltip>
+                            </v-subheader>
+                            <v-spacer></v-spacer>
+                            <v-subheader>
+                                <v-tooltip top>
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn v-bind="attrs" small v-on="on" @click="sortBy('title')">
+                                            <v-icon left>expand_more</v-icon>
+                                            <span class="caption text-lowercase">Deadline</span>
+                                        </v-btn>
+                                    </template>
+                                    <span>Sort projects by project deadline</span>
+                                </v-tooltip>
+                            </v-subheader>
+                        </v-layout>
+                        <v-divider></v-divider>
+                        <v-list-item v-for="(project) in projects" :key="project.ProjectID">
                             <v-list-item-content>
                                 <v-list-item-title v-text="project.ProjectName"></v-list-item-title>
+                            </v-list-item-content>
+                            <v-spacer></v-spacer>
+                            <v-list-item-content>
+                                <v-list-item-title v-text="formatDate(project.Deadline)"></v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
                     </v-list-item-group>
@@ -33,67 +63,57 @@
                 </v-list>
             </v-card>
 
-            <v-card v-if="creating" min-width="300">
-                <ProjectForm></ProjectForm>
-            </v-card>
 
-            <v-card class="mx-1" max-width="400" v-else>
-                <v-list-item two-line>
-                    <v-list-item-content>
-                        <v-list-item-title class="text-h5">
-                            {{ model }}
-                        </v-list-item-title>
-                        <v-list-item-subtitle>Mon, 12:30 PM, Mostly sunny</v-list-item-subtitle>
-                    </v-list-item-content>
-                </v-list-item>
 
-                <v-card-text>
-                    <v-row align="center">
-                        <v-col class="text-h2" cols="6">
-                            23&deg;C
-                        </v-col>
-                        <v-col cols="6">
-                            <v-img src="https://cdn.vuetifyjs.com/images/cards/sun.png" alt="Sunny image" width="92">
-                            </v-img>
-                        </v-col>
-                    </v-row>
-                </v-card-text>
+            <v-card class="mx-1" max-width="400"
+            v-for="project in selectedProject" :key="project.ProjectID"> 
+                <v-layout column>
+                    <div class="text-left" >
 
-                <v-list-item>
-                    <v-list-item-icon>
-                        <v-icon>mdi-send</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-subtitle>23 km/h</v-list-item-subtitle>
-                </v-list-item>
+                        <v-chip >
+                            Selected Project
+                        </v-chip>
+                    </div>                   
+                    <v-flex xs12 md6 ma-2>
+                        <div class="caption grey--text">Project name</div>
+                        <div>{{ project.ProjectName }}</div>
+                    </v-flex>
+                    <v-flex xs12 md6 ma-2>
+                        <div class="caption grey--text">Project budget</div>
+                        <div>{{ project.Budjet }}$</div>
+                    </v-flex>
+                    <v-flex xs12 md6 ma-2>
+                        <div class="caption grey--text">Date of adoption</div>
+                        <div>{{ formatDate(project.DateOfAdoption) }}</div>
+                    </v-flex>
+                    <v-flex xs12 md6 ma-2>
+                        <div class="caption grey--text">Deadline</div>
+                        <div>By {{ formatDate(project.Deadline) }}</div>
+                    </v-flex>
+                    <v-flex xs12 md6 ma-2>
+                        <div class="caption grey--text">Description</div>
+                        <div>{{ project.Description }}</div>
+                    </v-flex>                                  
+                    <v-expansion-panels>
+                        <v-expansion-panel v-for="(employee,i) in project.ProjectsEmployees" :key="i">
+                            <v-expansion-panel-header>
+                                {{ employee.FirstName }}
+                            </v-expansion-panel-header>
+                        </v-expansion-panel>
+                    </v-expansion-panels>
+                    
+                </v-layout>
 
-                <v-list-item>
-                    <v-list-item-icon>
-                        <v-icon>mdi-cloud-download</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-subtitle>48%</v-list-item-subtitle>
-                </v-list-item>
-
-                <v-slider v-model="time" :max="6" :tick-labels="labels" class="mx-4" ticks></v-slider>
-
-                <v-list class="transparent">
-                    <v-list-item v-for="item in forecast" :key="item.day">
-                        <v-list-item-title>{{ item.day }}</v-list-item-title>
-
-                        <v-list-item-icon>
-                            <v-icon>{{ item.icon }}</v-icon>
-                        </v-list-item-icon>
-
-                        <v-list-item-subtitle class="text-right">
-                            {{ item.temp }}
-                        </v-list-item-subtitle>
-                    </v-list-item>
-                </v-list>
+                
 
                 <v-divider></v-divider>
 
                 <v-card-actions>
-                    <v-btn text>
-                        Full Report
+                    <v-btn color="primary">
+                        Edit
+                    </v-btn>
+                    <v-btn color="error">
+                        delete
                     </v-btn>
                 </v-card-actions>
 
@@ -103,51 +123,41 @@
 </template>
 
 <script>
+import { format } from 'date-fns';
 import ProjectForm from '@/components/projects/ProjectForm.vue'
 export default {
-    components:{
+    components: {
         ProjectForm,
     },
     data: () => ({
         isLoading: false,
         error: null,
-        items: [
-            {
-                icon: 'mdi-wifi',
-                text: 'Wifi',
-            },
-            {
-                icon: 'mdi-bluetooth',
-                text: 'Bluetooth',
-            },
-            {
-                icon: 'mdi-chart-donut',
-                text: 'Data Usage',
-            },
-        ],
-        model: null,
-
-        labels: ['SU', 'MO', 'TU', 'WED', 'TH', 'FR', 'SA'],
-        time: 0,
-        forecast: [
-            { day: 'Tuesday', icon: 'mdi-white-balance-sunny', temp: '24\xB0/12\xB0' },
-            { day: 'Wednesday', icon: 'mdi-white-balance-sunny', temp: '22\xB0/14\xB0' },
-            { day: 'Thursday', icon: 'mdi-cloud', temp: '25\xB0/15\xB0' },
-        ],
-        creating: false,
+        snackbar: false,
+        selectedProject: [{
+            ProjectID: 57,
+            ProjectName: 'some name',
+            Budjet: 0,
+            DateOfAdoption: '01.01.2020',
+            Deadline: '01.01.2020',
+            Description: 'some description',
+            ProjectsEmployees: '',
+        }],        
+        
+        model: null,       
 
     }),
     computed: {
-        projects() {
+        projects() {            
             return this.$store.getters['projects/projects']
         },
         hasProject() {
             return !this.isLoading && this.projects.length > 0;
-        },
-    },
+        },       
+    },    
     watch: {
         model() {
-            console.log(this.model);
+            this.$store.commit('projects/selectProject',this.model);
+            this.selectedProject = [(this.$store.getters['projects/projectByNumber'])]
         }
     },
     methods: {
@@ -163,13 +173,13 @@ export default {
             }
             this.isLoading = false
         },
-        create() {
-            this.creating = !this.creating;
-        },
+        formatDate(date) {
+            return format(new Date(date), 'do MMM yyyy')
+        }
 
     },
     created() {
-        this.loadProjects();        
+        this.loadProjects();
     }
 }
 </script>

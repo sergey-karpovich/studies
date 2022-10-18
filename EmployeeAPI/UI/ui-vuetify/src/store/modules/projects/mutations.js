@@ -7,5 +7,8 @@ export default {
     },
     deleteProject(state,id){
         state.projects = state.projects.filter(emp=>emp.ProjectId!=id);
+    },
+    selectProject(state, num){
+        state.selectedProject=state.projects[num];
     }
 }

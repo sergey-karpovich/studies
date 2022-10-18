@@ -72,7 +72,7 @@ export default {
         // context.commit('registerEmployee', employee);
     },
     async updateEmployee(context, employee){
-        const url = context.rootGetters.url;
+        const url = context.rootGetters.url+'/employee/';
         const employeeData={
             EmployeeId: employee.EmployeeId,
             FirstName: employee.firstName,
@@ -97,7 +97,7 @@ export default {
             ProjectsEmployees: null
         }
         // console.log(employeeData);
-        const  response = await axios.put(url+'/employee/', employeeData);
+        const  response = await axios.put(url, employeeData);
         // если будет ошибка на сервере то все зависнет. 
         // надо будет разобраться с promises и сделать таймер
         // также надо на сервере организовать отлов ошибок

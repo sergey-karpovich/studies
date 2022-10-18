@@ -31,6 +31,34 @@ export default {
             projects.push(project);
         }
         context.commit('loadProject', projects)
+    },
+    async registerProject(context, project){
+        const url=context.rootGetters.url;
+        const response = await axios.post(url+'/projects',project);
+
+        if(!response.status=== 200){
+            const error = new Error(response.message || 'Failed to fetch!');
+            throw error;
+        }
+    },
+
+    async updateProject(context, project){
+        const url=context.rootGetters.url+'/projects/';
+        const response=await axios.put(url, project);
+
+        if(response&&!response.status=== 200){
+            const error = new Error(response.message || 'Failed to fetch!');
+            throw error;
+        }
+    },
+
+    async deleteProject(context, id){
+        const response = await axios.delete(context.rootGetters.url+'/projects/'+id)
+        if(!response.status === 200){
+            const error = new Error(response.message || 'Failed to fetch!');
+            throw error;
+        }
+        context.commit('deleteProject', id)
     }
    
 }
