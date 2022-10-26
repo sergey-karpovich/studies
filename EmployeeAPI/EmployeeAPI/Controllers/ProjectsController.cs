@@ -9,7 +9,7 @@ namespace EmployeeAPI.Controllers
     public class ProjectsController : ControllerBase
     {        
         private IDataRepository repository;
-        public ProjectsController(           
+        public ProjectsController(
             IDataRepository rep)
         {           
             repository = rep;
@@ -39,10 +39,10 @@ namespace EmployeeAPI.Controllers
         {
             if (newProject != null)
             {
-                var oldProject = repository.GetProject((long)newProject.ProjectID);
+                var oldProject = repository.GetProject((long)newProject.ProjectId);
 
                 repository.UpdateProject(newProject, oldProject);
-                var answer = repository.GetProject((long)newProject.ProjectID);
+                var answer = repository.GetProject((long)newProject.ProjectId);
                 return new JsonResult(answer);
             }
             else

@@ -50,16 +50,7 @@ export default {
             HireDate: employee.hireDate,
             HomePhone: employee.phoneNumber,
             PhotoPath: employee.photoPath,
-            Address: null,
-            City: null,
-            Region: null,
-            PostalCode: null,
-            Country: null,
-            Extension: null,
-            Photo: null,
-            Notes: null,
-            ReportsTo: null,
-            WorkTimes: null,
+           
             ProjectsEmployees: null
         }        
         const response = await axios.post(url+'/employee/', 
@@ -85,16 +76,7 @@ export default {
             HireDate: employee.hireDate,
             HomePhone: employee.phoneNumber,
             PhotoPath: employee.photoPath,
-            Address: null,
-            City: null,
-            Region: null,
-            PostalCode: null,
-            Country: null,
-            Extension: null,
-            Photo: null,
-            Notes: null,
-            ReportsTo: null,
-            WorkTimes: null,
+            
             ProjectsEmployees: null
         }
         // console.log(employeeData);

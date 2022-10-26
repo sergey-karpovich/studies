@@ -19,7 +19,7 @@
 
 
             <v-card sm12 md6 class="mx-1" min-width="400" max-width="400"            
-            v-for="project in selectedProject" :key="project.ProjectID"> 
+            v-for="project in selectedProject" :key="project.ProjectId"> 
                 <v-layout column v-if="!edit">
                     <div class="text-left" >
 
@@ -53,7 +53,10 @@
                                 Employees
                             </v-expansion-panel-header>
                             <v-expansion-panel-content v-for="(employee,i) in project.Employees" :key="i">
-                                {{ employee.FirstName +' '+employee.LastName}}
+                                <v-avatar left>
+                                    <v-img :src="PhotoURL + employee.PhotoPath"></v-img>
+                                </v-avatar>                                
+                                    {{ employee.FirstName +' '+employee.LastName}}
                             </v-expansion-panel-content>
                         </v-expansion-panel>
                     </v-expansion-panels>                    
@@ -61,7 +64,7 @@
                 
                 <v-layout v-else>
                     <ProjectEmployeeForm 
-                    :id="selectedProject[0].ProjectID"
+                    :id="selectedProject[0].ProjectId"
                     @closeEdit="edit=!edit"
                     ></ProjectEmployeeForm>
                 </v-layout>
@@ -114,7 +117,7 @@
                             </v-subheader>
                         </v-layout>
                         <v-divider></v-divider>
-                        <v-list-item v-for="(project) in projects" :key="project.ProjectID">
+                        <v-list-item v-for="(project) in projects" :key="project.ProjectId">
                             <v-list-item-content>
                                 <v-list-item-title v-text="project.ProjectName"></v-list-item-title>
                             </v-list-item-content>
@@ -136,7 +139,6 @@
 </template>
 
 <script>
-import { format } from 'date-fns';
 import ProjectForm from '@/components/projects/ProjectForm.vue'
 import ProjectEmployeeForm from '@/components/projects/ProjectEmployeeForm.vue'
 export default {
@@ -144,13 +146,15 @@ export default {
         ProjectForm,
         ProjectEmployeeForm,
     },
-    data: () => ({
-        edit: false,
+    data () 
+    {
+        return {
+            edit: false,
         isLoading: false,
         error: null,
         snackbar: false,
         selectedProject: [{
-            ProjectID: 57,
+            ProjectId: 57,
             ProjectName: 'some name',
             Budjet: 0,
             DateOfAdoption: '01.01.2020',
@@ -160,8 +164,9 @@ export default {
         }],        
         
         model: null,       
-
-    }),
+        PhotoURL: this.$store.state.PHOTO_URL,
+        }
+    },
     computed: {
         projects() {            
             return this.$store.getters['projects/projects']
@@ -174,8 +179,7 @@ export default {
         model() {
             this.$store.commit('projects/selectProject', this.model);
             this.selectedProject = [(this.$store.getters['projects/projectByNumber'])]
-        },
-        
+        },        
     },
     methods: {
         handleError() {
@@ -191,8 +195,21 @@ export default {
             }
             this.isLoading = false
         },
-        formatDate(date) {
-            return format(new Date(date), 'do MMM yyyy')
+        dateIsValid(date) {
+        return !Number.isNaN(new Date(date).getTime());
+        },
+        formatDate (date) {
+            let d = new Date(date);
+            let month = (d.getMonth() + 1).toString();
+            let day = d.getDate().toString();
+            let year = d.getFullYear();
+            if (month.length < 2) {
+                month = '0' + month;
+            }
+            if (day.length < 2) {
+                day = '0' + day;
+            }
+            return [day, month, year].join('.');
         },
         projectAdded(){
             this.snackbar=true;
@@ -201,19 +218,17 @@ export default {
             this.isLoading = true;
             if (confirm("Delete project?")){
                 try{
-                    console.log(this.selectedProject[0].ProjectID)
-                    await  this.$store.dispatch('projects/deleteProject', this.selectedProject[0].ProjectID);
+                    console.log(this.selectedProject[0].ProjectId)
+                    await  this.$store.dispatch('projects/deleteProject', this.selectedProject[0].ProjectId);
                 } catch (error){
                     this.error = error.message || 'Something went wrong!';
                 }
             }
             this.isLoading=false
         },
-
-
     },
     created() {
-        this.loadProjects();
+        this.loadProjects();        
     }
 }
 </script>

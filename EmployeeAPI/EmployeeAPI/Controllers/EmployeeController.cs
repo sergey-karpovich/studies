@@ -19,9 +19,9 @@ namespace EmployeeAPI.Controllers
         }
 
         [HttpGet]
-        public JsonResult Get(string? title = null, int? reportsTo = null)
+        public JsonResult Get()
         {
-            var table = repository.GetFilteredEmployee(title, reportsTo);
+            var table = repository.GetAllEmployee();
             return new JsonResult(table);
 
         }

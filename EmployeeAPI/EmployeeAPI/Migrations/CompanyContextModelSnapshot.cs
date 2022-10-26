@@ -17,7 +17,7 @@ namespace EmployeeAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -96,12 +96,12 @@ namespace EmployeeAPI.Migrations
 
             modelBuilder.Entity("EmployeeAPI.Models.Project", b =>
                 {
-                    b.Property<long>("ProjectID")
+                    b.Property<long>("ProjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasColumnName("ProjectID");
+                        .HasColumnName("ProjectId");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ProjectID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ProjectId"), 1L, 1);
 
                     b.Property<decimal?>("Budjet")
                         .HasColumnType("DECIMAL");
@@ -118,12 +118,32 @@ namespace EmployeeAPI.Migrations
                     b.Property<string>("ProjectName")
                         .HasColumnType("VARCHAR (20)");
 
-                    b.HasKey("ProjectID");
+                    b.HasKey("ProjectId");
 
-                    b.HasIndex("ProjectID")
+                    b.HasIndex("ProjectId")
                         .IsUnique();
 
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Models.ProjectEmployeeJunction", b =>
+                {
+                    b.Property<long>("EmployeeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ProjectId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("DateJoined")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.HasKey("EmployeeId", "ProjectId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ProjectEmployeeJunction");
                 });
 
             modelBuilder.Entity("EmployeeAPI.Models.WorkTime", b =>
@@ -134,20 +154,20 @@ namespace EmployeeAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<long?>("EmployeeId")
+                    b.Property<long>("EmployeeId")
                         .HasColumnType("bigint");
 
                     b.Property<int?>("Hours")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("LastRate")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("Money")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("DECIMAL");
 
                     b.Property<int?>("NumMonth")
                         .HasColumnType("int");
+
+                    b.Property<long>("ProjectId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -156,41 +176,26 @@ namespace EmployeeAPI.Migrations
                     b.ToTable("WorkTimes");
                 });
 
-            modelBuilder.Entity("EmployeeProject", b =>
-                {
-                    b.Property<long>("EmployeesEmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ProjectsProjectID")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("EmployeesEmployeeId", "ProjectsProjectID");
-
-                    b.HasIndex("ProjectsProjectID");
-
-                    b.ToTable("EmployeeProject");
-                });
-
-            modelBuilder.Entity("EmployeeAPI.Models.WorkTime", b =>
-                {
-                    b.HasOne("EmployeeAPI.Models.Employee", "Employee")
-                        .WithMany("WorkTimes")
-                        .HasForeignKey("EmployeeId");
-
-                    b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("EmployeeProject", b =>
+            modelBuilder.Entity("EmployeeAPI.Models.ProjectEmployeeJunction", b =>
                 {
                     b.HasOne("EmployeeAPI.Models.Employee", null)
                         .WithMany()
-                        .HasForeignKey("EmployeesEmployeeId")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EmployeeAPI.Models.Project", null)
                         .WithMany()
-                        .HasForeignKey("ProjectsProjectID")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Models.WorkTime", b =>
+                {
+                    b.HasOne("EmployeeAPI.Models.Employee", null)
+                        .WithMany("WorkTimes")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

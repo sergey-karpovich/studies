@@ -162,7 +162,7 @@ export default {
     props:['id'],
     data () {      
       return {
-        ProjectID: 57,
+        ProjectId: 57,
         ProjectName: 'some name',
         Budjet: 0,
         DateOfAdoption: '01.01.2020',
@@ -178,24 +178,7 @@ export default {
         PhotoURL: this.$store.state.PHOTO_URL,
        
         autoUpdate: false,
-        isUpdating: false,
-
-        // friends: ['Sandra Adams', 'Britta Holt'],
-        // name: this.ProjectName,
-        // people: [
-        //   { header: 'Group 1' },
-        //   { name: 'Sandra Adams', group: 'Group 1', avatar: srcs[1] },
-        //   { name: 'Ali Connors', group: 'Group 1', avatar: srcs[2] },
-        //   { name: 'Trevor Hansen', group: 'Group 1', avatar: srcs[3] },
-        //   { name: 'Tucker Smith', group: 'Group 1', avatar: srcs[2] },
-        //   { divider: true },
-        //   { header: 'Group 2' },
-        //   { name: 'Britta Holt', group: 'Group 2', avatar: srcs[4] },
-        //   { name: 'Jane Smith ', group: 'Group 2', avatar: srcs[5] },
-        //   { name: 'John Smith', group: 'Group 2', avatar: srcs[1] },
-        //   { name: 'Sandra Williams', group: 'Group 2', avatar: srcs[3] },
-        // ],
-        // title: 'The summer breeze',
+        isUpdating: false,       
       }
     },
 
@@ -208,27 +191,44 @@ export default {
     },
 
     methods: {
-      remove (item) {
-        const index = this.Employees.indexOf(item.EmployeeId)
+      remove (item) {  
+        const index = this.Employees.findIndex(e=>e.EmployeeId === item.EmployeeId)
         if (index >= 0) this.Employees.splice(index, 1)        
       },
 
-      updateProject(){
+      async updateProject(){
         this.isUpdating = true;
         const tempEmployees=[];
         for(const num in this.Employees){
           tempEmployees.push(this.allEmployees[num]);
         }
-        this.$store.dispatch('projects/updateProject',{
-          ProjectID:  this.ProjectID,
+        const project = {
+          ProjectId:  this.ProjectId,
           ProjectName: this.ProjectName,
           Budjet: this.Budjet,
           DateOfAdoption: this.DateOfAdoption,
           Deadline: this.Deadline,
           Description: this.Description,
           Employees:  tempEmployees,
-        })
-        console.log()
+        };
+        console.log(project);
+        const eids=[];
+        for(let i=0; i<tempEmployees.length; i++)
+        {
+          eids.push(tempEmployees[i].EmployeeId);
+        }
+        const junction={
+          id: project.ProjectId,
+          eids: eids,
+        };
+        try{
+          await this.$store.dispatch('projects/updateProject',project);
+          await this.$store.dispatch('projects/addEmployeesById', junction);
+
+        } catch(error){
+          console.log(error.message);
+        }
+        this.isUpdating = false;
       },
       
       formatDate (date) {
@@ -251,9 +251,10 @@ export default {
     },    
     beforeMount(){
         if(this.id!=0){
-            const project =  this.$store.getters['projects/projects'].find(p=>p.ProjectID==this.id);
+            const project =  this.$store.getters['projects/projects']
+            .find(p=>p.ProjectId==this.id);
             if(!project) return;
-            this.ProjectID = project.ProjectID;
+            this.ProjectId = project.ProjectId;
             this.ProjectName= project.ProjectName;
             this.Budjet= project.Budjet;
             this.DateOfAdoption= this.formatDate(project.DateOfAdoption);

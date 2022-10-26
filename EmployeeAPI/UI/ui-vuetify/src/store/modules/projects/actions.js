@@ -8,7 +8,7 @@ export default {
         // }
         
         const response = await axios.get(
-            url+'/projectEmployee'
+            url+'/Projects'
         );      
 
         if(!response.status===200){
@@ -20,14 +20,14 @@ export default {
 
         for (const p in response.data){
             const project = {
-                ProjectID: response.data[p].ProjectID,
+                ProjectId: response.data[p].ProjectId,
                 ProjectName: response.data[p].ProjectName,
                 Budjet: response.data[p].Budjet,
                 DateOfAdoption: response.data[p].DateOfAdoption,
                 Deadline: response.data[p].Deadline,
                 Description: response.data[p].Description,
                 Employees: response.data[p].Employees
-            }
+            }            
             projects.push(project);
         }
         context.commit('loadProject', projects)
@@ -55,7 +55,19 @@ export default {
 
         context.commit('updateProject', response.data)
     },
+    async addEmployeesById(context, junction){
+        const url=context.rootGetters.url+'/ProjectEmployee';
+        console.log('action id',junction)
+        const response=await axios.put(url, junction);
 
+        if(response&&!response.status=== 200){
+            const error = new Error(response.message || 'Failed to fetch!');
+            throw error;
+        }
+        console.log(response);
+         
+        context.commit('updateProject', response.data)
+    },
     async deleteProject(context, id){
         const response = await axios.delete(context.rootGetters.url+'/projects/'+id)
         if(!response.status === 200){

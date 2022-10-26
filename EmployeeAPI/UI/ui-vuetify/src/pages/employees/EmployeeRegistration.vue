@@ -6,7 +6,8 @@
         </base-dialog>
         <base-spinner v-if="isLoaded"></base-spinner>
         <base-card>
-            <h2>Register employee</h2>
+            <h2 v-if="id==0">Register employee</h2>
+            <h2 v-else>Update employee</h2>
             <employee-form 
                 @close="closeCreateForm" 
                 @submit-employee="submitEmployee"

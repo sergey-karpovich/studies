@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeAPI.Models
 {
-    [Index("ProjectID", IsUnique = true)]
+    [Index("ProjectId", IsUnique = true)]
     public partial class Project
     {
         [Key]
-        [Column("ProjectID")]
-        public long ProjectID { get; set; }
+        [Column("ProjectId")]
+        public long ProjectId { get; set; }
         [Column(TypeName = "VARCHAR (20)")]
         public string? ProjectName { get; set; }
         [Column(TypeName = "VARCHAR (200)")]
@@ -20,7 +20,7 @@ namespace EmployeeAPI.Models
         public DateTime? Deadline { get; set; }
         [Column(TypeName = "DECIMAL")]
         public decimal? Budjet { get; set; }
-        public ICollection<Employee> Employees { get; set; } =new List<Employee>();
+        public List<Employee> Employees { get; set; } =new List<Employee>();
         //public IEnumerable<ProjectEmployeeJunction>?
         //    ProjectsEmployees
         //{ get; set; }

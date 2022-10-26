@@ -1,129 +1,118 @@
 <template>
-    <v-form
-    ref="form"    
-    lazy-validation
-    @submit.prevent="submitForm"
-  >
-    <v-text-field
-        v-model.trim="firstName.val"
-      :counter="20"     
-      label="First Name"
-      required
-      :rules="nameRules"
-    ></v-text-field>
-    <v-text-field
-        v-model.trim="lastName.val"
-      :counter="20"     
-      label="Last Name"
-      required
-      :rules="nameRules"
-    ></v-text-field>
+    <v-form ref="form" lazy-validation @submit.prevent="submitForm">
+        <v-text-field v-model.trim="firstName.val" :counter="20" label="First Name" required :rules="nameRules">
+        </v-text-field>
+        <v-text-field v-model.trim="lastName.val" :counter="20" label="Last Name" required :rules="nameRules">
+        </v-text-field>
 
-    <v-text-field
-        v-model.trim="description.val"     
-      label="Description"
-      required
-    ></v-text-field>
+        <v-text-field v-model.trim="description.val" label="Description" required></v-text-field>
 
-    <v-label>{{ rate.val }}$/hour</v-label>
-    <v-slider
-        v-model="rate.val"
-        :rules="rateRules"
-        color="orange"
-        label="Rate per hour"
-        hint="Be honest"
-        min="1"
-        max="100"
-        thumb-label
-    ></v-slider>
-    
-    <v-card>
-    <v-container fluid>
-      <v-row
-        align="center"
-      >
-        <v-col cols="12">
-          <v-autocomplete
-            v-model="areas.val"
-            :items="items"
-            outlined
-            dense
-            chips
-            small-chips
-            label="Outlined"
-            multiple
-            :rules="areasRules"
-          ></v-autocomplete>
-        </v-col>
-        
-      </v-row>
-    </v-container>
-  </v-card>
-  <div class="form-control">
-                <label for="birthDate">Birth date</label>
-                <input type="date" id="birthDate" v-model="birthDate.val" />
-            </div>
-            <div class="form-control">
-                <label for="hireDate">Hire date</label>
-                <input type="date" id="hireDate" v-model="hireDate.val" />
-            </div>
-            <div class="form-control">
-                <label for="phoneNumber">Phone number</label>
-                <input type="tel" id="phoneNumber" v-model.number="phoneNumber.val" />
-            </div>
+        <v-label>{{ rate.val }}$/hour</v-label>
+        <v-slider v-model="rate.val" :rules="rateRules" color="orange" label="Rate per hour" hint="Be honest" min="1"
+            max="100" thumb-label></v-slider>
 
-    <div class="form-control">
-        <img :src="imageURL" alt="photo" width="100" height="100" />
-        <input type="file" @change="imageUpload">
-    </div>
-    <p v-if="!formIsValid">Please fix the above errors and submit again.</p>
-    <v-btn
-        v-if="id!=0"        
-        color="success"
-        class="mr-4"
-        @click="submitForm"
-    >
-        Update
-    </v-btn>
-    <v-btn
-        v-else      
-      color="success"
-      class="mr-4"
-      @click="submitForm"
-    >
-        Register
-    </v-btn>
+        <v-card>
+            <v-container fluid>
+                <v-row align="center">
+                    <v-col cols="12">
+                        <v-autocomplete v-model="areas.val" :items="items" outlined dense chips small-chips
+                            label="Outlined" multiple :rules="areasRules"></v-autocomplete>
+                    </v-col>
 
-    <v-btn
-      color="warning"
-      @click="closeForm"
-    >
-      Close form
-    </v-btn>
-  </v-form>    
+                </v-row>
+            </v-container>
+        </v-card>
+        <v-menu
+                    v-model="datePicker1"                    
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto">
+                        <template v-slot:activator="{on, attrs}">
+                            <v-text-field
+                            v-model="birthDate.val"
+                            prepend-icon="mdi-calendar"
+                            v-bind="attrs"
+                            v-on="on"
+                            label="Birth date"
+                            >                            
+                            </v-text-field>
+                        </template>
+                        <v-date-picker v-model="birthDate.val"
+                        @input="datePicker1=false"></v-date-picker>
+                    </v-menu>
+        <v-menu
+                    v-model="datePicker2"                    
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto">
+                        <template v-slot:activator="{on, attrs}">
+                            <v-text-field
+                            v-model="hireDate.val"
+                            prepend-icon="mdi-calendar"
+                            v-bind="attrs"
+                            v-on="on"
+                            label="Birth date"
+                            >                            
+                            </v-text-field>
+                        </template>
+                        <v-date-picker v-model="hireDate.val"
+                        @input="datePicker2=false"></v-date-picker>
+                    </v-menu>
+        <!-- <div class="form-control">
+            <label for="birthDate">Birth date</label>
+            <input type="date" id="birthDate" v-model="birthDate.val" />
+        </div>
+        <div class="form-control">
+            <label for="hireDate">Hire date</label>
+            <input type="date" id="hireDate" v-model="hireDate.val" />
+        </div> -->
+        <div class="form-control">
+            <label for="phoneNumber">Phone number</label>
+            <input type="tel" id="phoneNumber" v-model.number="phoneNumber.val" />
+        </div>
+
+        <div class="form-control">
+            <img :src="imageURL" alt="photo" width="100" height="100" />
+            <input type="file" @change="imageUpload">
+        </div>
+        <p v-if="!formIsValid">Please fix the above errors and submit again.</p>
+        <v-btn v-if="id != 0" color="success" class="mr-4" @click="submitForm">
+            Update
+        </v-btn>
+        <v-btn v-else color="success" class="mr-4" @click="submitForm">
+            Register
+        </v-btn>
+
+        <v-btn color="warning" @click="closeForm">
+            Close form
+        </v-btn>
+    </v-form>
 </template>
 
 <script>
 import axios from 'axios';
 export default {
-    props:['id'],
+    props: ['id'],
     emits: ['submit-employee', 'close'],
     data() {
         return {
+            datePicker1: false,
+            datePicker2: false,
+
             PhotoPath: this.$store.state.PHOTO_URL,
             PhotoFileName: 'anonymous.png',
             items: ['frontend', 'backend', 'deploying specialist', 'others'],
-            nameRules:[
+            nameRules: [
                 v => !!v || 'Name is required',
                 v => (v && v.length <= 20) || 'Name must be less than 10 characters',
             ],
             rateRules: [
-            val => val > 5 &&val<100 || `I don't believe you!`,
-          ],
-          areasRules:[
-            val=>val.length>0|| 'At least one area'
-          ],
-      
+                val => val > 5 && val < 100 || `I don't believe you!`,
+            ],
+            areasRules: [
+                val => val.length > 0 || 'At least one area'
+            ],
+
             employee: null,
             firstName: {
                 val: '',
@@ -158,7 +147,7 @@ export default {
                 isValid: true
             },
             photoPath: {
-                val: '',
+                val: 'anonymous.png',
                 isValid: true
             },
             formIsValid: true,
@@ -166,7 +155,7 @@ export default {
     },
 
     methods: {
-        formatDate (date) {
+        formatDate(date) {
             let d = new Date(date);
             let month = (d.getMonth() + 1).toString();
             let day = d.getDate().toString();
@@ -201,8 +190,8 @@ export default {
                 phoneNumber: this.phoneNumber.val,
                 photoPath: this.photoPath.val,
             };
-            if(this.id){
-                formData.EmployeeId=this.id;
+            if (this.id) {
+                formData.EmployeeId = this.id;
             }
 
             this.$emit('submit-employee', formData);
@@ -230,43 +219,43 @@ export default {
                 this.formIsValid = false;
             }
         },
-        imageUpload(event){
-            let formData=new FormData();
-            formData.append('file',event.target.files[0]);
+        imageUpload(event) {
+            let formData = new FormData();
+            formData.append('file', event.target.files[0]);
             axios.post(
-                this.$store.state.API_URL+"/employee/savefile",
+                this.$store.state.API_URL + "/employee/savefile",
                 formData)
-                .then((response)=>{
-                    this.photoPath.val=response.data;
-                    this.PhotoFileName=response.data;
+                .then((response) => {
+                    this.photoPath.val = response.data;
+                    this.PhotoFileName = response.data;
                 });
         },
-        closeForm(){
+        closeForm() {
             return this.$emit('close');
-        }, 
-       
+        },
+
     },
-    computed:{
-        imageURL(){
-            return  this.PhotoPath+this.PhotoFileName;
+    computed: {
+        imageURL() {
+            return this.PhotoPath + this.photoPath.val;
         }
     },
-    
-    beforeMount(){
-        if(this.id!=0){
-            this.employee =  this.$store.state.employee.employees.find(emp=>emp.EmployeeId==this.id);
-            if(!this.employee) return;
-            this.firstName.val= this.employee.firstName;
-            this.lastName.val= this.employee.lastName;
-            this.description.val= this.employee.description;
-            this.rate.val= +this.employee.rate;
-            const areasTemp=this.employee.areas
-            this.areas.val= areasTemp.includes(',')? areasTemp.split(','):[areasTemp];
+
+    beforeMount() {
+        if (this.id != 0) {
+            this.employee = this.$store.state.employee.employees.find(emp => emp.EmployeeId == this.id);
+            if (!this.employee) return;
+            this.firstName.val = this.employee.firstName;
+            this.lastName.val = this.employee.lastName;
+            this.description.val = this.employee.description;
+            this.rate.val = +this.employee.rate;
+            const areasTemp = this.employee.areas
+            this.areas.val = areasTemp.includes(',') ? areasTemp.split(',') : [areasTemp];
             this.birthDate.val = this.formatDate(this.employee.birthDate);
-            this.hireDate.val= this.formatDate(this.employee.hireDate);
-            this.phoneNumber.val= +this.employee.phoneNumber;
-            this.photoPath.val= this.employee.photoPath;
-        }        
+            this.hireDate.val = this.formatDate(this.employee.hireDate);
+            this.phoneNumber.val = +this.employee.phoneNumber;
+            this.photoPath.val = this.employee.photoPath;
+        }
     }
 }
 </script>
@@ -325,10 +314,11 @@ h3 {
 .invalid input,
 .invalid textarea {
     border: 1px solid red;
-} 
-.buttons{
+}
+
+.buttons {
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;
 }
 </style>
 

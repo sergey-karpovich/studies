@@ -12,9 +12,14 @@ namespace EmployeeAPI.Models.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Employee>()
-                .HasMany(e => e.Projects);
-            modelBuilder.Entity<Project>()
-                .HasMany(p => p.Employees);
+                .HasMany(e => e.Projects)
+                .WithMany(e=>e.Employees)
+                .UsingEntity<ProjectEmployeeJunction>
+                (pe => pe.HasOne<Project>().WithMany(),
+                pe=>pe.HasOne<Employee>().WithMany())
+                .Property(pe=>pe.DateJoined)
+                .HasDefaultValueSql("getdate()");
+            
         }
         // старый способ
         //protected override void OnModelCreating(ModelBuilder modelBuilder)

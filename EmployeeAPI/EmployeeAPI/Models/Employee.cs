@@ -55,7 +55,7 @@ namespace EmployeeAPI.Models
         [Column(TypeName = "int")]
         public long? ReportsTo { get; set; }
         public IEnumerable<WorkTime>? WorkTimes { get; set; }
-        public ICollection<Project> Projects { get; set; } = new List<Project>();
+        public List<Project> Projects { get; set; } = new List<Project>();
         //public IEnumerable<ProjectEmployeeJunction>?
         //    ProjectsEmployees
         //{ get; set; }

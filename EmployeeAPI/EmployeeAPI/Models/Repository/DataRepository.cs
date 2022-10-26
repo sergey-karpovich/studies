@@ -10,6 +10,25 @@ namespace EmployeeAPI.Models.Repository
         {
             context = ctx;
         }
+        public IEnumerable<Object> GetAllEmployee()
+        {           
+            var employees = context.Employees.Select(e =>
+            new {
+                e.EmployeeId,
+                e.FirstName,
+                e.LastName,
+                e.Description,
+                e.Rate,
+                e.Areas,
+                e.BirthDate,
+                e.HireDate,
+                e.HomePhone,
+                e.PhotoPath,
+                e.Projects
+            }).ToList();
+
+            return employees;
+        }
         public void CreateEmployee(Employee newEmployee)
         {            
             if (context.Employees != null)
@@ -29,10 +48,6 @@ namespace EmployeeAPI.Models.Repository
             {
                 Console.WriteLine($"Ошибка: {err.Message}");
             }
-        }
-        public IEnumerable<Employee> GetAllEmployee()
-        {
-            return context.Employees.Include(p => p.WorkTimes);
         }
         public Employee GetEmployee(long id)
         {
@@ -74,9 +89,13 @@ namespace EmployeeAPI.Models.Repository
             originalEmployee.Notes = changeEmployee.Notes;
             context.SaveChanges();
         }
+
+
+        // Projects 
+        //////////////////
         public IEnumerable<Project> GetProjects()
         {
-            return context.Projects;
+            return context.Projects.Include(p=>p.Employees);
         }
         public Project GetProject(long id)
         {
@@ -103,15 +122,18 @@ namespace EmployeeAPI.Models.Repository
                 originalProject.DateOfAdoption = changeProject.DateOfAdoption;
                 originalProject.Deadline = changeProject.Deadline;
                 originalProject.Budjet = changeProject.Budjet;
-            originalProject.Employees = changeProject.Employees;
+                //originalProject.Employees = changeProject.Employees;
                 context.SaveChanges();
         }
 
         public void DeleteProject(long id)
         {
-            context.Projects.Remove(new Project() { ProjectID = id });
+            context.Projects.Remove(new Project() { ProjectId = id });
             context.SaveChanges();
         }
+
+        // WorkTime
+        ////////////////////
 
         public IEnumerable<WorkTime> GetWorkTimes()
         {

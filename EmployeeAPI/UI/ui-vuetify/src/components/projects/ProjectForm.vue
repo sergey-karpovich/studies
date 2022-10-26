@@ -116,7 +116,6 @@ export default {
     methods:{
         async submit(){
             if(this.$refs.form.validate()){
-                // console.log(this.ProjectName);
                 this.loading=true;
                 const project={
                     ProjectName: this.ProjectName,
@@ -128,7 +127,7 @@ export default {
                 }
                 try{
                     await this.$store.dispatch('projects/registerProject', project);
-                    this.$emit('projectAdded');
+                    this.$emit('projectAdded');                    
                 } catch(error){
                     this.error=error.message || 'Something went wrong!';
                 }

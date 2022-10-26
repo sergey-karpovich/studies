@@ -99,7 +99,7 @@
         </span></v-list-item-action>
 
         <v-list-item-content>
-          <v-list-item-title>{{ selectedEmployee.birthDate}}</v-list-item-title>
+          <v-list-item-title>{{ formatDate(selectedEmployee.birthDate)}}</v-list-item-title>
           <v-list-item-subtitle>Birth Date</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -110,7 +110,7 @@
         </span></v-list-item-action>
         
         <v-list-item-content>
-          <v-list-item-title>{{ selectedEmployee.hireDate}}</v-list-item-title>
+          <v-list-item-title>{{ formatDate(selectedEmployee.hireDate)}}</v-list-item-title>
           <v-list-item-subtitle>Hire Date</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -169,7 +169,20 @@ export default {
                 }
             }
             return null
-        }
+        },
+        formatDate (date) {
+            let d = new Date(date);
+            let month = (d.getMonth() + 1).toString();
+            let day = d.getDate().toString();
+            let year = d.getFullYear();
+            if (month.length < 2) {
+                month = '0' + month;
+            }
+            if (day.length < 2) {
+                day = '0' + day;
+            }
+            return [day, month, year].join('.');
+        },
     },
 
     beforeMount(){

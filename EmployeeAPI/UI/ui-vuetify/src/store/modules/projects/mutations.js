@@ -6,13 +6,13 @@ export default {
         state.projects=payload;
     },
     deleteProject(state,id){
-        state.projects = state.projects.filter(p=>p.ProjectID!=id);
+        state.projects = state.projects.filter(p=>p.ProjectId!=id);
     },
     selectProject(state, num){
         state.selectedProject=state.projects[num];
     },
     updateProject(state, project){
-        state.projects = state.projects.filter(p=>p.ProjectID!=project.ProjectID);
+        state.projects = state.projects.filter(p=>p.ProjectId!=project.ProjectId);
         state.projects.push(project);
     }
 }
