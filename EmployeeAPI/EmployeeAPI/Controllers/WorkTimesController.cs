@@ -69,7 +69,6 @@ namespace EmployeeAPI.Controllers
                     throw;
                 }
             }
-
             return new JsonResult("Updated Successfully");
         }
 

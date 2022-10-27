@@ -2,14 +2,12 @@ import axios from 'axios';
 
 export default {
     async loadProjects(context) {
-        const url = context.rootGetters.url;
+        const url = context.rootGetters.url+'/Projects';
         // if(!payload.forceRefresh && !context.getters.shouldUpdate){
         //     return;
         // }
         
-        const response = await axios.get(
-            url+'/Projects'
-        );      
+        const response = await axios.get(url);      
 
         if(!response.status===200){
             const error = new Error(response.message || 'Failed to fetch!');

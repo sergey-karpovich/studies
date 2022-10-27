@@ -16,10 +16,12 @@ namespace EmployeeAPI.Controllers
         }
 
         [HttpGet]
-        public JsonResult Get()
+        public async Task<ActionResult<IEnumerable<Employee>>> Get()
         {
-            var junctions = context.Set<ProjectEmployeeJunction>();
-            return new JsonResult(junctions);
+            //var junctions = context.Set<ProjectEmployeeJunction>();
+            //return new JsonResult(junctions);
+            return await context.Employees.AsNoTracking()
+                .Include(e => e.Projects).ToListAsync();
         }
         [HttpPut]
         public JsonResult Put(answer answer)

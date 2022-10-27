@@ -16,20 +16,28 @@ builder.Services.AddCors(c =>
         .AllowAnyMethod()
         .AllowAnyHeader());
 });
-builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
-options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling
-    .Ignore).AddNewtonsoftJson(options =>
-    options.SerializerSettings.ContractResolver =
-    new DefaultContractResolver());
 
-builder.Services.AddControllers();
+
+//builder.Services.AddControllers();
 
 string connection = builder.Configuration.GetConnectionString("EmployeeAPICon");
 builder.Services.AddDbContext<CompanyContext>(options => options.UseSqlServer(connection));
 
 builder.Services.AddTransient<IDataRepository, DataRepository>();
 
-//builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.WriteIndented = true;
+});
+
+//    .AddNewtonsoftJson(options =>
+//options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling
+//    .Ignore).AddNewtonsoftJson(options =>
+//    options.SerializerSettings.ContractResolver =
+//    new DefaultContractResolver());
+
+builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 

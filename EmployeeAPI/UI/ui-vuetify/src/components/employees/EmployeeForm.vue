@@ -57,15 +57,7 @@
                         </template>
                         <v-date-picker v-model="hireDate.val"
                         @input="datePicker2=false"></v-date-picker>
-                    </v-menu>
-        <!-- <div class="form-control">
-            <label for="birthDate">Birth date</label>
-            <input type="date" id="birthDate" v-model="birthDate.val" />
-        </div>
-        <div class="form-control">
-            <label for="hireDate">Hire date</label>
-            <input type="date" id="hireDate" v-model="hireDate.val" />
-        </div> -->
+                    </v-menu>        
         <div class="form-control">
             <label for="phoneNumber">Phone number</label>
             <input type="tel" id="phoneNumber" v-model.number="phoneNumber.val" />
