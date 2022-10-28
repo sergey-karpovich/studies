@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using EmployeeAPI.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeAPI.Models.Repository
 {
@@ -95,7 +96,9 @@ namespace EmployeeAPI.Models.Repository
         //////////////////
         public IEnumerable<Project> GetProjects()
         {
-            return context.Projects.Include(p=>p.Employees);
+            return context.Projects.AsNoTracking()
+                .Include(p=>p.Employees)
+                .ToList();
         }
         public Project GetProject(long id)
         {
@@ -151,6 +154,17 @@ namespace EmployeeAPI.Models.Repository
                 return context.WorkTimes.Where(w => w.EmployeeId == id);
             }
             return new List<WorkTime>();
+        }
+        public async Task<ActionResult<IEnumerable<WorkTime>>> GetWorkTimeByMonthYear(int month, int year)
+        {
+            if(month == 0 || year == 0)
+            {
+                var currentDate = DateTime.Now;
+                month = currentDate.Month;                
+                year = currentDate.Year;
+            }
+            var workTime = await context.WorkTimes.Where(wt => wt.NumMonth == month && wt.NumYear == year).ToListAsync();
+            return workTime;
         }
 
         public void CreateWorkTime(WorkTime newWT)

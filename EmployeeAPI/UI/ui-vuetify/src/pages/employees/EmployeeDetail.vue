@@ -24,7 +24,7 @@
             dark
             icon
             class="mr-4"
-            router :to="'/employee/edit/'+selectedEmployee.EmployeeId"
+            router :to="'/employee/edit/'+selectedEmployee.employeeId"
           >
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
@@ -128,7 +128,7 @@
         </v-list-item>
 
       <v-divider inset></v-divider>
-
+<!--
       <v-list-item>
         <v-list-item-icon>
           <v-icon color="indigo">
@@ -136,11 +136,12 @@
           </v-icon>
         </v-list-item-icon>
 
-        <v-list-item-content>
+         <v-list-item-content>
           <v-list-item-title>ADDRESS</v-list-item-title>
           <v-list-item-subtitle>ADDRESS</v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
+        </v-list-item-content> 
+      </v-list-item>-->
+
     </v-list>
   </v-card>
 </template>
@@ -162,7 +163,7 @@ export default {
     methods:{
          search(key, inputArray)  {
             for (let i=0; i < inputArray.length; i++) {
-                if (inputArray[i].EmployeeId == key) {
+                if (inputArray[i].employeeId == key) {
                     //console.log(inputArray[i]);
                     return inputArray[i];
 

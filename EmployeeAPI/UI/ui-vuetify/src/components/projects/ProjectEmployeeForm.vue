@@ -68,8 +68,8 @@
                     chips 
                     color="blue-grey lighten-2" 
                     label="Assign employee" 
-                    item-text="EmployeeId" 
-                    item-value="EmployeeId" 
+                    item-text="employeeId" 
+                    item-value="employeeId" 
                     multiple>
                         <template v-slot:selection="data">
                             <v-chip v-bind="data.attrs" 
@@ -99,39 +99,6 @@
                         </template>
                     </v-autocomplete>
                 </v-col> 
-
-                <!-- <v-col cols="12">
-                    <v-autocomplete v-model="friends" :disabled="isUpdating" 
-                    :items="people" filled chips
-                        color="blue-grey lighten-2" label="Assign employee" item-text="name" item-value="name" multiple>
-                        <template v-slot:selection="data">
-                            <v-chip v-bind="data.attrs" 
-                              :input-value="data.selected" close 
-                              @click="data.select"
-                               @click:close="remove(data.item)">
-                                <v-avatar left>
-                                    <v-img :src="data.item.avatar"></v-img>
-                                </v-avatar>
-                                {{ data.item.name }}
-                            </v-chip>
-                        </template>
-                        <template v-slot:item="data">
-                            <template v-if="typeof data.item !== 'object'">
-                                <v-list-item-content v-text="data.item"></v-list-item-content>
-                            </template>
-                            <template v-else>
-                                <v-list-item-avatar>
-                                    <img :src="data.item.avatar">
-                                </v-list-item-avatar>
-                                <v-list-item-content>
-                                    <v-list-item-title v-html="data.item.name"></v-list-item-title>
-                                    <v-list-item-subtitle v-html="data.item.group"></v-list-item-subtitle>
-                                </v-list-item-content>
-                            </template>
-                        </template>
-                    </v-autocomplete>
-                </v-col> -->
-
             </v-row>
         </v-container>
     </v-form>
@@ -192,7 +159,7 @@ export default {
 
     methods: {
       remove (item) {  
-        const index = this.Employees.findIndex(e=>e.EmployeeId === item.EmployeeId)
+        const index = this.Employees.findIndex(e=>e.employeeId === item.employeeId)
         if (index >= 0) this.Employees.splice(index, 1)        
       },
 
@@ -215,7 +182,7 @@ export default {
         const eids=[];
         for(let i=0; i<tempEmployees.length; i++)
         {
-          eids.push(tempEmployees[i].EmployeeId);
+          eids.push(tempEmployees[i].employeeId);
         }
         const junction={
           id: project.ProjectId,

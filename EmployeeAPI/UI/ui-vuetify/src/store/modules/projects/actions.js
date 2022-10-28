@@ -18,13 +18,13 @@ export default {
 
         for (const p in response.data){
             const project = {
-                ProjectId: response.data[p].ProjectId,
-                ProjectName: response.data[p].ProjectName,
-                Budjet: response.data[p].Budjet,
-                DateOfAdoption: response.data[p].DateOfAdoption,
-                Deadline: response.data[p].Deadline,
-                Description: response.data[p].Description,
-                Employees: response.data[p].Employees
+                ProjectId: response.data[p].projectId,
+                ProjectName: response.data[p].projectName,
+                Budjet: response.data[p].budjet,
+                DateOfAdoption: response.data[p].dateOfAdoption,
+                Deadline: response.data[p].deadline,
+                Description: response.data[p].description,
+                Employees: response.data[p].employees
             }            
             projects.push(project);
         }
@@ -38,20 +38,19 @@ export default {
             const error = new Error(response.message || 'Failed to fetch!');
             throw error;
         }
-        context.commit('addProject', response.data)
+        context.commit('addProject', project)
     },
 
     async updateProject(context, project){
         const url=context.rootGetters.url+'/projects/';
-        console.log('actions', project);
         const response=await axios.put(url, project);
 
         if(response&&!response.status=== 200){
             const error = new Error(response.message || 'Failed to fetch!');
             throw error;
         }
-
-        context.commit('updateProject', response.data)
+        context.commit('deleteProject',project.ProjectId)
+        context.commit('addProject', project)
     },
     async addEmployeesById(context, junction){
         const url=context.rootGetters.url+'/ProjectEmployee';
@@ -61,10 +60,7 @@ export default {
         if(response&&!response.status=== 200){
             const error = new Error(response.message || 'Failed to fetch!');
             throw error;
-        }
-        console.log(response);
-         
-        context.commit('updateProject', response.data)
+        }        
     },
     async deleteProject(context, id){
         const response = await axios.delete(context.rootGetters.url+'/projects/'+id)

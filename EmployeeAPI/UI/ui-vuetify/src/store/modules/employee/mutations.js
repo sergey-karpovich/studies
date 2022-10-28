@@ -1,6 +1,6 @@
 export default {
     registerEmployee(state, employee){    
-        state.Employees.unshift(employee);
+        state.employees.push(employee);
     },
     setEmployees(state, payload){
         state.employees = payload;
@@ -9,6 +9,6 @@ export default {
         state.lastFetch = new Date().getTime();
     },
     deleteEmployee(state,id){
-        state.employees = state.employees.filter(emp=>emp.EmployeeId!=id);
+        state.employees = state.employees.filter(emp=>emp.employeeId!=id);
     }
 };

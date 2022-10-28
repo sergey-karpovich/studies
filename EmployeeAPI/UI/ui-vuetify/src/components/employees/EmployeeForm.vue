@@ -16,7 +16,7 @@
                 <v-row align="center">
                     <v-col cols="12">
                         <v-autocomplete v-model="areas.val" :items="items" outlined dense chips small-chips
-                            label="Outlined" multiple :rules="areasRules"></v-autocomplete>
+                            label="Areas" multiple :rules="areasRules"></v-autocomplete>
                     </v-col>
 
                 </v-row>
@@ -51,7 +51,7 @@
                             prepend-icon="mdi-calendar"
                             v-bind="attrs"
                             v-on="on"
-                            label="Birth date"
+                            label="Hire date"
                             >                            
                             </v-text-field>
                         </template>
@@ -60,7 +60,7 @@
                     </v-menu>        
         <div class="form-control">
             <label for="phoneNumber">Phone number</label>
-            <input type="tel" id="phoneNumber" v-model.number="phoneNumber.val" />
+            <input type="tel" id="phoneNumber" v-model="phoneNumber.val" />
         </div>
 
         <div class="form-control">
@@ -175,15 +175,15 @@ export default {
                 firstName: this.firstName.val,
                 lastName: this.lastName.val,
                 description: this.description.val,
-                hourlyRate: this.rate.val,
+                rate: this.rate.val,
                 areas: this.areas.val,
                 birthDate: this.birthDate.val,
                 hireDate: this.hireDate.val,
-                phoneNumber: this.phoneNumber.val,
+                homePhone: this.phoneNumber.val,
                 photoPath: this.photoPath.val,
             };
             if (this.id) {
-                formData.EmployeeId = this.id;
+                formData.employeeId = this.id;
             }
 
             this.$emit('submit-employee', formData);
@@ -235,7 +235,7 @@ export default {
 
     beforeMount() {
         if (this.id != 0) {
-            this.employee = this.$store.state.employee.employees.find(emp => emp.EmployeeId == this.id);
+            this.employee = this.$store.state.employee.employees.find(emp => emp.employeeId == this.id);
             if (!this.employee) return;
             this.firstName.val = this.employee.firstName;
             this.lastName.val = this.employee.lastName;
@@ -245,7 +245,7 @@ export default {
             this.areas.val = areasTemp.includes(',') ? areasTemp.split(',') : [areasTemp];
             this.birthDate.val = this.formatDate(this.employee.birthDate);
             this.hireDate.val = this.formatDate(this.employee.hireDate);
-            this.phoneNumber.val = +this.employee.phoneNumber;
+            this.phoneNumber.val = this.employee.homePhone;
             this.photoPath.val = this.employee.photoPath;
         }
     }

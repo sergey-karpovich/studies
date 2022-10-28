@@ -1,7 +1,8 @@
 <template>
     <section>       
 
-        <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
+        <base-dialog :show="!!error" title="An error occurred!" 
+            @close="handleError">
             <p>{{ error }}</p>
         </base-dialog>
         <base-spinner v-if="isLoaded"></base-spinner>
@@ -39,7 +40,7 @@ export default {
             
             try{
                 
-                if(this.id){
+                if(this.id!=0){
                     await this.$store.dispatch('employee/updateEmployee', employee);
                     this.$router.replace('/employee');
                 } else {

@@ -29,10 +29,13 @@ namespace EmployeeAPI.Controllers
         }
 
         // GET: api/WorkTimes/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<WorkTime>> GetWorkTime(long id)
+        [HttpGet("{year}")]
+        public async Task<ActionResult<IEnumerable<WorkTime>>> GetWorkTime(long year)
         {
-            var workTime = await _context.WorkTimes.FindAsync(id);
+
+            var workTime = await _context.WorkTimes
+                .Where(wt => wt.NumYear == year)
+                .ToListAsync();
 
             if (workTime == null)
             {

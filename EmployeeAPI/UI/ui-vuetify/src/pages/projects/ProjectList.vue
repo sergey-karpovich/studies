@@ -13,11 +13,7 @@
             <ProjectForm @projectAdded="projectAdded"></ProjectForm>
         </v-layout>
 
-        <v-layout row justify-center>
-
-            
-
-
+        <v-layout row justify-center> 
             <v-card sm12 md6 class="mx-1" min-width="400" max-width="400"            
             v-for="project in selectedProject" :key="project.ProjectId"> 
                 <v-layout column v-if="!edit">
@@ -54,9 +50,9 @@
                             </v-expansion-panel-header>
                             <v-expansion-panel-content v-for="(employee,i) in project.Employees" :key="i">
                                 <v-avatar left>
-                                    <v-img :src="PhotoURL + employee.PhotoPath"></v-img>
+                                    <v-img :src="PhotoURL + employee.photoPath"></v-img>
                                 </v-avatar>                                
-                                    {{ employee.FirstName +' '+employee.LastName}}
+                                    {{ employee.firstName +' '+employee.lastName}}
                             </v-expansion-panel-content>
                         </v-expansion-panel>
                     </v-expansion-panels>                    

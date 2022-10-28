@@ -31,7 +31,7 @@ namespace EmployeeAPI.Controllers
             if (emp != null)
             {
                 repository.CreateEmployee(emp);
-                return new JsonResult("Added Successfully");
+                return new JsonResult(emp);
             }
             else
             {

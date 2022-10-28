@@ -17,8 +17,8 @@
             </div>
                 <ul v-else-if="hasEmployees">
                     <employee-item v-for="employee in employees" 
-                    :key="employee.EmployeeId" 
-                    :id="employee.EmployeeId" 
+                    :key="employee.employeeId" 
+                    :id="employee.employeeId" 
                     :first-name="employee.firstName" 
                     :last-name="employee.lastName" 
                     :description="employee.description"

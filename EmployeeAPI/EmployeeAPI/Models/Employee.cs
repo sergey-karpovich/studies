@@ -14,7 +14,7 @@ namespace EmployeeAPI.Models
         // }
 
         [Key]
-        [Column("EmployeeID")]
+        [Column("EmployeeId")]
         public long? EmployeeId { get; set; }
         [Column(TypeName = "nvarchar (100)")]
         public string? FirstName { get; set; }

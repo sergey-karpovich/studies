@@ -1,6 +1,6 @@
 export default {
     addProject(state, project){
-        state.projects.push(project);
+        state.projects.unshift(project);
     },
     loadProject(state, payload){
         state.projects=payload;
@@ -11,8 +11,5 @@ export default {
     selectProject(state, num){
         state.selectedProject=state.projects[num];
     },
-    updateProject(state, project){
-        state.projects = state.projects.filter(p=>p.ProjectId!=project.ProjectId);
-        state.projects.push(project);
-    }
+    
 }
