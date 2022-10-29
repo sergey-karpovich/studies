@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export default {
-    async loadEmployees(context) {
+    async loadEmployees(context,payload) {
+        if(!payload.forceRefresh && !context.getters.shouldUpdate){
+            return;
+        }
         const url = context.rootGetters.url+'/employee/';
-        // if(!payload.forceRefresh && !context.getters.shouldUpdate){
-        //     return;
-        // }
         
         const response = await axios.get(url);            
 
@@ -34,8 +34,7 @@ export default {
             employees.push(employee);
         }        
         context.commit('setEmployees', employees);
-        
-        // context.commit('setFetchTimestamp');
+        context.commit('setFetchTimestamp');
     },
     async registerEmployee(context, employee){
         const url = context.rootGetters.url+'/employee';
@@ -73,7 +72,7 @@ export default {
             HomePhone: employee.homePhone,
             PhotoPath: employee.photoPath,    
         }  
-         console.log(employeeData);     
+         
         const  response = await axios.put(url, employeeData);
         // если будет ошибка на сервере то все зависнет. 
         // надо будет разобраться с promises и сделать таймер

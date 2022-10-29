@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-snackbar v-model="snackbar" :timeout="4000" top color="success">
-            <span>Awesome! You added a new project.</span>
+            <span>{{ textSnackbar }}</span>
             <v-btn color="success lighten-1" @click="snackbar=false">Close</v-btn>
         </v-snackbar>
         <v-layout row>
@@ -91,7 +91,7 @@
                             <v-subheader>
                                 <v-tooltip top>
                                     <template v-slot:activator="{ on, attrs }">
-                                        <v-btn v-bind="attrs" small v-on="on" @click="sortBy('title')">
+                                        <v-btn v-bind="attrs" small v-on="on" @click="sortByName">
                                             <v-icon left>expand_more</v-icon>
                                             <span class="caption text-lowercase">Project name</span>
                                         </v-btn>
@@ -103,7 +103,7 @@
                             <v-subheader>
                                 <v-tooltip top>
                                     <template v-slot:activator="{ on, attrs }">
-                                        <v-btn v-bind="attrs" small v-on="on" @click="sortBy('title')">
+                                        <v-btn v-bind="attrs" small v-on="on" @click="sortByDate">
                                             <v-icon left>expand_more</v-icon>
                                             <span class="caption text-lowercase">Deadline</span>
                                         </v-btn>
@@ -146,21 +146,24 @@ export default {
     {
         return {
             edit: false,
-        isLoading: false,
-        error: null,
-        snackbar: false,
-        selectedProject: [{
-            ProjectId: 57,
-            ProjectName: 'some name',
-            Budjet: 0,
-            DateOfAdoption: '01.01.2020',
-            Deadline: '01.01.2020',
-            Description: 'some description',
-            Employees: '',
-        }],        
-        
-        model: null,       
-        PhotoURL: this.$store.state.PHOTO_URL,
+            isLoading: false,
+            error: null,
+            snackbar: false,
+            selectedProject: [{
+                ProjectId: 57,
+                ProjectName: 'some name',
+                Budjet: 0,
+                DateOfAdoption: '01.01.2020',
+                Deadline: '01.01.2020',
+                Description: 'some description',
+                Employees: '',
+            }],        
+            
+            model: null,       
+            PhotoURL: this.$store.state.PHOTO_URL,
+            textSnackbar: '',
+            sortedByDate: false,
+            sortedByName: false,
         }
     },
     computed: {
@@ -185,7 +188,7 @@ export default {
             this.isLoading = true;
             try {
                 await this.$store.dispatch('projects/loadProjects');
-                await this.$store.dispatch('employee/loadEmployees');
+                await this.$store.dispatch('employee/loadEmployees',{forceRefresh: false});
             } catch (error) {
                 this.error = error.message || 'Something went wrong!';
             }
@@ -207,8 +210,9 @@ export default {
             }
             return [day, month, year].join('.');
         },
-        projectAdded(){
+        projectAdded(text){
             this.snackbar=true;
+            this.textSnackbar = text;
         },
         async deleteProject(){
             this.isLoading = true;
@@ -221,6 +225,22 @@ export default {
                 }
             }
             this.isLoading=false
+        },
+        sortByName(){
+            this.sortedByName=!this.sortedByName;
+            this.projects.sort((a,b)=> {
+                if(this.sortedByName)
+                    return a.ProjectName<b.ProjectName?-1:1
+                return a.ProjectName>b.ProjectName?-1:1
+            });
+        },
+        sortByDate(){
+            this.sortedByDate=!this.sortedByDate;            
+            this.projects.sort((a,b)=>{
+                if(this.sortedByDate)
+                    return new Date(a.Deadline) - new Date(b.Deadline);
+                return     new Date(b.Deadline) - new Date(a.Deadline);
+            })
         },
     },
     created() {

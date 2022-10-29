@@ -3,9 +3,9 @@ import axios from 'axios';
 export default {
     async loadProjects(context) {
         const url = context.rootGetters.url+'/Projects';
-        // if(!payload.forceRefresh && !context.getters.shouldUpdate){
-        //     return;
-        // }
+        if( !context.getters.shouldUpdate){
+            return;
+        }
         
         const response = await axios.get(url);      
 
@@ -28,7 +28,8 @@ export default {
             }            
             projects.push(project);
         }
-        context.commit('loadProject', projects)
+        context.commit('loadProject', projects);
+        context.commit('setFetchTimestamp');
     },
     async registerProject(context, project){
         const url=context.rootGetters.url;
@@ -54,7 +55,6 @@ export default {
     },
     async addEmployeesById(context, junction){
         const url=context.rootGetters.url+'/ProjectEmployee';
-        console.log('action id',junction)
         const response=await axios.put(url, junction);
 
         if(response&&!response.status=== 200){

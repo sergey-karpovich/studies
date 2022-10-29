@@ -2,6 +2,10 @@
   <v-card>
     <v-form>
       <v-container>
+        <v-snackbar v-model="snackbar" :timeout="4000" top color="success">
+            <span>Project updated successfully!</span>
+            <v-btn color="success lighten-1" @click="snackbar=false">Close</v-btn>
+        </v-snackbar>
             <v-row>
                 <v-col cols="12" md="6">
                     <v-text-field v-model="ProjectName" 
@@ -104,8 +108,7 @@
     </v-form>
     <v-card-actions>
 
-      <v-btn
-        :disabled="autoUpdate"
+      <v-btn       
         :loading="isUpdating"
         color="primary"
         depressed
@@ -143,9 +146,10 @@ export default {
         datePicker2: null,
 
         PhotoURL: this.$store.state.PHOTO_URL,
-       
-        autoUpdate: false,
-        isUpdating: false,       
+               
+        isUpdating: false, 
+        snackbar: false,    
+          
       }
     },
 
@@ -178,7 +182,6 @@ export default {
           Description: this.Description,
           Employees:  tempEmployees,
         };
-        console.log(project);
         const eids=[];
         for(let i=0; i<tempEmployees.length; i++)
         {
@@ -191,7 +194,7 @@ export default {
         try{
           await this.$store.dispatch('projects/updateProject',project);
           await this.$store.dispatch('projects/addEmployeesById', junction);
-
+          this.snackbar=true;          
         } catch(error){
           console.log(error.message);
         }

@@ -9,10 +9,10 @@ export default {
             lastFetch: null,
             employees: [
                 {
-                    EmployeeId: '1',
+                    employeeId: '1',
                     firstName: 'Maximilian',
                     lastName: 'Schwarzmuller',
-                    phoneNumber: 1111111,
+                    homePhone: 1111111,
                     rate: 14,
                     birthDate: '01.01.2020',
                     hireDate: '01.01.2020',
@@ -21,10 +21,10 @@ export default {
                     areas: ['frontend','backend'],
                 },
                 {
-                    EmployeeId: '2',
+                    employeeId: '2',
                     firstName: 'Sergey',
                     lastName: 'Karpovich',
-                    phoneNumber: 1111111,
+                    homePhone: 1111111,
                     birthDate: '01.01.2020',
                     hireDate: '01.01.2020',
                     rate: 14,

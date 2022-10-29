@@ -57,7 +57,7 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>{{ selectedEmployee.phoneNumber }}</v-list-item-title>
+          <v-list-item-title>{{ selectedEmployee.homePhone }}</v-list-item-title>
           <v-list-item-subtitle>Phone number</v-list-item-subtitle>
         </v-list-item-content>
 
@@ -163,10 +163,8 @@ export default {
     methods:{
          search(key, inputArray)  {
             for (let i=0; i < inputArray.length; i++) {
-                if (inputArray[i].employeeId == key) {
-                    //console.log(inputArray[i]);
+                if (inputArray[i].employeeId == key) {                    
                     return inputArray[i];
-
                 }
             }
             return null
@@ -190,7 +188,7 @@ export default {
       const emp = this.$store.getters['employee/employees']
       this.selectedEmployee = this.search(this.id, emp);
       this.PhotoPath+=this.selectedEmployee.photoPath?this.selectedEmployee.photoPath:'anonymous.png';
-      // console.log(this.PhotoPath);
+      
     },
 }
 </script>

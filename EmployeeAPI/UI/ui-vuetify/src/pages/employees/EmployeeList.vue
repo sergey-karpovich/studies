@@ -1,12 +1,15 @@
 <template>
     <div>
         <base-dialog :show="!!error" title="An error occurred!" 
-        @close="handleError">
-        <p>{{ error }}</p>
+            @close="handleError">
+            <p>{{ error }}</p>
         </base-dialog>       
         <section>            
             <v-btn router to="/employee/edit/0" >New Employee</v-btn>
+            <v-btn @click="loadEmployee(true)">Refresh data</v-btn>
         </section>
+
+        
         <section> 
             <base-card>
             <div class="controls">
@@ -62,10 +65,10 @@ export default {
         
     },
     methods: {
-        async loadEmployee(){
+        async loadEmployee(refresh = false){
             this.isLoading = true;
             try{
-                await this.$store.dispatch('employee/loadEmployees');
+                await this.$store.dispatch('employee/loadEmployees',{forceRefresh: refresh});
             } catch (error){
                 this.error = error.message || 'Something went wrong!';
             }
@@ -80,6 +83,7 @@ export default {
             this.isLoading = true;
             try{
                 await this.$store.dispatch('employee/deleteEmployee',id);
+                this.$emit("showSnackbar", "Employee deleted successfully!");
             } catch (error){
                 this.error = error.message || 'Something went wrong!';
             }
@@ -87,7 +91,7 @@ export default {
         }
     },
     created(){
-        this.loadEmployee();
+        this.loadEmployee();        
     }
 }
 </script>

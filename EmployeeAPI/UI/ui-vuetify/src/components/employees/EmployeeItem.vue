@@ -77,7 +77,7 @@ export default {
   methods:{
     deleteEmployee(){
       if (confirm("Delete employee?")) {
-        this.$emit('deleteEmployee',this.id)
+        this.$emit('deleteEmployee',this.id)        
       }
     }
   }, 

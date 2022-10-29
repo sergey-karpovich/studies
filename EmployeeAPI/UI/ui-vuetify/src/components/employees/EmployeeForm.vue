@@ -22,42 +22,36 @@
                 </v-row>
             </v-container>
         </v-card>
-        <v-menu
-                    v-model="datePicker1"                    
-                    transition="scale-transition"
-                    offset-y
+
+        <!-- Date pickers-->
+        <template>
+            <div>
+                <v-menu  v-model="birth" :close-on-content-click="false" transition="scale-transition" offset-y
                     min-width="auto">
-                        <template v-slot:activator="{on, attrs}">
-                            <v-text-field
-                            v-model="birthDate.val"
-                            prepend-icon="mdi-calendar"
-                            v-bind="attrs"
-                            v-on="on"
-                            label="Birth date"
-                            >                            
-                            </v-text-field>
-                        </template>
-                        <v-date-picker v-model="birthDate.val"
-                        @input="datePicker1=false"></v-date-picker>
-                    </v-menu>
-        <v-menu
-                    v-model="datePicker2"                    
-                    transition="scale-transition"
-                    offset-y
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-text-field v-model="birthDate.val" label="Birthday date" prepend-icon="mdi-calendar" readonly
+                            v-bind="attrs" v-on="on"></v-text-field>
+                    </template>
+                    <v-date-picker v-model="birthDate.val"
+                        :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)"
+                        min="1950-01-01" @change="saveBirth"></v-date-picker>
+                </v-menu>
+            </div>
+        </template>
+        <template>
+            <div>
+                <v-menu  v-model="hire" :close-on-content-click="false" transition="scale-transition" offset-y
                     min-width="auto">
-                        <template v-slot:activator="{on, attrs}">
-                            <v-text-field
-                            v-model="hireDate.val"
-                            prepend-icon="mdi-calendar"
-                            v-bind="attrs"
-                            v-on="on"
-                            label="Hire date"
-                            >                            
-                            </v-text-field>
-                        </template>
-                        <v-date-picker v-model="hireDate.val"
-                        @input="datePicker2=false"></v-date-picker>
-                    </v-menu>        
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-text-field v-model="hireDate.val" label="Hire date" prepend-icon="mdi-calendar" readonly
+                            v-bind="attrs" v-on="on"></v-text-field>
+                    </template>
+                    <v-date-picker v-model="hireDate.val"
+                        :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)"
+                        min="1950-01-01" @change="saveHire"></v-date-picker>
+                </v-menu>
+            </div>
+        </template>
         <div class="form-control">
             <label for="phoneNumber">Phone number</label>
             <input type="tel" id="phoneNumber" v-model="phoneNumber.val" />
@@ -87,9 +81,9 @@ export default {
     props: ['id'],
     emits: ['submit-employee', 'close'],
     data() {
-        return {
-            datePicker1: false,
-            datePicker2: false,
+        return {           
+            birth: false,
+            hire: false,
 
             PhotoPath: this.$store.state.PHOTO_URL,
             PhotoFileName: 'anonymous.png',
@@ -146,7 +140,13 @@ export default {
         };
     },
 
-    methods: {
+    methods: {        
+        saveBirth(date) {
+            this.birthDate.val = date;
+        },
+        saveHire(date){
+            this.hireDate.val = date;
+        },
         formatDate(date) {
             let d = new Date(date);
             let month = (d.getMonth() + 1).toString();
@@ -185,8 +185,8 @@ export default {
             if (this.id) {
                 formData.employeeId = this.id;
             }
-
             this.$emit('submit-employee', formData);
+            
         },
         validateForm() {
             this.formIsValid = true;

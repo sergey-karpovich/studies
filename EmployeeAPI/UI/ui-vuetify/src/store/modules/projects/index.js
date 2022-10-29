@@ -8,6 +8,7 @@ export default {
         return{ 
             projects: [],
             selectedProject: '', 
+            lastFetch: null,
         }
     },
     mutations: projectsMutations,

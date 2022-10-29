@@ -42,9 +42,11 @@ export default {
                 
                 if(this.id!=0){
                     await this.$store.dispatch('employee/updateEmployee', employee);
+                    this.$emit("showSnackbar", "Employee updated successfully!");
                     this.$router.replace('/employee');
                 } else {
                     await this.$store.dispatch('employee/registerEmployee', employee);
+                    this.$emit("showSnackbar", "Employee created successfully!");
                     this.$router.replace('/employee');
                 }
            
@@ -57,7 +59,7 @@ export default {
         handleError(){
             this.error=null;
         },
-        closeCreateForm(){
+        closeCreateForm(){            
             this.$router.replace('/employee');
         }
     } ,

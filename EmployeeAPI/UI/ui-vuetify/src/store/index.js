@@ -23,6 +23,7 @@ const store=new Vuex.Store({
         return{
             API_URL: 'https://localhost:7075/api',
             PHOTO_URL: 'https://localhost:7075/photos/',
+            timeout: 3000,            
         };
     },
     mutations: rootMutations,

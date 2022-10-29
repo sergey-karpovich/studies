@@ -11,5 +11,7 @@ export default {
     selectProject(state, num){
         state.selectedProject=state.projects[num];
     },
-    
+    setFetchTimestamp(state){
+        state.lastFetch = new Date().getTime();
+    },
 }
