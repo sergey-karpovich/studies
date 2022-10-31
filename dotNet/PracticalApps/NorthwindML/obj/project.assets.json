@@ -2247,11 +2247,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindML\\NorthwindML.csproj",
+      "projectUniqueName": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindML\\NorthwindML.csproj",
       "projectName": "NorthwindML",
-      "projectPath": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindML\\NorthwindML.csproj",
+      "projectPath": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindML\\NorthwindML.csproj",
       "packagesPath": "C:\\Users\\юзер\\.nuget\\packages\\",
-      "outputPath": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindML\\obj\\",
+      "outputPath": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindML\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -2273,11 +2273,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindContextLib\\NorthwindContextLib.csproj": {
-              "projectPath": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindContextLib\\NorthwindContextLib.csproj"
+            "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindContextLib\\NorthwindContextLib.csproj": {
+              "projectPath": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindContextLib\\NorthwindContextLib.csproj"
             },
-            "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindEmployees\\NorthwindEmployees.csproj": {
-              "projectPath": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindEmployees\\NorthwindEmployees.csproj"
+            "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindEmployees\\NorthwindEmployees.csproj": {
+              "projectPath": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindEmployees\\NorthwindEmployees.csproj"
             }
           }
         }
@@ -2327,7 +2327,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

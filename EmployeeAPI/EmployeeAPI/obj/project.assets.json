@@ -9938,25 +9938,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Sergei\\.nuget\\packages\\": {},
+    "C:\\Users\\юзер\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\git\\projects\\PetProject\\studies\\EmployeeAPI\\EmployeeAPI\\EmployeeAPI.csproj",
+      "projectUniqueName": "C:\\git\\projects\\PetProgects\\studies\\EmployeeAPI\\EmployeeAPI\\EmployeeAPI.csproj",
       "projectName": "EmployeeAPI",
-      "projectPath": "C:\\git\\projects\\PetProject\\studies\\EmployeeAPI\\EmployeeAPI\\EmployeeAPI.csproj",
-      "packagesPath": "C:\\Users\\Sergei\\.nuget\\packages\\",
-      "outputPath": "C:\\git\\projects\\PetProject\\studies\\EmployeeAPI\\EmployeeAPI\\obj\\",
+      "projectPath": "C:\\git\\projects\\PetProgects\\studies\\EmployeeAPI\\EmployeeAPI\\EmployeeAPI.csproj",
+      "packagesPath": "C:\\Users\\юзер\\.nuget\\packages\\",
+      "outputPath": "C:\\git\\projects\\PetProgects\\studies\\EmployeeAPI\\EmployeeAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Sergei\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\юзер\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -10028,7 +10028,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

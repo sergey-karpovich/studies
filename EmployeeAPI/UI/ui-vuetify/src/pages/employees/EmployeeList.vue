@@ -4,11 +4,15 @@
             @close="handleError">
             <p>{{ error }}</p>
         </base-dialog>       
-        <section>            
-            <v-btn router to="/employee/edit/0" >New Employee</v-btn>
-            <v-btn @click="loadEmployee(true)">Refresh data</v-btn>
+        <section>       
+            <v-row
+                align="center"
+                justify="space-around"
+            >            
+                <v-btn  router to="/employee/edit/0" >New Employee</v-btn>
+                <v-btn @click="loadEmployee(true)">Refresh data</v-btn>
+            </v-row>                
         </section>
-
         
         <section> 
             <base-card>

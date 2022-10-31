@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aOFdsO5si5h1aHPL/TwxHIfptKzcy952vO5etaahaM0gaLdD//kiZhBYWpkDec7lJs8V7LAM8TjrwqoHz8bXgg==",
+  "dgSpecHash": "Q1WQz0j+ur/QxgQvySNCGtNJEBU1CcBDwzNLKLG1wf2+LxCYOalMoalqpqibrn+taUvC40deoZXY4CHHnxWnEg==",
   "success": true,
-  "projectFilePath": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindML\\NorthwindML.csproj",
+  "projectFilePath": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindML\\NorthwindML.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\юзер\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.0\\microsoft.aspnetcore.jsonpatch.5.0.0.nupkg.sha512",

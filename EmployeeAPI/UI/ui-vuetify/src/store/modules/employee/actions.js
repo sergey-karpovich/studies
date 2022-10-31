@@ -60,20 +60,20 @@ export default {
     async updateEmployee(context, employee){
         const url = context.rootGetters.url+'/employee';
         
-        const employeeData={            
-            EmployeeId: +employee.employeeId,
-            FirstName: employee.firstName,
-            LastName: employee.lastName,
-            Description: employee.description,
-            Rate: employee.rate,
-            Areas: employee.areas.toString(),            
-            BirthDate: employee.birthDate,
-            HireDate: employee.hireDate,
-            HomePhone: employee.homePhone,
-            PhotoPath: employee.photoPath,    
-        }  
-         
-        const  response = await axios.put(url, employeeData);
+        // const employeeData={            
+        //     EmployeeId: +employee.employeeId,
+        //     FirstName: employee.firstName,
+        //     LastName: employee.lastName,
+        //     Description: employee.description,
+        //     Rate: employee.rate,
+        //     Areas: employee.areas.toString(),            
+        //     BirthDate: employee.birthDate,
+        //     HireDate: employee.hireDate,
+        //     HomePhone: employee.homePhone,
+        //     PhotoPath: employee.photoPath,    
+        // }  
+       
+        const  response = await axios.put(url, employee);
         // если будет ошибка на сервере то все зависнет. 
         // надо будет разобраться с promises и сделать таймер
         // также надо на сервере организовать отлов ошибок
@@ -95,7 +95,7 @@ export default {
         }
         
         context.commit('deleteEmployee',employee.employeeId);
-        context.commit('registerEmployee',employeeData);
+        context.commit('registerEmployee',employee);
     },
     async deleteEmployee(context,id){
         const response = await axios.delete('https://localhost:7075/api/employee/'+id);

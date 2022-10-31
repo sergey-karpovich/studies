@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dO1lzxM01mKtPupy68++eYhAeAY+M2Vmo4VUGGsUoa7dffXO7hifkR8elDu+z6gBIFkUM8nFa2FvtzmtorzB4w==",
+  "dgSpecHash": "o7pbRstMWNUQJ+k3W6OlyXoMj3qUb69fenEiApchaLuRoWusbGjgVrGaEcp8Sw/Ydome2LCtC9TvEFnKmyU0Lg==",
   "success": true,
-  "projectFilePath": "C:\\git\\projects\\PriceLessons\\PracticalApps\\NorthwindEmployees\\NorthwindEmployees.csproj",
+  "projectFilePath": "C:\\git\\projects\\PetProgects\\studies\\dotNet\\PracticalApps\\NorthwindEmployees\\NorthwindEmployees.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\юзер\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

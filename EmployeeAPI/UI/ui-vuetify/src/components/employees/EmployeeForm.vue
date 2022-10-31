@@ -176,14 +176,14 @@ export default {
                 lastName: this.lastName.val,
                 description: this.description.val,
                 rate: this.rate.val,
-                areas: this.areas.val,
+                areas: this.areas.val.toString(),
                 birthDate: this.birthDate.val,
                 hireDate: this.hireDate.val,
                 homePhone: this.phoneNumber.val,
                 photoPath: this.photoPath.val,
             };
             if (this.id) {
-                formData.employeeId = this.id;
+                formData.employeeId = +this.id;
             }
             this.$emit('submit-employee', formData);
             
