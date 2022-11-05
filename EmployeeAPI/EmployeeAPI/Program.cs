@@ -7,6 +7,7 @@ using EmployeeAPI.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddCors(c =>
 {
