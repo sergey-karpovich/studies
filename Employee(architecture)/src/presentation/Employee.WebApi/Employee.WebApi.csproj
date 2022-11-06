@@ -32,4 +32,8 @@
     <ProjectReference Include="..\..\infrastructure\Employee.Shared\Employee.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Photos\" />
+  </ItemGroup>
+
 </Project>

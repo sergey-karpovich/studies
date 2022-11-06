@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 
 namespace EmployeeAPI.Application.Common.Mappings
 {
-    public class MappingProfile : Profile
+    public class MapperConfig : Profile
     {
-        public MappingProfile()
+        public MapperConfig()
         {
             CreateMap<Employee, EmployeeDTO>().ReverseMap();
+            CreateMap<Project, ProjectDTO>().ReverseMap();
+            CreateMap<WorkTime, WorkTimeDTO>().ReverseMap();
         }
     }
 }

@@ -1,44 +1,69 @@
-﻿using EmployeeAPI.Data.Contexts;
+﻿using AutoMapper;
+using EmployeeAPI.Application.Dtos;
+using EmployeeAPI.Data.Contexts;
 using EmployeeAPI.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeAPI.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EmployeeController : ControllerBase
     {
         private readonly IWebHostEnvironment _env;
         private readonly CompanyContext _context;
+        private readonly IMapper _mapper;
 
         public EmployeeController(
             IWebHostEnvironment env,
-            CompanyContext context)
+            CompanyContext context,
+            IMapper mapper)
         {
             _env = env;
             _context = context;
+            _mapper = mapper;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<IEnumerable<Employee>> Get()
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public ActionResult<IEnumerable<EmployeeDTO>> Get()
         {
-            var table = _context.Employees.ToList();
-            return Ok(table);
+            var employees = _context.Employees.ToList();
+            var employeesDto=_mapper.Map<IList<EmployeeDTO>>(employees);
+            return Ok(employeesDto);
         }
-        //[HttpPost]
-        //public JsonResult Post(Employee emp)
-        //{
-        //    if (emp != null)
-        //    {
-        //        repository.CreateEmployee(emp);
-        //        return new JsonResult(emp);
-        //    }
-        //    else
-        //    {
-        //        return new JsonResult("Error");
-        //    }
-        //}
+
+        [AllowAnonymous]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Employee>> GetEmployee(long id)
+        {
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee == null)
+                return NotFound();
+            return Ok(employee);
+        }
+        [HttpPost]
+        
+        public async Task<ActionResult<Employee>> Post(EmployeeDTO empDto)
+        {
+            if (empDto != null)
+            {
+                var emp = _mapper.Map<Employee>(empDto);
+                _context.Employees.Add(emp);
+                await _context.SaveChangesAsync();
+                //var employee =_context.Employees.FirstOrDefault(emp);
+                //var result = _mapper.Map<EmployeeDTO>(employee);
+                return CreatedAtAction("GetEmployee",new {id=emp.EmployeeId},emp);
+            }
+            else
+            {
+                return new JsonResult("Error");
+            }
+        }
         //[HttpPut]
         //public JsonResult Put(Employee newEmployee)
         //{
