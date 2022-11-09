@@ -34,3 +34,5 @@ C:\git\projects\PetProgects\studies\Employee(architecture)\src\infrastructure\Em
 C:\git\projects\PetProgects\studies\Employee(architecture)\src\infrastructure\Employee.Shared\obj\Debug\net6.0\ref\Employee.Shared.dll
 C:\git\projects\PetProgects\studies\Employee(architecture)\src\infrastructure\Employee.Shared\bin\Debug\net6.0\Employee.Shared.runtimeconfig.json
 C:\git\projects\PetProgects\studies\Employee(architecture)\src\infrastructure\Employee.Shared\obj\Debug\net6.0\Employee.Shared.genruntimeconfig.cache
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\infrastructure\Employee.Shared\bin\Debug\net6.0\Employee.Data.dll
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\infrastructure\Employee.Shared\bin\Debug\net6.0\Employee.Data.pdb

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EmployeeAPI.Data.Migrations
+namespace EmployeeAPI.Migrations
 {
     [DbContext(typeof(CompanyContext))]
     partial class CompanyContextModelSnapshot : ModelSnapshot
@@ -95,186 +95,282 @@ namespace EmployeeAPI.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Employee", b =>
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Auftrag", b =>
                 {
-                    b.Property<long?>("EmployeeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("EmployeeId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long?>("EmployeeId"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar (150)");
-
-                    b.Property<string>("Areas")
-                        .HasColumnType("nvarchar (100)");
-
-                    b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar (150)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar (150)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar (1000)");
-
-                    b.Property<string>("Extension")
-                        .HasColumnType("nvarchar (100)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar (100)");
-
-                    b.Property<DateTime?>("HireDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("HomePhone")
-                        .HasColumnType("nvarchar (50)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar (100)");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("ntext");
-
-                    b.Property<byte[]>("Photo")
-                        .HasColumnType("image");
-
-                    b.Property<string>("PhotoPath")
-                        .HasColumnType("nvarchar (1000)");
-
-                    b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar (100)");
-
-                    b.Property<decimal?>("Rate")
-                        .HasColumnType("decimal");
-
-                    b.Property<string>("Region")
-                        .HasColumnType("nvarchar (150)");
-
-                    b.Property<int?>("ReportsTo")
                         .HasColumnType("int");
 
-                    b.HasKey("EmployeeId");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.HasIndex(new[] { "LastName" }, "LastName");
+                    b.Property<string>("AuftragNr")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex(new[] { "PostalCode" }, "PostalCodeEmployees");
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
 
-                    b.ToTable("Employees");
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
 
-                    b.HasData(
-                        new
-                        {
-                            EmployeeId = 1L,
-                            FirstName = "Sergey",
-                            LastName = "Karpovich"
-                        },
-                        new
-                        {
-                            EmployeeId = 2L,
-                            FirstName = "Max",
-                            LastName = "Shmedtman"
-                        });
+                    b.Property<string>("JobNr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("Auftrags");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Developer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Areas")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("HireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("HomePhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhotoPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RechnungPositionId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("Salary")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("TarifId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RechnungPositionId");
+
+                    b.HasIndex("TarifId");
+
+                    b.ToTable("Developers");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.DeveloperAuftrag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AuftragId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DeveloperId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TarifId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuftragId");
+
+                    b.HasIndex("DeveloperId");
+
+                    b.HasIndex("TarifId");
+
+                    b.ToTable("DevelopersAuftrags");
                 });
 
             modelBuilder.Entity("EmployeeAPI.Domain.Entities.Project", b =>
                 {
-                    b.Property<long>("ProjectId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("ProjectId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ProjectId"), 1L, 1);
-
-                    b.Property<decimal?>("Budjet")
-                        .HasColumnType("DECIMAL");
-
-                    b.Property<DateTime?>("DateOfAdoption")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<DateTime?>("Deadline")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("VARCHAR (200)");
-
-                    b.Property<string>("ProjectName")
-                        .HasColumnType("VARCHAR (20)");
-
-                    b.HasKey("ProjectId");
-
-                    b.HasIndex("ProjectId")
-                        .IsUnique();
-
-                    b.ToTable("Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            ProjectId = 1L,
-                            Description = "some description",
-                            ProjectName = "EmployeeAPI"
-                        });
-                });
-
-            modelBuilder.Entity("EmployeeAPI.Domain.Entities.ProjectEmployeeJunction", b =>
-                {
-                    b.Property<long>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("ProjectId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("DateJoined")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
-
-                    b.HasKey("EmployeeId", "ProjectId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.ToTable("ProjectEmployeeJunction");
-                });
-
-            modelBuilder.Entity("EmployeeAPI.Domain.Entities.WorkTime", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
-
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime");
-
-                    b.Property<long>("EmployeeId")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal?>("Hours")
-                        .HasColumnType("DECIMAL");
-
-                    b.Property<decimal?>("LastRate")
-                        .HasColumnType("DECIMAL");
-
-                    b.Property<int?>("NumMonth")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NumYear")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<long>("ProjectId")
-                        .HasColumnType("bigint");
+                    b.Property<bool?>("IsActiv")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsGKK")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
+                    b.ToTable("Projects");
+                });
 
-                    b.ToTable("WorkTimes");
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Rechnung", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClientAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ProjectName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("RechnungsSumme")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rechnung");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.RechnungPosition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double?>("Hours")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("RechnungId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("Sum")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("TarifTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RechnungId");
+
+                    b.HasIndex("TarifTypeId")
+                        .IsUnique()
+                        .HasFilter("[TarifTypeId] IS NOT NULL");
+
+                    b.ToTable("RechnungPosition");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Tarif", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TarifTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TarifTypeId")
+                        .IsUnique();
+
+                    b.ToTable("Tarifs");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.TarifType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TarifTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -302,22 +398,6 @@ namespace EmployeeAPI.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "7b209620-35eb-4af7-84ee-e11f172c1372",
-                            ConcurrencyStamp = "c73e6b88-927f-4514-997f-40b9829629ed",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "7a74f67d-7e8c-41bd-9708-0a172f2a18ef",
-                            ConcurrencyStamp = "dfc955dc-c2da-403a-8b4c-e5e6918de3a1",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -426,28 +506,87 @@ namespace EmployeeAPI.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("EmployeeAPI.Domain.Entities.ProjectEmployeeJunction", b =>
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Auftrag", b =>
                 {
-                    b.HasOne("EmployeeAPI.Domain.Entities.Employee", null)
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("EmployeeAPI.Domain.Entities.Client", "Client")
+                        .WithMany("Auftrags")
+                        .HasForeignKey("ClientId");
 
-                    b.HasOne("EmployeeAPI.Domain.Entities.Project", null)
-                        .WithMany()
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("EmployeeAPI.Domain.Entities.Project", "Project")
+                        .WithMany("Auftrags")
+                        .HasForeignKey("ProjectId");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("EmployeeAPI.Domain.Entities.WorkTime", b =>
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Developer", b =>
                 {
-                    b.HasOne("EmployeeAPI.Domain.Entities.Employee", null)
-                        .WithMany("WorkTimes")
-                        .HasForeignKey("EmployeeId")
+                    b.HasOne("EmployeeAPI.Domain.Entities.RechnungPosition", "RechnungPosition")
+                        .WithMany("Developers")
+                        .HasForeignKey("RechnungPositionId");
+
+                    b.HasOne("EmployeeAPI.Domain.Entities.Tarif", "Tarif")
+                        .WithMany()
+                        .HasForeignKey("TarifId");
+
+                    b.Navigation("RechnungPosition");
+
+                    b.Navigation("Tarif");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.DeveloperAuftrag", b =>
+                {
+                    b.HasOne("EmployeeAPI.Domain.Entities.Auftrag", "Auftrag")
+                        .WithMany("DeveloperAuftrags")
+                        .HasForeignKey("AuftragId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("EmployeeAPI.Domain.Entities.Developer", "Developer")
+                        .WithMany("DeveloperAuftrags")
+                        .HasForeignKey("DeveloperId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EmployeeAPI.Domain.Entities.Tarif", "Tarif")
+                        .WithMany()
+                        .HasForeignKey("TarifId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Auftrag");
+
+                    b.Navigation("Developer");
+
+                    b.Navigation("Tarif");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.RechnungPosition", b =>
+                {
+                    b.HasOne("EmployeeAPI.Domain.Entities.Rechnung", "Rechnung")
+                        .WithMany("RechnungPositions")
+                        .HasForeignKey("RechnungId");
+
+                    b.HasOne("EmployeeAPI.Domain.Entities.TarifType", "TarifType")
+                        .WithOne("RechnungPosition")
+                        .HasForeignKey("EmployeeAPI.Domain.Entities.RechnungPosition", "TarifTypeId");
+
+                    b.Navigation("Rechnung");
+
+                    b.Navigation("TarifType");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Tarif", b =>
+                {
+                    b.HasOne("EmployeeAPI.Domain.Entities.TarifType", "TarifType")
+                        .WithOne("Tarif")
+                        .HasForeignKey("EmployeeAPI.Domain.Entities.Tarif", "TarifTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TarifType");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -501,9 +640,41 @@ namespace EmployeeAPI.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Employee", b =>
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Auftrag", b =>
                 {
-                    b.Navigation("WorkTimes");
+                    b.Navigation("DeveloperAuftrags");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Client", b =>
+                {
+                    b.Navigation("Auftrags");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Developer", b =>
+                {
+                    b.Navigation("DeveloperAuftrags");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Project", b =>
+                {
+                    b.Navigation("Auftrags");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.Rechnung", b =>
+                {
+                    b.Navigation("RechnungPositions");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.RechnungPosition", b =>
+                {
+                    b.Navigation("Developers");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.TarifType", b =>
+                {
+                    b.Navigation("RechnungPosition");
+
+                    b.Navigation("Tarif");
                 });
 #pragma warning restore 612, 618
         }

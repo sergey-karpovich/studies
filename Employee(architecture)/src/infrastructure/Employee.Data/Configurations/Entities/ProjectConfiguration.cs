@@ -14,13 +14,22 @@ namespace EmployeeAPI.Data.Configurations.Entities
 
         public void Configure(EntityTypeBuilder<Project> builder)
         {
-            builder.HasData(
+            builder.HasData(                
                 new Project
                 {
-                    ProjectId = 1,
-                    ProjectName = "EmployeeAPI",
-                    Description = "some description"
+                    Id = 1,
+                    Name = "Project 1",
+                    IsGKK = false,
+                    IsActiv = true
+                },
+                new Project
+                {
+                    Id = 2,
+                    Name = "SecondProject",
+                    IsGKK = false,
+                    IsActiv = true
                 });
+            
         }
     }
 }

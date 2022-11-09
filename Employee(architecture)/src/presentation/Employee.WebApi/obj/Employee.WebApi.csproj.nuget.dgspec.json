@@ -379,6 +379,9 @@
             "projectReferences": {
               "C:\\git\\projects\\PetProgects\\studies\\Employee(architecture)\\src\\core\\Employee.Application\\Employee.Application.csproj": {
                 "projectPath": "C:\\git\\projects\\PetProgects\\studies\\Employee(architecture)\\src\\core\\Employee.Application\\Employee.Application.csproj"
+              },
+              "C:\\git\\projects\\PetProgects\\studies\\Employee(architecture)\\src\\infrastructure\\employee.data\\Employee.Data.csproj": {
+                "projectPath": "C:\\git\\projects\\PetProgects\\studies\\Employee(architecture)\\src\\infrastructure\\employee.data\\Employee.Data.csproj"
               }
             }
           }

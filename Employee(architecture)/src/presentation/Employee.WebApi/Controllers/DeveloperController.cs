@@ -2,6 +2,7 @@
 using EmployeeAPI.Application.Dtos;
 using EmployeeAPI.Data.Contexts;
 using EmployeeAPI.Domain.Entities;
+using EmployeeAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,19 +11,19 @@ namespace EmployeeAPI.WebApi.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class EmployeeController : ControllerBase
+    public class DeveloperController : ControllerBase
     {
         private readonly IWebHostEnvironment _env;
-        private readonly CompanyContext _context;
+        private readonly DeveloperRepository _repository;
         private readonly IMapper _mapper;
 
-        public EmployeeController(
+        public DeveloperController(
             IWebHostEnvironment env,
-            CompanyContext context,
+            DeveloperRepository repository,
             IMapper mapper)
         {
             _env = env;
-            _context = context;
+            _repository=repository;
             _mapper = mapper;
         }
 
@@ -30,38 +31,34 @@ namespace EmployeeAPI.WebApi.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<IEnumerable<EmployeeDTO>> Get()
+        public ActionResult Get()
         {
-            var employees = _context.Employees.ToList();
-            var employeesDto=_mapper.Map<IList<EmployeeDTO>>(employees);
-            return Ok(employeesDto);
+            var allDevelopers = _repository.GetAllDevelopers();
+           // var allDevelopersDTO = _mapper.Map<IList<DeveloperDTO>>(allDevelopers);
+            return Ok(allDevelopers);
         }
 
+        //[AllowAnonymous]
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Employee>> GetEmployee(long id)
+        //{
+        //    var employee = await _context.Employees.FindAsync(id);
+        //    if (employee == null)
+        //        return NotFound();
+        //    return Ok(employee);
+        //}
         [AllowAnonymous]
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Employee>> GetEmployee(long id)
-        {
-            var employee = await _context.Employees.FindAsync(id);
-            if (employee == null)
-                return NotFound();
-            return Ok(employee);
-        }
         [HttpPost]
-        
-        public async Task<ActionResult<Employee>> Post(EmployeeDTO empDto)
+        public async Task<ActionResult> Post(DeveloperDTO developerDto)
         {
-            if (empDto != null)
+            if (developerDto != null)
             {
-                var emp = _mapper.Map<Employee>(empDto);
-                _context.Employees.Add(emp);
-                await _context.SaveChangesAsync();
-                //var employee =_context.Employees.FirstOrDefault(emp);
-                //var result = _mapper.Map<EmployeeDTO>(employee);
-                return CreatedAtAction("GetEmployee",new {id=emp.EmployeeId},emp);
+               var developer = _repository.AddDeveloper(developerDto);
+                return CreatedAtAction("GetDeveloper", new { id = developer.Id }, developer);
             }
             else
             {
-                return new JsonResult("Error");
+                return BadRequest();
             }
         }
         //[HttpPut]

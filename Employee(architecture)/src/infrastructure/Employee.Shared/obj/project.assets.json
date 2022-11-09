@@ -3562,6 +3562,31 @@
           "bin/placeholder/Employee.Application.dll": {}
         }
       },
+      "Employee.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AutoMapper": "12.0.0",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.0",
+          "Employee.Application": "1.0.0",
+          "Employee.Domain": "1.0.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.10",
+          "Microsoft.AspNetCore.Cors": "2.2.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.10",
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "6.0.10",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.10",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.10",
+          "Serilog.AspNetCore": "6.0.1",
+          "Serilog.Sinks.File": "5.0.0",
+          "Swashbuckle.AspNetCore": "6.2.3"
+        },
+        "compile": {
+          "bin/placeholder/Employee.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Employee.Data.dll": {}
+        }
+      },
       "Employee.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -10661,6 +10686,11 @@
       "path": "../../core/Employee.Application/Employee.Application.csproj",
       "msbuildProject": "../../core/Employee.Application/Employee.Application.csproj"
     },
+    "Employee.Data/1.0.0": {
+      "type": "project",
+      "path": "../employee.data/Employee.Data.csproj",
+      "msbuildProject": "../employee.data/Employee.Data.csproj"
+    },
     "Employee.Domain/1.0.0": {
       "type": "project",
       "path": "../../core/Employee.Domain/Employee.Domain.csproj",
@@ -10672,6 +10702,7 @@
       "AutoMapper >= 12.0.0",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.0",
       "Employee.Application >= 1.0.0",
+      "Employee.Data >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.10",
       "Microsoft.AspNetCore.Cors >= 2.2.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.10",
@@ -10720,6 +10751,9 @@
           "projectReferences": {
             "C:\\git\\projects\\PetProgects\\studies\\Employee(architecture)\\src\\core\\Employee.Application\\Employee.Application.csproj": {
               "projectPath": "C:\\git\\projects\\PetProgects\\studies\\Employee(architecture)\\src\\core\\Employee.Application\\Employee.Application.csproj"
+            },
+            "C:\\git\\projects\\PetProgects\\studies\\Employee(architecture)\\src\\infrastructure\\employee.data\\Employee.Data.csproj": {
+              "projectPath": "C:\\git\\projects\\PetProgects\\studies\\Employee(architecture)\\src\\infrastructure\\employee.data\\Employee.Data.csproj"
             }
           }
         }

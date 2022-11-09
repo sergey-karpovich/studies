@@ -15,6 +15,6 @@ namespace EmployeeAPI.Application.Dtos
         public DateTime? DateOfAdoption { get; set; }
         public DateTime? Deadline { get; set; }
         public decimal? Budjet { get; set; }
-        public List<Employee> Employees { get; set; } = new List<Employee>();
+        //public List<Employee> Employees { get; set; } = new List<Employee>();
     }
 }

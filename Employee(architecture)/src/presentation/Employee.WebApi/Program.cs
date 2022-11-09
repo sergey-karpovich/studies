@@ -4,6 +4,8 @@ using EmployeeAPI.Application.Common.Mappings;
 using Microsoft.EntityFrameworkCore;
 
 using EmployeeAPI.Services;
+using EmployeeAPI.Application;
+using EmployeeAPI.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,13 +30,18 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAutoMapper(typeof(MapperConfig));
+//builder.Services.AddAutoMapper(typeof(MapperConfig));
+builder.Services.AddApplication(builder.Configuration);
 
+// Configure dbContext
 string connection = builder.Configuration.GetConnectionString("EmployeeAPICon");
 builder.Services.AddDbContext<CompanyContext>(options => options.UseSqlServer(connection));
 
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureJWT(builder.Configuration);
+
+// Configure repositories
+builder.Services.AddTransient<DeveloperRepository>();
 
 builder.Services.AddScoped<IAuthManager, AuthManager>();
 
@@ -56,6 +63,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+AppDbInitialize.Seed(app);
 
 app.Run();
 
