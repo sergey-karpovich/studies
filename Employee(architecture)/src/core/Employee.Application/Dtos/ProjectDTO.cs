@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace EmployeeAPI.Application.Dtos
 {
-    internal class ProjectDTO
+    public  class ProjectDTO
     {
-        public long ProjectId { get; set; }
-        public string? ProjectName { get; set; }
+        //public long Id { get; set; }
+        public string? Name { get; set; }
         public string? Description { get; set; }
         public DateTime? DateOfAdoption { get; set; }
         public DateTime? Deadline { get; set; }
         public decimal? Budjet { get; set; }
-        //public List<Employee> Employees { get; set; } = new List<Employee>();
+        
     }
 }

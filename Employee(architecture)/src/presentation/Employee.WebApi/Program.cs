@@ -7,6 +7,7 @@ using EmployeeAPI.Services;
 using EmployeeAPI.Application;
 using EmployeeAPI.Contexts;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -41,7 +42,11 @@ builder.Services.ConfigureIdentity();
 builder.Services.ConfigureJWT(builder.Configuration);
 
 // Configure repositories
-builder.Services.AddTransient<DeveloperRepository>();
+EmployeeAPI.Shared.DependencyInjection.ConfigureRepository(builder.Services);
+//builder.Services.AddTransient<DeveloperRepository>();
+//builder.Services.AddTransient<AdditionalRepository>();
+//builder.Services.AddTransient<AuftragRepository>();
+//builder.Services.AddTransient<DeveloperToAuftragRepository>();
 
 builder.Services.AddScoped<IAuthManager, AuthManager>();
 

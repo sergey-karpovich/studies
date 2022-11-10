@@ -22,6 +22,21 @@ namespace EmployeeAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("DeveloperRechnungPosition", b =>
+                {
+                    b.Property<int>("DevelopersId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RechnungPositionsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DevelopersId", "RechnungPositionsId");
+
+                    b.HasIndex("RechnungPositionsId");
+
+                    b.ToTable("DeveloperRechnungPosition");
+                });
+
             modelBuilder.Entity("EmployeeAPI.Domain.Entities.ApiUser", b =>
                 {
                     b.Property<string>("Id")
@@ -186,9 +201,6 @@ namespace EmployeeAPI.Migrations
                     b.Property<string>("PhotoPath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RechnungPositionId")
-                        .HasColumnType("int");
-
                     b.Property<decimal?>("Salary")
                         .HasColumnType("decimal(18,2)");
 
@@ -196,8 +208,6 @@ namespace EmployeeAPI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RechnungPositionId");
 
                     b.HasIndex("TarifId");
 
@@ -506,6 +516,21 @@ namespace EmployeeAPI.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("DeveloperRechnungPosition", b =>
+                {
+                    b.HasOne("EmployeeAPI.Domain.Entities.Developer", null)
+                        .WithMany()
+                        .HasForeignKey("DevelopersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EmployeeAPI.Domain.Entities.RechnungPosition", null)
+                        .WithMany()
+                        .HasForeignKey("RechnungPositionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("EmployeeAPI.Domain.Entities.Auftrag", b =>
                 {
                     b.HasOne("EmployeeAPI.Domain.Entities.Client", "Client")
@@ -523,15 +548,9 @@ namespace EmployeeAPI.Migrations
 
             modelBuilder.Entity("EmployeeAPI.Domain.Entities.Developer", b =>
                 {
-                    b.HasOne("EmployeeAPI.Domain.Entities.RechnungPosition", "RechnungPosition")
-                        .WithMany("Developers")
-                        .HasForeignKey("RechnungPositionId");
-
                     b.HasOne("EmployeeAPI.Domain.Entities.Tarif", "Tarif")
                         .WithMany()
                         .HasForeignKey("TarifId");
-
-                    b.Navigation("RechnungPosition");
 
                     b.Navigation("Tarif");
                 });
@@ -663,11 +682,6 @@ namespace EmployeeAPI.Migrations
             modelBuilder.Entity("EmployeeAPI.Domain.Entities.Rechnung", b =>
                 {
                     b.Navigation("RechnungPositions");
-                });
-
-            modelBuilder.Entity("EmployeeAPI.Domain.Entities.RechnungPosition", b =>
-                {
-                    b.Navigation("Developers");
                 });
 
             modelBuilder.Entity("EmployeeAPI.Domain.Entities.TarifType", b =>

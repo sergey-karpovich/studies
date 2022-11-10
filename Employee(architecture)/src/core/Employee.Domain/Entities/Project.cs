@@ -10,6 +10,10 @@ namespace EmployeeAPI.Domain.Entities
         public string? Name { get; set; }
         public bool? IsGKK { get; set; }
         public bool? IsActiv { get; set; }
+        public string? Description { get; set; }
+        public DateTime? DateOfAdoption { get; set; }
+        public DateTime? Deadline { get; set; }
+        public decimal? Budjet { get; set; }
 
         public List<Auftrag>? Auftrags { get; set; } 
 

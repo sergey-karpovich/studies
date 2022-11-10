@@ -19,6 +19,8 @@ namespace EmployeeAPI.Contexts
             {
                 var context = serviceScope.ServiceProvider
                     .GetService<CompanyContext>();
+                               
+                
                 if (!context.Projects.Any())
                 {
                     context.Projects.AddRange(
@@ -52,6 +54,7 @@ namespace EmployeeAPI.Contexts
                        
                         Name = "Client 2"
                     });
+                    context.SaveChanges();
                 }
                 if (!context.TarifTypes.Any())
                 {
@@ -71,33 +74,87 @@ namespace EmployeeAPI.Contexts
                         
                         Type = "Requirements Management"
                     });
+                    context.SaveChanges();
                 }
-                //if (!context.Tarifs.Any())
-                //{
-                //    context.Tarifs.AddRange(
-                //   new Tarif
-                //   {
-                      
-                //       Amount = 40,
-                //       StartDate = new DateTime(2022, 1, 1),
-                //       TarifId = 1
-                //   },
-                //   new Tarif
-                //   {
-                      
-                //       Amount = 45,
-                //       StartDate = new DateTime(2022, 1, 1),
-                //       TarifId = 2
-                //   },
-                //    new Tarif
-                //    {
-                        
-                //        Amount = 50,
-                //        StartDate = new DateTime(2022, 1, 1),
-                //        TarifId = 3
-                //    });
-                //}
-                context.SaveChanges();
+                if (!context.Tarifs.Any())
+                {
+                    var tarifTypeId=context.TarifTypes.FirstOrDefault().Id;
+                    context.Tarifs.AddRange(
+                    new Tarif
+                    {
+
+                        Amount = 40,
+                        StartDate = new DateTime(2022, 1, 1),
+                        TarifTypeId = tarifTypeId
+                    },
+                    new Tarif
+                    {
+
+                        Amount = 45,
+                        StartDate = new DateTime(2022, 1, 1),
+                        TarifTypeId = ++tarifTypeId
+                    },
+                    new Tarif
+                    {
+
+                        Amount = 50,
+                        StartDate = new DateTime(2022, 1, 1),
+                        TarifTypeId = ++tarifTypeId
+                    }) ;
+                    context.SaveChanges();
+                }
+                if(!context.Developers.Any())
+                {
+                    context.Developers.AddRange(
+                    
+                        new Developer()
+                        {
+                            FirstName = "Sergey",
+                            LastName = "Karpovich",
+                            Description = "description",
+                            Areas = "frontend,backend",
+                            Salary = 500,
+                            HomePhone = "234234",
+                            PhotoPath = "Anonymous.png",
+                            BirthDate = new DateTime(1992, 12, 13),
+                            HireDate= new DateTime(2020, 1, 1),
+                            
+                        },
+                        new Developer()
+                        {
+                            FirstName = "Max",
+                            LastName = "Shmedtman",
+                            Description = "description",
+                            Areas = "frontend,backend",
+                            Salary = 1500,
+                            HomePhone = "2111111",
+                            PhotoPath = "Anonymous.png",
+                            BirthDate = new DateTime(1990, 2, 1),
+                            HireDate = new DateTime(2020, 1, 1),
+
+                        }
+                    );
+                    context.SaveChanges();
+                }
+                if(!context.Auftrags.Any())
+                {
+                    context.Auftrags.AddRange(
+                        new Auftrag()
+                        {
+                            JobNr ="2342",
+                            AuftragNr = "43242",
+                            StartDate = new DateTime(2020, 1, 1),
+                            EndDate = new DateTime(2020, 3, 1)
+                        },
+                        new Auftrag()
+                        {
+                            JobNr = "2343",
+                            AuftragNr = "43212",
+                            StartDate = new DateTime(2020, 1, 1),                            
+                        }
+                        );
+                    context.SaveChanges();                
+                }
             }
         }
     }

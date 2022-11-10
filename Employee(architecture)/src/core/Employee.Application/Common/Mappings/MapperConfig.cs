@@ -15,7 +15,7 @@ namespace EmployeeAPI.Application.Common.Mappings
         {
             CreateMap<Developer, DeveloperDTO>().ReverseMap();
             CreateMap<Project, ProjectDTO>().ReverseMap();
-            //CreateMap<WorkTime, WorkTimeDTO>().ReverseMap();
+            
         }
     }
 }

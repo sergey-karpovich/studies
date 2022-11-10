@@ -15,16 +15,15 @@ namespace EmployeeAPI.WebApi.Controllers
     {
         private readonly IWebHostEnvironment _env;
         private readonly DeveloperRepository _repository;
-        private readonly IMapper _mapper;
+       
 
         public DeveloperController(
             IWebHostEnvironment env,
-            DeveloperRepository repository,
-            IMapper mapper)
+            DeveloperRepository repository
+            )
         {
             _env = env;
-            _repository=repository;
-            _mapper = mapper;
+            _repository=repository;           
         }
 
         [AllowAnonymous]
@@ -38,29 +37,47 @@ namespace EmployeeAPI.WebApi.Controllers
             return Ok(allDevelopers);
         }
 
-        //[AllowAnonymous]
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Employee>> GetEmployee(long id)
-        //{
-        //    var employee = await _context.Employees.FindAsync(id);
-        //    if (employee == null)
-        //        return NotFound();
-        //    return Ok(employee);
-        //}
         [AllowAnonymous]
-        [HttpPost]
-        public async Task<ActionResult> Post(DeveloperDTO developerDto)
+        [HttpGet("get-developer-by-id/{id}")]
+        public ActionResult GetDeveloperById(int id)
+        {
+            var developer =  _repository.GetDeveloperById(id);
+            if (developer == null)
+                return NotFound();
+            return Ok(developer);
+        }
+        [AllowAnonymous]
+        [HttpPost("add-developer")]
+        public async Task<ActionResult> AddDeveloper(DeveloperDTO developerDto)
         {
             if (developerDto != null)
             {
-               var developer = _repository.AddDeveloper(developerDto);
-                return CreatedAtAction("GetDeveloper", new { id = developer.Id }, developer);
+               var developer =  _repository.AddDeveloper(developerDto);
+                return CreatedAtAction("GetDeveloperById", new { id = developer.Id }, developer);
             }
             else
             {
                 return BadRequest();
             }
         }
+
+        // Не работают!!!
+        //[AllowAnonymous]
+        //[HttpGet("get-developers-by-auftrag/{id}")]
+        //public ActionResult GetDevelopersByAugtrag(int id)
+        //{
+        //    var developers = _repository.GetDevAuftrByAuftrag(id);
+        //    return Ok(developers);
+        //}
+        //[AllowAnonymous]
+        //[HttpGet("get-developers-by-month/{month}")]
+        //public ActionResult GetDevelopersByAugtrag(DateTime month)
+        //{
+        //    var developers = _repository.GetDevAuftrByMonth(month);
+        //    return Ok(developers);
+        //}
+
+
         //[HttpPut]
         //public JsonResult Put(Employee newEmployee)
         //{

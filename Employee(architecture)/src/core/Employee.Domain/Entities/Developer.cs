@@ -23,7 +23,7 @@ namespace EmployeeAPI.Domain.Entities
         public List<DeveloperAuftrag>? DeveloperAuftrags { get; set; } = new List<DeveloperAuftrag>();
         public int? TarifId { get; set; }
         public Tarif? Tarif { get; set; }
-        public RechnungPosition? RechnungPosition { get; set; }
+        public List<RechnungPosition>? RechnungPositions { get; set; }
 
 
     }
