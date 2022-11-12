@@ -1,16 +1,17 @@
 using EmployeeAPI.Data.Contexts;
 using EmployeeAPI.Domain.Settings;
-using EmployeeAPI.Application.Common.Mappings;
 using Microsoft.EntityFrameworkCore;
-
 using EmployeeAPI.Services;
 using EmployeeAPI.Application;
 using EmployeeAPI.Contexts;
+using EmployeeAPI.Application.Common.Logging;
+using EmployeeAPI.Application.Common.Exceptions;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Logger
+LogConfiguration.ConfigurateLogger(builder);
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddCors(c =>
@@ -37,21 +38,17 @@ builder.Services.AddApplication(builder.Configuration);
 // Configure dbContext
 string connection = builder.Configuration.GetConnectionString("EmployeeAPICon");
 builder.Services.AddDbContext<CompanyContext>(options => options.UseSqlServer(connection));
+// Configure repository
+EmployeeAPI.Shared.DependencyInjection.ConfigureRepository(builder.Services);
 
+// Configure authentification
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureJWT(builder.Configuration);
-
-// Configure repositories
-EmployeeAPI.Shared.DependencyInjection.ConfigureRepository(builder.Services);
-//builder.Services.AddTransient<DeveloperRepository>();
-//builder.Services.AddTransient<AdditionalRepository>();
-//builder.Services.AddTransient<AuftragRepository>();
-//builder.Services.AddTransient<DeveloperToAuftragRepository>();
-
 builder.Services.AddScoped<IAuthManager, AuthManager>();
 
-var app = builder.Build();
 
+
+var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
@@ -65,6 +62,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<CustomExceptionMiddleware>();
 
 app.MapControllers();
 

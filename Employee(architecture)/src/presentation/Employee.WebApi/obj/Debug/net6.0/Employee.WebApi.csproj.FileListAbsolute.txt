@@ -572,3 +572,12 @@ C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Empl
 C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\Serilog.Sinks.File.dll
 C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\AutoMapper.dll
 C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\Azure.Core.dll
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\Azure.Identity.dll
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\Microsoft.SqlServer.Server.dll
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\Serilog.Sinks.MSSqlServer.dll
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\Serilog.Sinks.PeriodicBatching.dll
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\System.Memory.Data.dll

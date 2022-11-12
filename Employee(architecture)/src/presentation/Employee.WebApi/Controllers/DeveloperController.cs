@@ -32,6 +32,7 @@ namespace EmployeeAPI.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult Get()
         {
+            //throw new Exception("This is an exception thrown from GetAllDeveloper");
             var allDevelopers = _repository.GetAllDevelopers();
            // var allDevelopersDTO = _mapper.Map<IList<DeveloperDTO>>(allDevelopers);
             return Ok(allDevelopers);

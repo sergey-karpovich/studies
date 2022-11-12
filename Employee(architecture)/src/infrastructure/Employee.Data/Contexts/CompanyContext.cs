@@ -16,6 +16,7 @@ namespace EmployeeAPI.Data.Contexts
         public DbSet<Auftrag> Auftrags { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Log> Logs { get; set; }
         //public DbSet<Rechnung> Rechnungs { get; set; }
         //public DbSet<RechnungPosition> RechnungPositions { get; set; }
         
