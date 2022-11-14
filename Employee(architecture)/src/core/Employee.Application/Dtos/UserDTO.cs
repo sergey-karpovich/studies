@@ -10,7 +10,7 @@ namespace EmployeeAPI.Application.Dtos
     public class LoginUserDTO
     {
         [Required]
-        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
@@ -20,7 +20,7 @@ namespace EmployeeAPI.Application.Dtos
         public string Password { get; set; }
     }
 
-    public class UserDTO : LoginUserDTO
+    public class ApiUserDTO : LoginUserDTO
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

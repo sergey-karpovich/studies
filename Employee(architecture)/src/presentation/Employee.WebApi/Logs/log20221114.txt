@@ -1,0 +1,40 @@
+2022-11-14 09:25:14.841 +03:00 [ERR] Something Went Wrong in the Register
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+UserDTO -> ApiUser
+EmployeeAPI.Application.Dtos.UserDTO -> EmployeeAPI.Domain.Entities.ApiUser
+   at lambda_method38(Closure , Object , ApiUser , ResolutionContext )
+   at EmployeeAPI.Controllers.AccountController.Register(UserDTO userDTO) in C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\Controllers\AccountController.cs:line 45
+2022-11-14 10:02:55.532 +03:00 [ERR] Something Went Wrong in the Register
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+UserDTO -> ApiUser
+EmployeeAPI.Application.Dtos.UserDTO -> EmployeeAPI.Domain.Entities.ApiUser
+   at lambda_method55(Closure , Object , ApiUser , ResolutionContext )
+   at EmployeeAPI.Controllers.AccountController.Register(UserDTO userDTO) in C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\Controllers\AccountController.cs:line 45
+2022-11-14 10:03:06.830 +03:00 [ERR] Something Went Wrong in the Register
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+UserDTO -> ApiUser
+EmployeeAPI.Application.Dtos.UserDTO -> EmployeeAPI.Domain.Entities.ApiUser
+   at lambda_method55(Closure , Object , ApiUser , ResolutionContext )
+   at EmployeeAPI.Controllers.AccountController.Register(UserDTO userDTO) in C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\Controllers\AccountController.cs:line 45
+2022-11-14 10:13:29.295 +03:00 [ERR] Something Went Wrong in the Register
+System.InvalidOperationException: Role USER does not exist.
+   at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`9.AddToRoleAsync(TUser user, String normalizedRoleName, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.UserManager`1.AddToRoleAsync(TUser user, String role)
+   at EmployeeAPI.Controllers.AccountController.Register(UserDTO userDTO) in C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\Controllers\AccountController.cs:line 59
+2022-11-14 10:22:32.326 +03:00 [ERR] Something Went Wrong in the Register
+System.InvalidOperationException: Role USER does not exist.
+   at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`9.AddToRoleAsync(TUser user, String normalizedRoleName, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.UserManager`1.AddToRoleAsync(TUser user, String role)
+   at EmployeeAPI.Controllers.AccountController.Register(UserDTO userDTO) in C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\Controllers\AccountController.cs:line 59
+2022-11-14 12:59:57.384 +03:00 [ERR] {"StatusCode":500,"Message":"Internal Server Error from custom middleware","Path":"path-goes-here","Data":{},"InnerException":null,"HelpLink":null,"Source":null,"HResult":-2146233088,"StackTrace":null}
+2022-11-14 13:00:41.756 +03:00 [ERR] {"StatusCode":500,"Message":"Internal Server Error from custom middleware","Path":"path-goes-here","Data":{},"InnerException":null,"HelpLink":null,"Source":null,"HResult":-2146233088,"StackTrace":null}
+2022-11-14 13:00:45.301 +03:00 [ERR] {"StatusCode":500,"Message":"Internal Server Error from custom middleware","Path":"path-goes-here","Data":{},"InnerException":null,"HelpLink":null,"Source":null,"HResult":-2146233088,"StackTrace":null}
+2022-11-14 14:15:46.060 +03:00 [ERR] {"StatusCode":500,"Message":"Internal Server Error from custom middleware","Path":"path-goes-here","Data":{},"InnerException":null,"HelpLink":null,"Source":null,"HResult":-2146233088,"StackTrace":null}
+2022-11-14 14:15:57.779 +03:00 [ERR] {"StatusCode":500,"Message":"Internal Server Error from custom middleware","Path":"path-goes-here","Data":{},"InnerException":null,"HelpLink":null,"Source":null,"HResult":-2146233088,"StackTrace":null}
+2022-11-14 14:20:37.833 +03:00 [ERR] {"StatusCode":500,"Message":"Internal Server Error from custom middleware","Path":"path-goes-here","Data":{},"InnerException":null,"HelpLink":null,"Source":null,"HResult":-2146233088,"StackTrace":null}

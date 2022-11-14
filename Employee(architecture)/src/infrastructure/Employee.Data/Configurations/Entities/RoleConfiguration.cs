@@ -9,8 +9,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EmployeeAPI.Data.Configurations.Entities
 {
-    internal class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
+    public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
     {
+        // Хз почему не запускается. В других проектах запускается.
         public void Configure(EntityTypeBuilder<IdentityRole> builder)
         {
             builder.HasData(

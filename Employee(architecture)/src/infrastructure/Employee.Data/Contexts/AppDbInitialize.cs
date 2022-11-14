@@ -1,6 +1,7 @@
 ﻿using EmployeeAPI.Data.Contexts;
 using EmployeeAPI.Domain.Entities;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,23 @@ namespace EmployeeAPI.Contexts
             {
                 var context = serviceScope.ServiceProvider
                     .GetService<CompanyContext>();
-                               
-                
+
+                if (!context.Roles.Any())
+                {
+                    context.Roles.AddRange(
+                        new IdentityRole
+                        {
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new IdentityRole
+                        {
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
+                    context.SaveChanges();
+                }
+
                 if (!context.Projects.Any())
                 {
                     context.Projects.AddRange(
@@ -60,18 +76,15 @@ namespace EmployeeAPI.Contexts
                 {
                     context.TarifTypes.AddRange(
                     new TarifType
-                    {
-                       
+                    {                       
                         Type = "Development"
                     },
                     new TarifType
                     {
-                        
                         Type = "Project Manager"
                     },
                     new TarifType
-                    {
-                        
+                    {                        
                         Type = "Requirements Management"
                     });
                     context.SaveChanges();
@@ -82,21 +95,18 @@ namespace EmployeeAPI.Contexts
                     context.Tarifs.AddRange(
                     new Tarif
                     {
-
                         Amount = 40,
                         StartDate = new DateTime(2022, 1, 1),
                         TarifTypeId = tarifTypeId
                     },
                     new Tarif
                     {
-
                         Amount = 45,
                         StartDate = new DateTime(2022, 1, 1),
                         TarifTypeId = ++tarifTypeId
                     },
                     new Tarif
                     {
-
                         Amount = 50,
                         StartDate = new DateTime(2022, 1, 1),
                         TarifTypeId = ++tarifTypeId

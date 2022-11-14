@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mqvtt4KLe2+vYJbAuYjPrtLUmYclZPdWEIRFKKLO31bNQIWI7dbc8i2WU+KeU/58Nfd0otUzHrGpcatuYLfSQQ==",
+  "dgSpecHash": "4+lD9/Ahd0eoQuIteoXiCT39ITtCWjBP+dslYB8GlNhUmaN3hnIkxy2G/LKOdX3EgF9D4LzVorS3oJYzPx65zQ==",
   "success": true,
   "projectFilePath": "C:\\git\\projects\\PetProgects\\studies\\Employee(architecture)\\src\\core\\Employee.Domain\\Employee.Domain.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,7 @@
     "C:\\Users\\юзер\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.10\\microsoft.aspnetcore.authentication.jwtbearer.6.0.10.nupkg.sha512",
+    "C:\\Users\\юзер\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\6.0.11\\microsoft.aspnetcore.authentication.openidconnect.6.0.11.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.10\\microsoft.aspnetcore.cryptography.internal.6.0.10.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.10\\microsoft.aspnetcore.cryptography.keyderivation.6.0.10.nupkg.sha512",

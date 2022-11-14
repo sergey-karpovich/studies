@@ -10,10 +10,15 @@ namespace EmployeeAPI.Application.Common.Logging
         
         public static void ConfigurateLogger(WebApplicationBuilder builder)
         {
+            // !!Надо будет применить конфигурацию из appsetting.json
 
-            string connection = builder.Configuration.GetConnectionString("EmployeeAPICon");
+            string connection = builder.Configuration
+                .GetConnectionString("EmployeeAPICon");
 
-            var sinkOpts = new MSSqlServerSinkOptions() { TableName = "Logs" };
+            var sinkOpts = new MSSqlServerSinkOptions() 
+            {
+                TableName = "Logs" 
+            };
 
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel

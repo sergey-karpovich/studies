@@ -581,3 +581,4 @@ C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Empl
 C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\Serilog.Sinks.MSSqlServer.dll
 C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\Serilog.Sinks.PeriodicBatching.dll
 C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\System.Memory.Data.dll
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\presentation\Employee.WebApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll

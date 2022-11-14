@@ -9,24 +9,26 @@ using Microsoft.AspNetCore.Mvc;
 namespace EmployeeAPI.WebApi.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    [Authorize]
+    [ApiController]    
     public class DeveloperController : ControllerBase
     {
         private readonly IWebHostEnvironment _env;
-        private readonly DeveloperRepository _repository;
+        private readonly DeveloperRepository _repository;        
+        private readonly ILogger<DeveloperController> _logger;
        
 
         public DeveloperController(
             IWebHostEnvironment env,
-            DeveloperRepository repository
+            DeveloperRepository repository,
+            ILogger<DeveloperController> logger
             )
         {
             _env = env;
-            _repository=repository;           
+            _repository=repository; 
+            _logger = logger;
         }
 
-        [AllowAnonymous]
+        
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -38,8 +40,11 @@ namespace EmployeeAPI.WebApi.Controllers
             return Ok(allDevelopers);
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet("get-developer-by-id/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult GetDeveloperById(int id)
         {
             var developer =  _repository.GetDeveloperById(id);
@@ -47,8 +52,12 @@ namespace EmployeeAPI.WebApi.Controllers
                 return NotFound();
             return Ok(developer);
         }
-        [AllowAnonymous]
+
+        [Authorize(Roles ="User")]
         [HttpPost("add-developer")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> AddDeveloper(DeveloperDTO developerDto)
         {
             if (developerDto != null)

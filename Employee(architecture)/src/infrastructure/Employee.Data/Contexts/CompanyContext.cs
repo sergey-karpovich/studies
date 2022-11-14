@@ -33,36 +33,8 @@ namespace EmployeeAPI.Data.Contexts
                 .WithMany(da => da.DeveloperAuftrags)
                 .HasForeignKey(di => di.AuftragId);
 
-            //modelBuilder.Entity<Auftrag>(entity =>
-            //{
-            //    entity.HasOne(a => a.Client)
-            //    .WithMany(c => c.Auftrags)
-            //    .HasForeignKey(c => c.ClientId)
-            //    .HasConstraintName("FK_Auftrag_To_Client");
-
-            //    entity.HasOne(a => a.Project)
-            //    .WithMany(p => p.Auftrags)
-            //    .HasForeignKey(a => a.ProjectId)
-            //    .HasConstraintName("FK_Auftrag_To_Project");
-
-            //});
-
-            //modelBuilder.Entity<Developer>()
-            //    .HasOne(d => d.Tarif)
-            //    .WithMany(t => t.Developers)
-            //    .HasForeignKey(d => d.TarifId);
-
-            //modelBuilder.Entity<Tarif>()
-            //    .HasOne(t => t.TarifType)
-            //    .WithMany(tt => tt.Tarifs)
-            //    .HasForeignKey(t => t.TarifId);
-
-
-            //modelBuilder.ApplyConfiguration(new ProjectConfiguration());
-            //modelBuilder.ApplyConfiguration(new DeveloperConfiguration());
-            //modelBuilder.ApplyConfiguration(new RoleConfiguration());
-            //modelBuilder.ApplyConfiguration(new AuftragConfiguration());
-
+            // Не работает
+           // modelBuilder.ApplyConfiguration(new RoleConfiguration());
 
 
         }
