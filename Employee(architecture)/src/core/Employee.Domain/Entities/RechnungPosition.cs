@@ -13,10 +13,10 @@ namespace EmployeeAPI.Domain.Entities
         public DateTime? EndDate { get; set; }
         public double? Hours { get; set; }
         public decimal? Sum { get; set; }
-
         public int? TarifTypeId { get; set; }
         public TarifType? TarifType { get; set; }
         public List<Developer>? Developers { get; set; } 
+        public int RechungId { get; set; }
         public Rechnung? Rechnung { get; set; }
     }
 }

@@ -12,8 +12,7 @@ namespace EmployeeAPI.Domain.Entities
         public string Type { get; set; }
 
         public Tarif? Tarif { get; set; }
-        public RechnungPosition? RechnungPosition { get; set; }
-        //public List<Tarif> Tarifs { get; set; } = new List<Tarif>();
-        //public List<RechnungPosition> RechnungPosition { get; set; } = new List<RechnungPosition>();
+                
+        public List<RechnungPosition>? RechnungPosition { get; set; } 
     }
 }

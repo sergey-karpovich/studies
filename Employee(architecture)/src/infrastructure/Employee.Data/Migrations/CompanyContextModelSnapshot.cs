@@ -334,18 +334,20 @@ namespace EmployeeAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ClientName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ProjectName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("RechnungsSumme")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime?>("StartDate")
+                    b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -370,6 +372,9 @@ namespace EmployeeAPI.Migrations
                     b.Property<int?>("RechnungId")
                         .HasColumnType("int");
 
+                    b.Property<int>("RechungId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
 
@@ -383,9 +388,7 @@ namespace EmployeeAPI.Migrations
 
                     b.HasIndex("RechnungId");
 
-                    b.HasIndex("TarifTypeId")
-                        .IsUnique()
-                        .HasFilter("[TarifTypeId] IS NOT NULL");
+                    b.HasIndex("TarifTypeId");
 
                     b.ToTable("RechnungPosition");
                 });
@@ -641,8 +644,8 @@ namespace EmployeeAPI.Migrations
                         .HasForeignKey("RechnungId");
 
                     b.HasOne("EmployeeAPI.Domain.Entities.TarifType", "TarifType")
-                        .WithOne("RechnungPosition")
-                        .HasForeignKey("EmployeeAPI.Domain.Entities.RechnungPosition", "TarifTypeId");
+                        .WithMany("RechnungPosition")
+                        .HasForeignKey("TarifTypeId");
 
                     b.Navigation("Rechnung");
 

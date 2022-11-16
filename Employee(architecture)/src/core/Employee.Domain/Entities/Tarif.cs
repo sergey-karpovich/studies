@@ -15,6 +15,6 @@ namespace EmployeeAPI.Domain.Entities
 
         public int TarifTypeId { get; set; }
         public TarifType TarifType { get; set; }
-        //public List<Developer> Developers { get; set; } = new List<Developer>();
+        
     }
 }
