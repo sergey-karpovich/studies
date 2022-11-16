@@ -1,5 +1,4 @@
 ﻿using EmployeeAPI.Domain.Entities;
-using EmployeeAPI.Data.Configurations.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,8 +16,8 @@ namespace EmployeeAPI.Data.Contexts
         public DbSet<Project> Projects { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Log> Logs { get; set; }
-        //public DbSet<Rechnung> Rechnungs { get; set; }
-        //public DbSet<RechnungPosition> RechnungPositions { get; set; }
+        public DbSet<Rechnung> Rechnungs { get; set; }
+        public DbSet<RechnungPosition> RechnungPositions { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -50,17 +50,6 @@ builder.Services.AddResponseCaching(options =>
 // Logger
 LogConfiguration.ConfigurateLogger(builder);
 
-// Cors
-//var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-//builder.Services.AddCors(c =>
-//{
-//    c.AddPolicy(name: MyAllowSpecificOrigins, options =>
-//        options
-//        .AllowAnyOrigin()
-//        .AllowAnyMethod()
-//        .AllowAnyHeader());
-//});
-
 builder.Services.AddCors(o =>
 {
     o.AddPolicy("AllowAll", builder =>
@@ -77,7 +66,6 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 //    options.JsonSerializerOptions.WriteIndented = true;
 //});
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
