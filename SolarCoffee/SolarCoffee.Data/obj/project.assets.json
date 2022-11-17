@@ -2687,11 +2687,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\git\\projects\\ApiLessons\\SolarCoffee\\SolarCoffee.Data\\SolarCoffee.Data.csproj",
+      "projectUniqueName": "C:\\git\\projects\\PetProgects\\studies\\SolarCoffee\\SolarCoffee.Data\\SolarCoffee.Data.csproj",
       "projectName": "SolarCoffee.Data",
-      "projectPath": "C:\\git\\projects\\ApiLessons\\SolarCoffee\\SolarCoffee.Data\\SolarCoffee.Data.csproj",
+      "projectPath": "C:\\git\\projects\\PetProgects\\studies\\SolarCoffee\\SolarCoffee.Data\\SolarCoffee.Data.csproj",
       "packagesPath": "C:\\Users\\юзер\\.nuget\\packages\\",
-      "outputPath": "C:\\git\\projects\\ApiLessons\\SolarCoffee\\SolarCoffee.Data\\obj\\",
+      "outputPath": "C:\\git\\projects\\PetProgects\\studies\\SolarCoffee\\SolarCoffee.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

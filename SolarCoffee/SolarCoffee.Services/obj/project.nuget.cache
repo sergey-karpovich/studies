@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qfeBx33+adGhQE+9lbuAmBKvR2votio/PVO1taCeA1aSDFckB5e9QgIU8iM9IcvE2IThVWwN2YCs0kNhwWxLeA==",
+  "dgSpecHash": "QjlPzmVB9xlSScby6ahdbK7Jv8Ft/TnacTYH6PawUu6vUdxmlrG8gzmBecUC5+zXmlQqOh5oeKXBm2gy3ciseA==",
   "success": true,
-  "projectFilePath": "C:\\git\\projects\\ApiLessons\\SolarCoffee\\SolarCoffee.Services\\SolarCoffee.Services.csproj",
+  "projectFilePath": "C:\\git\\projects\\PetProgects\\studies\\SolarCoffee\\SolarCoffee.Services\\SolarCoffee.Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\юзер\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

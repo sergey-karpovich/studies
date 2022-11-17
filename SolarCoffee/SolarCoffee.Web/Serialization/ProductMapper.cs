@@ -10,9 +10,9 @@ namespace SolarCoffee.Web.Serialization
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        public static ProductVM SerializeProductModel(Product product)
+        public static ProductModel SerializeProductModel(Product product)
         {
-            return new ProductVM
+            return new ProductModel
             {
                 Id = product.Id,
                 Name = product.Name,
@@ -30,7 +30,7 @@ namespace SolarCoffee.Web.Serialization
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        public static Product SerializeProductModel(ProductVM product)
+        public static Product SerializeProductModel(ProductModel product)
         {
             return new Product
             {

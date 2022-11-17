@@ -12,6 +12,6 @@ namespace SolarCoffee.Services.ProductService
         List<Product> GetAllProducts();
         Product GetProductById(int id);
         ServiceResponse<Product> CreateProduct(Product product);
-        ServiceResponse<Product> ArchProduct(int id);
+        ServiceResponse<Product> ArchiveProduct(int id);
     }
 }

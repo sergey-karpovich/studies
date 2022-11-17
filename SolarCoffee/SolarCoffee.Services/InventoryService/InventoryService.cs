@@ -40,7 +40,7 @@ namespace SolarCoffee.Services.InventoryService
         /// Adjusts QuantityOnHand by adjustment value
         /// </summary>
         /// <param name="id">productId</param>
-        /// <param name="adjustment">numver of units added / removed from inventory</param>
+        /// <param name="adjustment">number of units added / removed from inventory</param>
         public ServiceResponse<ProductInventory> UpdateUnitsAvailable(int id, int adjustment)
         {
             var now = DateTime.UtcNow;

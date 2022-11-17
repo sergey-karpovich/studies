@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kMkMvL/+b2L+MiGHFSr4lBjtKsYEod4w4D8h38xaCBVURZrE51Dj9E/BDuo4C/yLJo+MWhumZn/XaWX+sdrtTg==",
+  "dgSpecHash": "4dZ/DYmgqO/1R4LmuZ6WhYoE49QdbWWeaEet4ddMnerm1HuekOmBqCnBkjMh0pwYkad4+5XkYEkJ53jR4RFIVA==",
   "success": true,
-  "projectFilePath": "C:\\git\\projects\\ApiLessons\\SolarCoffee\\SolarCoffee.Test\\SolarCoffee.Test.csproj",
+  "projectFilePath": "C:\\git\\projects\\PetProgects\\studies\\SolarCoffee\\SolarCoffee.Test\\SolarCoffee.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\юзер\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",

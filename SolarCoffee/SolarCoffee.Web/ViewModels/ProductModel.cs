@@ -5,7 +5,7 @@ namespace SolarCoffee.Web.ViewModels
     /// <summary>
     /// Product entity DTO
     /// </summary>
-    public class ProductVM 
+    public class ProductModel 
     {
         public int Id { get; set; }
         public DateTime CreatedOn { get; set; }

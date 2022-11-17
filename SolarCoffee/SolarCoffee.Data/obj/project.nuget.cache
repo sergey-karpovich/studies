@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rbPLMcaQC7zK43AAAqj1mnHT1/K4RykVTY2sYrx2R4BzZD2SMm22mH3s0bVJXMNwNpyR/BCC1LAXAUs2iqtXDA==",
+  "dgSpecHash": "efvmWZ7FbtbcXpIniTVIvJCqDhB7yzYjvBPtmHEzsr4DPFAI6Vdrn5Z4CiIUIi4wM3RWo51FKNw2wOEpwrKX2A==",
   "success": true,
-  "projectFilePath": "C:\\git\\projects\\ApiLessons\\SolarCoffee\\SolarCoffee.Data\\SolarCoffee.Data.csproj",
+  "projectFilePath": "C:\\git\\projects\\PetProgects\\studies\\SolarCoffee\\SolarCoffee.Data\\SolarCoffee.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\юзер\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

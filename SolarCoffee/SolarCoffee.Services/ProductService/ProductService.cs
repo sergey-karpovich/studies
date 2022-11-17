@@ -22,7 +22,7 @@ namespace SolarCoffee.Services.ProductService
         /// <param name="id"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public ServiceResponse<Product> ArchProduct(int id)
+        public ServiceResponse<Product> ArchiveProduct(int id)
         {
                
             try
