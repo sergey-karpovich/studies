@@ -75,7 +75,7 @@ namespace SolarCoffee.Services.CustomerService
                 {
                     Time = now,
                     IsSuccess = true,
-                    Message =  "Customer created!",
+                    Message =  "Customer deleted!",
                     Data = true
                 };
             } 

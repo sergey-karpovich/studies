@@ -1,28 +1,57 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">    
+    <div class="app-menu">
+      <side-menu />
+    </div>
+    <div class="app-content">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import SideMenu from '@/components/SideMenu.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    SideMenu
   }
 }
 </script>
 
-<style>
+<style  lang="scss">
+@import "@/scss/global.scss";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+
+  .app-menu{
+    position: fixed;
+  }
+  
+  .app-content{
+    padding: 1.2rem;
+    width: 90%;
+    margin: 1rem auto 1rem $menu-width;
+    text-align: left;
+  }
 }
+
+*{
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+}
+
+hr {
+  border: 1px solid #eee;
+  margin: 1rem 0;
+}
+
 </style>
