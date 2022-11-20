@@ -1,7 +1,7 @@
 export default {   
-         
-    // logInOut(state){
-    //     state.isLoggedIn=!state.isLoggedIn;        
-    // }
+    getInventory(state, inventory){
+        state.inventory=inventory;
+    }
+    
 
 }

@@ -1,16 +1,7 @@
 <template>
     <div class="btn-link">
-        <button 
-            v-if="link"
-            @click="visitRoute" 
-            :class="['solar-button',{ 'full-width': isFullWidth }]"
-            type="button"
-        >
-            <slot></slot>
-        </button>
-        
-        <button 
-            v-else
+       
+        <button            
             @click="onClick" 
             :class="['solar-button',{ 'full-width': isFullWidth }]"
             type="button"
@@ -31,10 +22,7 @@ export default {
 
         }
     },
-    methods:{
-        visitRoute(){
-            this.$router.push(this.link);
-        },
+    methods:{        
         onClick(){
             this.$emit('button:click');
         },

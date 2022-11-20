@@ -8,30 +8,31 @@
         </router-link>
         <h1>Management Portal</h1>
         <solar-button 
-            id="menuInventory"
-            :link="'/inventory'"
-            :is-full-width="true"
-            >
+          id="menuInventory"
+          :is-full-width="true"
+          @button:click="goToRoute('/inventory')"
+        >
             Inventory
         </solar-button>
         <solar-button 
-            id="menuCustomers"
-            :link="'/customers'"
-            :is-full-width="true">
-            Manage Customers
+          id="menuCustomers"
+          :is-full-width="true"
+          @button:click="goToRoute('/customer')"
+          >
+          Manage Customers
         </solar-button>
         <solar-button 
-            id="menuInvoice"
-            :link="'/invoice/new'"
-            :is-full-width="true"
-            >
-            New Invoice
+          id="menuInvoice"
+          :is-full-width="true"
+          @button:click="goToRoute('/invoice/new')"
+          >
+          New Invoice
         </solar-button>
         <solar-button 
-            id="menuOrders"
-            :link="'/orders'"
-            :is-full-width="true"
-            >
+          id="menuOrders"
+          :is-full-width="true"
+          @button:click="goToRoute('/orders')"
+        >
             Orders
         </solar-button>
     </div>
@@ -47,6 +48,12 @@ export default {
     }    ,
     components:{
         SolarButton,
+    },
+    methods:{
+        goToRoute(route){
+            if(route!=window.location.pathname)
+                this.$router.push(route);
+        }
 
     }
 }

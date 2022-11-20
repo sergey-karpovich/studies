@@ -1,7 +1,5 @@
 <template>
-    <solar-modal
-    @close=""
-    >
+    <solar-modal >
         <template v-slot:header>
             Receive Shipment
         </template>
@@ -16,10 +14,10 @@
                 </option>
             </select>
             <label for="qtyReceived">Quantity Received:</label>
-            <input type="number" id="qtyReceived" v-model="qtyRecived" />
+            <input type="number" id="qtyReceived" v-model="qtyReceived" />
         </template>
 
-        <template v-slot: footer>
+        <template v-slot:footer>
             <solar-button
                 type="button"
                 @button:click="save"
@@ -41,10 +39,11 @@
 
 <script>
 import SolarButton from '@/components/SolarButton.vue';
-import SolarModal from '@/Models/SolarModal.vue';
+import SolarModal from '@/components/Models/SolarModal.vue';
 export default {
     emits:[
         'close',
+        'save:shipment'
     ],
     props:[
         'inventory'
@@ -65,12 +64,17 @@ export default {
                 price: 0,
                 isArchived: false
             },
-            
+            qtyReceived: 0,
         }
     },
     methods:{
-        click(){
-        },
+        save(){
+            let shipment = {
+                productId: this.selectedProduct.id,
+                adjustment: this.qtyReceived,                
+            };
+            this.$emit('save:shipment', shipment);
+        },  
         close(){
             this.$emit("close");
         },
@@ -78,3 +82,7 @@ export default {
 
 }
 </script>
+
+<style>
+
+</style>

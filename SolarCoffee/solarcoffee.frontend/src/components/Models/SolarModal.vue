@@ -26,7 +26,7 @@
                 </footer>
             </div>
         </div>
-    </transition>"
+    </transition>
 </template>
 
 <script>

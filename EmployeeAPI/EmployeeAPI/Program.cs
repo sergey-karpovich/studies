@@ -58,9 +58,9 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/Photos"
 });
 
-app.UseCors(MyAllowSpecificOrigins);
-
 app.UseRouting();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

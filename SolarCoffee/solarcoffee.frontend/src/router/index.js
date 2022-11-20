@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Inventory from '@/views/Inventory.vue'
+import InventoryVue from '@/views/InventoryVue.vue'
 
 Vue.use(Router)
 
@@ -9,12 +9,12 @@ const routes =[
     {
         path: '/',
         name: 'home',
-        component: Inventory
+        component: InventoryVue
     },
     {
         path: '/inventory',
-        name: 'inventory',
-        component: Inventory
+        name: 'inventoryVue',
+        component: InventoryVue
     },
 ]
 

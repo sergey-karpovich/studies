@@ -44,11 +44,13 @@
         </table>
         <new-product-modal 
             v-if="isNewProductVisible" 
+            @save:product="saveNewProduct"
             @close="closeModals"
         />
         <shipment-modal 
             v-if="isShipmentVisible" 
             :inventory="inventory"
+            @save:shipment="saveNewShipment"
             @close="closeModals" 
         />
     </div>
@@ -56,9 +58,14 @@
 
 <script>
 import SolarButton from '@/components/SolarButton.vue';
+import NewProductModal from '@/components/Models/NewProductModal.vue';
+import ShipmentModal from '@/components/Models/ShipmentModal.vue';
+
 export default {
     components:{
         SolarButton,
+        NewProductModal,
+        ShipmentModal,
     },
 
     data(){
@@ -103,15 +110,31 @@ export default {
     },
     methods:{
         showNewProductModal(){
-
+            this.isNewProductVisible = true;
         },
         showShipmentModal(){
-
+            this.isShipmentVisible = true;
+        },
+        saveNewProduct(newProduct){
+            console.log("saveNewProduct");
+            console.log(newProduct);
+        },
+        saveNewShipment(shipment){
+            console.log('saveNewShipment')
+            console.log(shipment)
         },
         closeModals(){
             this.isShipmentVisible=false;
             this.isNewProductVisible=false;
         },
+        async fetchData(){
+            await this.$store.dispatch('getInventory');
+            this.inventory=this.$store.getters.inventory;
+        }
+    },
+    async created(){    
+        await this.fetchData();
+        //await this.$store.dispatch('getInventory');
     }
 }
 </script>
