@@ -6,10 +6,10 @@
         <hr />
         
         <div class="inventory-actions">
-            <solar-button @click.native="showNewProductModal" id="addNewBtn">
+            <solar-button @button:click="showNewProductModal" id="addNewBtn">
                 Add New Item
             </solar-button>
-            <solar-button @click.native="showShipmentModal" id="addNewBtn">
+            <solar-button @button:click="showShipmentModal" id="addNewBtn">
                 Receive Shipment 
             </solar-button>
         </div>
@@ -25,7 +25,10 @@
             
             <tr v-for="item in inventory" :key="item.id">
                 <td>{{ item.product.name}}</td>
-                <td>{{ item.quantityOnHand}}</td>
+                <td 
+                  v-bind:class="`${applyColor(item.quantityOnHand, item.idealQuantity)}`"
+                  >
+                  {{ item.quantityOnHand}}</td>
                 <td>{{ item.product.price | price}}</td>
                 <td>
                     <span v-if="item.product.isTaxable">
@@ -36,8 +39,10 @@
                     </span>
                 </td>
                 <td>
-                    <div>
-                        X
+                    <div 
+                      class="lni lni-cross-circle product-archive"
+                      @click="archiveProduct(item.product.id)"
+                    >                        
                     </div>
                 </td>
             </tr>
@@ -115,13 +120,10 @@ export default {
         showShipmentModal(){
             this.isShipmentVisible = true;
         },
-        saveNewProduct(newProduct){
-            console.log("saveNewProduct");
-            console.log(newProduct);
-        },
-        saveNewShipment(shipment){
-            console.log('saveNewShipment')
-            console.log(shipment)
+        async saveNewShipment(shipment){
+            await this.$store.dispatch('updateInventoryQuantity',shipment);
+            this.isShipmentVisible=false;
+            await this.fetchData();
         },
         closeModals(){
             this.isShipmentVisible=false;
@@ -130,6 +132,22 @@ export default {
         async fetchData(){
             await this.$store.dispatch('getInventory');
             this.inventory=this.$store.getters.inventory;
+        },
+        applyColor(current, target){
+            if(current <=0)
+                return "red";
+            if(Math.abs(target-current)>8)
+                return "yellow";
+            return "green";
+        },
+        async archiveProduct(id){
+           await this.$store.dispatch('archiveProduct',id) ;
+           await this.fetchData();
+        },
+        async saveNewProduct(product){
+            await this.$store.dispatch('saveProduct',product);
+            this.isNewProductVisible=false;
+            await this.fetchData();
         }
     },
     async created(){    
@@ -139,8 +157,33 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "@/scss/global.scss";
 .inventory-actions{
     display: flex;
+    margin-bottom: 0.8rem;
 }
+
+.green {
+    font-weight: bold;
+    color: $solar-green;
+}
+.red {
+    font-weight: bold;
+    color: $solar-red;
+}
+.yellow {
+    font-weight: bold;
+    color: $solar-yellow;
+}
+
+.product-archive{
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: $solar-red;
+}
+
+
+
 </style>

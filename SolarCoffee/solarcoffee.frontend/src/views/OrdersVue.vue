@@ -1,5 +1,7 @@
 <template>
-    <h1>This is AboutComponent page</h1>
+<div>
+
+</div>
 </template>
 
 <script>
@@ -7,3 +9,7 @@ export default {
     
 }
 </script>
+
+<style scoped>
+
+</style>

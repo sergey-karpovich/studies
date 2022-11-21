@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 using SolarCoffee.Data;
 using SolarCoffee.Services.CustomerService;
 using SolarCoffee.Services.InventoryService;
@@ -9,7 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(opts=>
+    opts.SerializerSettings.ContractResolver = new DefaultContractResolver
+    {
+        NamingStrategy =new CamelCaseNamingStrategy()
+    });
 
 string connection = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<SolarDbContext>(options =>

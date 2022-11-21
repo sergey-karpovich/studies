@@ -17,7 +17,7 @@
         <solar-button 
           id="menuCustomers"
           :is-full-width="true"
-          @button:click="goToRoute('/customer')"
+          @button:click="goToRoute('/customers')"
           >
           Manage Customers
         </solar-button>

@@ -15,6 +15,8 @@ const store=new Vuex.Store({
             API_URL: process.env.VUE_APP_API_URL,
             //API_URL2: 'https://localhost:7087/api',
             inventory: [],
+            customers:[],
+            orders:[],
         };
     },
     mutations: rootMutations,
