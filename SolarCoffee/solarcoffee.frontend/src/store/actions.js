@@ -50,11 +50,12 @@ export default {
     /**
      * InvoiceService
      */
-    async makeNewInvoiceService(context, invoice){
+    async makeNewInvoice(context, invoice){
         var url=context.state.API_URL+'/invoice/'
         let now =new Date();
         invoice.createdOn = now;
         invoice.updatedOn = now;
+        console.log(invoice);
         let result= await axios.post(url,invoice);
         console.log(result);
     },

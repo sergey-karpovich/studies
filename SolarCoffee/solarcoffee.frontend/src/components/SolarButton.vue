@@ -3,6 +3,7 @@
        
         <button            
             @click="onClick" 
+            :disabled="disabled"
             :class="['solar-button',{ 'full-width': isFullWidth }]"
             type="button"
         >
@@ -15,8 +16,9 @@
 export default {
     props:[
         'link',
-        'isFullWidth'
-    ],
+        'isFullWidth',
+        'disabled'
+    ],    
     data(){
         return{
 
