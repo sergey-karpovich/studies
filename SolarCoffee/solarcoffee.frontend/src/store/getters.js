@@ -8,5 +8,8 @@ export default {
     orders(state){
         return state.orders;
     },
+    snapshot(state){
+        return state.snapshot;
+    }
    
 }

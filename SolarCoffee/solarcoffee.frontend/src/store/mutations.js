@@ -1,12 +1,19 @@
 export default {   
-    getInventory(state, inventory){
+    getInventory(state, inventory)
+    {
         state.inventory=inventory;
     },
-    getCustomers(state, customers){
+    getCustomers(state, customers)
+    {
         state.customers=customers;
     },
-    getOrders(state, orders){
+    getOrders(state, orders)
+    {
         state.orders = orders;
+    },
+    getSnapshotHistory(state, snapshot)
+    {
+        state.snapshot = snapshot;
     }
 
 }

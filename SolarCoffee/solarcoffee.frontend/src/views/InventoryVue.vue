@@ -4,7 +4,12 @@
             Inventory Dashboard
         </h1>
         <hr />
-        
+        <div>
+            <inventory-charts
+              v-if="snapshot"
+              :snapshot="snapshot">              
+            </inventory-charts>
+        </div>
         <div class="inventory-actions">
             <solar-button @button:click="showNewProductModal" id="addNewBtn">
                 Add New Item
@@ -65,18 +70,21 @@
 import SolarButton from '@/components/SolarButton.vue';
 import NewProductModal from '@/components/Models/NewProductModal.vue';
 import ShipmentModal from '@/components/Models/ShipmentModal.vue';
+import InventoryCharts from '@/components/charts/InventoryCharts.vue';
 
 export default {
     components:{
         SolarButton,
         NewProductModal,
         ShipmentModal,
+        InventoryCharts,
     },
 
     data(){
         return {
             isNewProductVisible:false,
             isShipmentVisible: false,
+            snapshot: {},
             inventory:[
                 {
                     id: 1,
@@ -131,7 +139,9 @@ export default {
         },
         async fetchData(){
             await this.$store.dispatch('getInventory');
+            await this.$store.dispatch('getSnapshotHistory');
             this.inventory=this.$store.getters.inventory;
+            this.snapshot=this.$store.getters.snapshot;
         },
         applyColor(current, target){
             if(current <=0)
@@ -152,7 +162,7 @@ export default {
     },
     async created(){    
         await this.fetchData();
-        //await this.$store.dispatch('getInventory');
+        
     }
 }
 </script>

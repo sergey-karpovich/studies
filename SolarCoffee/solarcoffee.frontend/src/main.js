@@ -3,8 +3,15 @@ import App from './App.vue'
 import router from './router/index.js'
 import store from './store/index.js'
 import moment  from 'moment'
+import VueApexCharts from 'vue-apexcharts'
+
+
+
 
 Vue.config.productionTip = false
+
+Vue.use(VueApexCharts)
+Vue.component('apex-chart', VueApexCharts)
 
 Vue.filter('price', function(number){
   if(isNaN(number)){

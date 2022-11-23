@@ -49,6 +49,7 @@ export default {
 
     /**
      * InvoiceService
+     * Provides UI business logic associated with sales orders.
      */
     async makeNewInvoice(context, invoice){
         var url=context.state.API_URL+'/invoice/'
@@ -70,4 +71,23 @@ export default {
         console.log(result);
     },
 
+
+    /** */
+    async getSnapshotHistory(context)
+    {
+        var url=context.state.API_URL+'/inventory/snapshot';
+        let result = await axios.get(url);
+        context.commit('getSnapshotHistory',result.data)
+    },
+
+    assignSnapshots(context,{ commit })
+    {
+        let res = context.state.snapshot;
+        let timeline = {
+            productInventorySnapshots: res.productInventorySnapshots,
+            timeline: res.timeline,
+        };
+        commit('SET_SNAPSHOT_TIMELINE', timeline);
+        commit('SET_IS_TIMELINE_BUILT', true);
+    },
 }
