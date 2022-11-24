@@ -8,13 +8,14 @@ namespace EmployeeAPI.Domain.Entities
 {
     public class Tarif
     {        
-        public int Id { get; set; }        
+        public int TarifId { get; set; }        
         public decimal Amount { get; set; }
+        public string TarifType { get; set; }
+        public string DisplayedName { get; set; }
+        public int? ClientId { get; set; }
+        public Client? Client  { get; set; }
         public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
-
-        public int TarifTypeId { get; set; }
-        public TarifType TarifType { get; set; }
+        public DateTime? EndDate { get; set; }        
         
     }
 }

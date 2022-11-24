@@ -8,9 +8,9 @@ namespace EmployeeAPI.Domain.Entities
 {
     public class Client
     {
-        public int Id { get; set; }
+        public int ClientId { get; set; }
         public string Name { get; set; }
         public int? AddressId { get; set; }
-        public List<Auftrag>? Auftrags { get; set; } 
+        public List<Project>? Project { get; set; } 
     }
 }

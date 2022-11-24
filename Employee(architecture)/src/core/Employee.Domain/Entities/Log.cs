@@ -8,7 +8,7 @@ namespace EmployeeAPI.Domain.Entities
 {
     public class Log
     {
-        public int Id { get; set; }
+        public int LogId { get; set; }
         public string Message { get; set; }
         public string MessageTemplate { get; set; }
         public string Level { get; set; }

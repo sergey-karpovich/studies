@@ -9,14 +9,15 @@ namespace EmployeeAPI.Application.Dtos
 {
     public class AuftragDTO
     {
-        public int Id { get; set; }
+        public int AuftragId { get; set; }
         public string? JobNr { get; set; }
         public string? AuftragNr { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        public string? Status { get; set; }        
                
         public int? ProjectId { get; set; }        
-        public int? ClientId { get; set; }
-      
+        public int? ClientId { get; set; }    
+
     }
 }

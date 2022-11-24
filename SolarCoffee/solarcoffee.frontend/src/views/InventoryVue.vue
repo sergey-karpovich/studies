@@ -5,9 +5,7 @@
         </h1>
         <hr />
         <div>
-            <inventory-charts
-              v-if="snapshot"
-              :snapshot="snapshot">              
+            <inventory-charts>              
             </inventory-charts>
         </div>
         <div class="inventory-actions">

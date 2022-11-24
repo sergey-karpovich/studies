@@ -8,13 +8,18 @@ using System.Threading.Tasks;
 namespace EmployeeAPI.Application.Dtos
 {
     public  class ProjectDTO
-    {
-        //public long Id { get; set; }
+    {       
+        public int ProjectId { get; set; }
         public string? Name { get; set; }
+        public string? Status { get; set; }
+        public bool? IsGKK { get; set; }
+        public bool? IsActiv { get; set; }
         public string? Description { get; set; }
-        public DateTime? DateOfAdoption { get; set; }
-        public DateTime? Deadline { get; set; }
-        public decimal? Budjet { get; set; }
-        
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public int? ClientId { get; set; }
+        public Client Client { get; set; }
+        public List<DeveloperDTO>? DeveloperDTO { get; set; }
+        public List<AuftragDTO>? AuftragDTO { get; set; }
     }
 }

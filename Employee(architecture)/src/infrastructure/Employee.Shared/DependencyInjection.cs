@@ -6,9 +6,9 @@ public static class DependencyInjection
 {
     public static void ConfigureRepository(this IServiceCollection services)
     {
-        services.AddTransient<DeveloperRepository>();
+        //services.AddTransient<DeveloperService>();
         services.AddTransient<AdditionalRepository>();
-        services.AddTransient<AuftragRepository>();
+        //services.AddTransient<AuftragService>();
         services.AddTransient<DeveloperToAuftragRepository>();
         
     }

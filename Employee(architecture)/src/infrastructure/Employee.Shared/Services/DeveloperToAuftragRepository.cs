@@ -20,27 +20,27 @@ namespace EmployeeAPI.Services
             _mapper = mapper;
         }
 
-        public List<DeveloperWithAuftragDTO> GetAllDevelopersWithAuftrags()
-        {
-            var list = new List<DeveloperWithAuftragDTO>();
-            var developerToAuftrag = _context.DevelopersAuftrags.ToList();
-            foreach(var junction in developerToAuftrag)
-            {
-                var developer = _context.Developers.FirstOrDefault(d => d.Id == junction.DeveloperId);
-                var auftrag = _context.Auftrags.FirstOrDefault(a => a.Id == junction.AuftragId);
-                var tarif= _context.Tarifs.FirstOrDefault(t=>t.Id == junction.TarifId);
-                var dto = new DeveloperWithAuftragDTO()
-                {
-                    DeveloperDTO = _mapper.Map<DeveloperDTO>(developer),
-                    AuftragDTO = _mapper.Map<AuftragDTO>(auftrag),
-                    TarifDTO = _mapper.Map<TarifDTO>(tarif),
-                    StartDate = junction.StartDate,
-                    EndDate = junction.EndDate
-                };
-                list.Add(dto);
-            }
-            return list;
-        }
+        //public List<DeveloperWithAuftragDTO> GetAllDevelopersWithAuftrags()
+        //{
+        //    var list = new List<DeveloperWithAuftragDTO>();
+        //    var developerToAuftrag = _context.DevelopersAuftrags.ToList();
+        //    foreach(var junction in developerToAuftrag)
+        //    {
+        //        var developer = _context.Developers.FirstOrDefault(d => d.Id == junction.DeveloperId);
+        //        var auftrag = _context.Auftrags.FirstOrDefault(a => a.Id == junction.AuftragId);
+        //        var tarif= _context.Tarifs.FirstOrDefault(t=>t.Id == junction.TarifId);
+        //        var dto = new DeveloperWithAuftragDTO()
+        //        {
+        //            DeveloperDTO = _mapper.Map<DeveloperDTO>(developer),
+        //            AuftragDTO = _mapper.Map<AuftragDTO>(auftrag),
+        //            TarifDTO = _mapper.Map<TarifDTO>(tarif),
+        //            StartDate = junction.StartDate,
+        //            EndDate = junction.EndDate
+        //        };
+        //        list.Add(dto);
+        //    }
+        //    return list;
+        //}
 
     }
 }

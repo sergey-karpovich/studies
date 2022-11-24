@@ -17,7 +17,7 @@ namespace EmployeeAPI.Data.Configurations.Entities
             builder.HasData(
                 new Developer
                 {
-                    Id = 1,
+                    DeveloperId = 1,
                     FirstName = "Sergey",
                     LastName = "Karpovich",
                     Salary = 500,
@@ -30,19 +30,15 @@ namespace EmployeeAPI.Data.Configurations.Entities
 
                     Tarif = new Tarif
                     {
-                        Id = 1,
+                        TarifId = 1,
                         Amount = 14,
                         
-                        TarifType=new TarifType
-                        {
-                            Id=1,
-                            Type="Development"
-                        }
+                        
                     }
                 },
                 new Developer
                 {
-                    Id = 2,
+                    DeveloperId = 2,
                     FirstName = "Max",
                     LastName = "Shmedtman",
                     Salary = 500,
@@ -54,15 +50,11 @@ namespace EmployeeAPI.Data.Configurations.Entities
                     HireDate = new DateTime(2022,1,1),
                     Tarif = new Tarif
                     {
-                        Id = 2,
+                        TarifId = 2,
                         Amount = 40,
 
                         
-                        TarifType = new TarifType
-                        {
-                            Id = 2,
-                            Type = "Project Management"
-                        }
+                         
                     }
                 });
         }

@@ -12,64 +12,64 @@ namespace EmployeeAPI.WebApi.Controllers
     [ApiController]    
     public class DeveloperController : ControllerBase
     {
-        private readonly IWebHostEnvironment _env;
-        private readonly DeveloperRepository _repository;        
+        
+        private readonly IGenericService<Developer, DeveloperDTO> _developerService;        
         private readonly ILogger<DeveloperController> _logger;
-       
+        private readonly IWebHostEnvironment _env;
 
         public DeveloperController(
             IWebHostEnvironment env,
-            DeveloperRepository repository,
+            IGenericService<Developer,DeveloperDTO> service,
             ILogger<DeveloperController> logger
             )
         {
             _env = env;
-            _repository=repository; 
+            _developerService = service;             
             _logger = logger;
         }
 
-        
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult Get()
+        public ActionResult GetDevelopers()
         {
-            //throw new Exception("This is an exception thrown from GetAllDeveloper");
-            var allDevelopers = _repository.GetAllDevelopers();
-           // var allDevelopersDTO = _mapper.Map<IList<DeveloperDTO>>(allDevelopers);
+            _logger.LogInformation("Getting all Developers");            
+            var allDevelopers = _developerService.GetAll();
+            
             return Ok(allDevelopers);
         }
 
-        [Authorize]
-        [HttpGet("get-developer-by-id/{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult GetDeveloperById(int id)
-        {
-            var developer =  _repository.GetDeveloperById(id);
-            if (developer == null)
-                return NotFound();
-            return Ok(developer);
-        }
+        //[Authorize]
+        //[HttpGet("get-developer-by-id/{id}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public ActionResult GetDeveloperById(int id)
+        //{
+        //    var developer =  _repository.GetDeveloperById(id);
+        //    if (developer == null)
+        //        return NotFound();
+        //    return Ok(developer);
+        //}
 
-        [Authorize(Roles ="User")]
-        [HttpPost("add-developer")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> AddDeveloper(DeveloperDTO developerDto)
-        {
-            if (developerDto != null)
-            {
-               var developer =  _repository.AddDeveloper(developerDto);
-                return CreatedAtAction("GetDeveloperById", new { id = developer.Id }, developer);
-            }
-            else
-            {
-                return BadRequest();
-            }
-        }
+        //[Authorize(Roles ="User")]
+        //[HttpPost("add-developer")]
+        //[ProducesResponseType(StatusCodes.Status201Created)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //public async Task<ActionResult> AddDeveloper(DeveloperDTO developerDto)
+        //{
+        //    if (developerDto != null)
+        //    {
+        //       var developer =  _repository.AddDeveloper(developerDto);
+        //        return CreatedAtAction("GetDeveloperById", new { id = developer.Id }, developer);
+        //    }
+        //    else
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
 
         // Не работают!!!
         //[AllowAnonymous]

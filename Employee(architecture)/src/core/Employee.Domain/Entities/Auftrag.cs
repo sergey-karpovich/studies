@@ -9,14 +9,14 @@ namespace EmployeeAPI.Domain.Entities
 {
     public class Auftrag
     {
-        public int Id { get; set; }
+        public int AuftragId { get; set; }
         public string? JobNr { get; set; }
         public string? AuftragNr { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        public string? Status { get; set; }
 
-
-        public List<DeveloperAuftrag> DeveloperAuftrags { get; set; } = new List<DeveloperAuftrag>();
+        //public List<DeveloperAuftrag>? DeveloperAuftrag { get; set; } 
         public int? ProjectId { get; set; }
         public Project? Project { get; set; }
         public int? ClientId { get; set; }

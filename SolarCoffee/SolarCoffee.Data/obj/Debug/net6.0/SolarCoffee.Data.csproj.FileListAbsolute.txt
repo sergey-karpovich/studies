@@ -12,3 +12,17 @@ C:\git\projects\ApiLessons\SolarCoffee\SolarCoffee.Data\obj\Debug\net6.0\SolarCo
 C:\git\projects\ApiLessons\SolarCoffee\SolarCoffee.Data\obj\Debug\net6.0\ref\SolarCoffee.Data.dll
 C:\git\projects\ApiLessons\SolarCoffee\SolarCoffee.Data\bin\Debug\net6.0\SolarCoffee.Data.runtimeconfig.json
 C:\git\projects\ApiLessons\SolarCoffee\SolarCoffee.Data\obj\Debug\net6.0\SolarCoffee.Data.genruntimeconfig.cache
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\bin\Debug\net6.0\SolarCoffee.Data.deps.json
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\bin\Debug\net6.0\SolarCoffee.Data.runtimeconfig.json
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\bin\Debug\net6.0\SolarCoffee.Data.dll
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\bin\Debug\net6.0\SolarCoffee.Data.pdb
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\obj\Debug\net6.0\SolarCoffee.Data.csproj.AssemblyReference.cache
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\obj\Debug\net6.0\SolarCoffee.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\obj\Debug\net6.0\SolarCoffee.Data.AssemblyInfoInputs.cache
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\obj\Debug\net6.0\SolarCoffee.Data.AssemblyInfo.cs
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\obj\Debug\net6.0\SolarCoffee.Data.csproj.CoreCompileInputs.cache
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\obj\Debug\net6.0\SolarCoffee.Data.dll
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\obj\Debug\net6.0\refint\SolarCoffee.Data.dll
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\obj\Debug\net6.0\SolarCoffee.Data.pdb
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\obj\Debug\net6.0\SolarCoffee.Data.genruntimeconfig.cache
+C:\git\projects\PetProgects\studies\SolarCoffee\SolarCoffee.Data\obj\Debug\net6.0\ref\SolarCoffee.Data.dll

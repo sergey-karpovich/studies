@@ -37,33 +37,33 @@ namespace EmployeeAPI.Contexts
                     context.SaveChanges();
                 }
 
-                if (!context.Projects.Any())
+                if (!context.Project.Any())
                 {
-                    context.Projects.AddRange(
+                    context.Project.AddRange(
                         new Project
-                        {
-                            
-                            Name = "Project 1",
+                        {                            
+                            Name = "First Project",
                             IsGKK = false,
-                            IsActiv = true
+                            IsActiv = true,
+                            StartDate = new DateTime(2022,1,1)
                         },
                         new Project
                         {
                            
-                            Name = "SecondProject",
-                            IsGKK = false,
-                            IsActiv = true
+                            Name = "Second Project",
+                            IsGKK = true,
+                            IsActiv = true,
+                            StartDate = new DateTime(2022, 2, 1)
                         });
 
                     context.SaveChanges();
                 }
-                if (!context.Clients.Any())
+                if (!context.Client.Any())
                 {
-                    context.Clients.AddRange(
+                    context.Client.AddRange(
                     new Client()
-                    {
-                        
-                        Name = "Client 1"
+                    {                        
+                        Name = "BMW"
                     },
                     new Client()
                     {
@@ -72,50 +72,62 @@ namespace EmployeeAPI.Contexts
                     });
                     context.SaveChanges();
                 }
-                if (!context.TarifTypes.Any())
+                if (!context.Address.Any())
                 {
-                    context.TarifTypes.AddRange(
-                    new TarifType
-                    {                       
-                        Type = "Development"
-                    },
-                    new TarifType
+                    context.Address.AddRange(
+                    new Address()
                     {
-                        Type = "Project Manager"
-                    },
-                    new TarifType
-                    {                        
-                        Type = "Requirements Management"
-                    });
+                        CreatedOn = new DateTime(),
+                        UpdatedOn = new DateTime(),
+                        AddressLine1 = "Lenin street",
+                        AddressLine2 = "h. 7",
+                        City = "Beloozersk",
+                        PostalCode = "225224",
+                        Country = "Belarus"
+                    }
+                    );
                     context.SaveChanges();
                 }
-                if (!context.Tarifs.Any())
+                if (!context.Tarif.Any())
                 {
-                    var tarifTypeId=context.TarifTypes.FirstOrDefault().Id;
-                    context.Tarifs.AddRange(
+                    var clientId = context?.Client?.FirstOrDefault()?.ClientId;
+                    if (clientId is null)
+                        return;
+                    context.Tarif.AddRange(
                     new Tarif
                     {
                         Amount = 40,
-                        StartDate = new DateTime(2022, 1, 1),
-                        TarifTypeId = tarifTypeId
-                    },
-                    new Tarif
+                        TarifType = "Development for bmw",
+                        DisplayedName = "Development",
+                        ClientId = clientId,
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now,
+
+                    },new Tarif
                     {
-                        Amount = 45,
-                        StartDate = new DateTime(2022, 1, 1),
-                        TarifTypeId = ++tarifTypeId
-                    },
-                    new Tarif
+                        Amount = 42,
+                        TarifType = "Project Management for bmw",
+                        DisplayedName = "Project Management",
+                        ClientId = clientId,
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now,
+
+                    },new Tarif
                     {
-                        Amount = 50,
-                        StartDate = new DateTime(2022, 1, 1),
-                        TarifTypeId = ++tarifTypeId
-                    }) ;
+                        Amount = 30,
+                        TarifType = "Requirements Management for bmw",
+                        DisplayedName = "Requirements Management",
+                        ClientId = clientId,
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now,
+
+                    }
+                    );
                     context.SaveChanges();
                 }
-                if(!context.Developers.Any())
+                if(!context.Developer.Any())
                 {
-                    context.Developers.AddRange(
+                    context.Developer.AddRange(
                     
                         new Developer()
                         {
@@ -146,21 +158,31 @@ namespace EmployeeAPI.Contexts
                     );
                     context.SaveChanges();
                 }
-                if(!context.Auftrags.Any())
+               
+                if(!context.Auftrag.Any())
                 {
-                    context.Auftrags.AddRange(
+                    var projectId = context?.Project?.FirstOrDefault()?.ProjectId;
+                    var clientId = context?.Client?.FirstOrDefault()?.ClientId;
+                    if (clientId is null)
+                        return;
+                    context.Auftrag.AddRange(
                         new Auftrag()
                         {
-                            JobNr ="2342",
+                            JobNr = "1111",
                             AuftragNr = "43242",
                             StartDate = new DateTime(2020, 1, 1),
-                            EndDate = new DateTime(2020, 3, 1)
+                            EndDate = new DateTime(2020, 3, 1),
+                            ProjectId = projectId,
+                            ClientId = clientId
                         },
                         new Auftrag()
                         {
-                            JobNr = "2343",
+                            JobNr = "1112",
                             AuftragNr = "43212",
-                            StartDate = new DateTime(2020, 1, 1),                            
+                            StartDate = new DateTime(2020, 1, 1),
+                            EndDate = new DateTime(2020, 3, 1),
+                            ProjectId = ++projectId,
+                            ClientId = ++clientId
                         }
                         );
                     context.SaveChanges();                
