@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using EmployeeAPI.Repositories.Developers;
+using EmployeeAPI.Repositories.Addresses;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -82,7 +84,8 @@ EmployeeAPI.Shared.DependencyInjection.ConfigureRepository(builder.Services);
 
 
 builder.Services.AddScoped<IAuthManager, AuthManager>();
-
+builder.Services.AddScoped<IDeveloperRepository, DeveloperRepository>();
+builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 
 
 var app = builder.Build();

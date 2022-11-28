@@ -21,7 +21,7 @@ namespace EmployeeAPI.Application.Dtos
         public DateTime? HireDate { get; set; }
         public DateTime? RetireDate { get; set; }
         public int? AddressId { get; set; }       
-        public List<int>? DeveloperProjectId { get; set; }
+        public List<DeveloperProjectDTO>? DeveloperProject { get; set; }
         public int? TarifId { get; set; }       
         public List<int>? RechnungPositionsId { get; set; }
 

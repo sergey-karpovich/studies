@@ -43,8 +43,8 @@ namespace EmployeeAPI.Application.Common.Exceptions
             var response = new ApiException()
             {
                 StatusCode = httpContext.Response.StatusCode,
-                Message = "Internal Server Error from custom middleware",
-                Path = "path-goes-here"
+                Message =  ex.Message,
+                Path = ex.Source ?? ex.ToString()
             };
             _logger.LogError(response.ToString());
 

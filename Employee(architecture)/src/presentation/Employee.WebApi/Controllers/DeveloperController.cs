@@ -2,6 +2,7 @@
 using EmployeeAPI.Application.Dtos;
 using EmployeeAPI.Data.Contexts;
 using EmployeeAPI.Domain.Entities;
+using EmployeeAPI.Repositories.Developers;
 using EmployeeAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,18 +14,18 @@ namespace EmployeeAPI.WebApi.Controllers
     public class DeveloperController : ControllerBase
     {
         
-        private readonly IGenericService<Developer, DeveloperDTO> _developerService;        
+        private readonly IDeveloperRepository _repository;        
         private readonly ILogger<DeveloperController> _logger;
         private readonly IWebHostEnvironment _env;
 
         public DeveloperController(
             IWebHostEnvironment env,
-            IGenericService<Developer,DeveloperDTO> service,
+            IDeveloperRepository repository,
             ILogger<DeveloperController> logger
             )
         {
             _env = env;
-            _developerService = service;             
+            _repository = repository;             
             _logger = logger;
         }
 
@@ -35,80 +36,82 @@ namespace EmployeeAPI.WebApi.Controllers
         public ActionResult GetDevelopers()
         {
             _logger.LogInformation("Getting all Developers");            
-            var allDevelopers = _developerService.GetAll();
+            var allDevelopers = _repository.GetAllDevelopers();
             
             return Ok(allDevelopers);
         }
 
         //[Authorize]
-        //[HttpGet("get-developer-by-id/{id}")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //public ActionResult GetDeveloperById(int id)
-        //{
-        //    var developer =  _repository.GetDeveloperById(id);
-        //    if (developer == null)
-        //        return NotFound();
-        //    return Ok(developer);
-        //}
+        [HttpGet("get-developer-by-id/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult GetDeveloperById(int id)
+        {
+            var developer = _repository.GetById(id);
+            if (developer == null)
+                return NotFound();
+            return Ok(developer);
+        }
 
         //[Authorize(Roles ="User")]
-        //[HttpPost("add-developer")]
-        //[ProducesResponseType(StatusCodes.Status201Created)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        //public async Task<ActionResult> AddDeveloper(DeveloperDTO developerDto)
-        //{
-        //    if (developerDto != null)
-        //    {
-        //       var developer =  _repository.AddDeveloper(developerDto);
-        //        return CreatedAtAction("GetDeveloperById", new { id = developer.Id }, developer);
-        //    }
-        //    else
-        //    {
-        //        return BadRequest();
-        //    }
-        //}
+        [HttpPost("add-developer")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public ActionResult AddDeveloper(DeveloperDTO developerDto)
+        {
+            if (developerDto != null)
+            {
+                try
+                {
+                    var developer = _repository.Create(developerDto);
+                    return CreatedAtAction("GetDeveloperById", new { id = developer.DeveloperId }, developer);
+                }
+                catch (Exception e)
+                {
+                    return BadRequest($"{e.Message}, {e.StackTrace}");
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult Put(DeveloperDTO developerDTO)
+        {
+            _logger.LogInformation($"Put developer {developerDTO}");
+            try
+            {
+                var response = _repository.Update( developerDTO);
+                _logger.LogInformation($"Updated  developer successfully");
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.StackTrace);
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
 
-        // Не работают!!!
-        //[AllowAnonymous]
-        //[HttpGet("get-developers-by-auftrag/{id}")]
-        //public ActionResult GetDevelopersByAugtrag(int id)
-        //{
-        //    var developers = _repository.GetDevAuftrByAuftrag(id);
-        //    return Ok(developers);
-        //}
-        //[AllowAnonymous]
-        //[HttpGet("get-developers-by-month/{month}")]
-        //public ActionResult GetDevelopersByAugtrag(DateTime month)
-        //{
-        //    var developers = _repository.GetDevAuftrByMonth(month);
-        //    return Ok(developers);
-        //}
+            
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult Delete(int id)
+        {
+            _logger.LogInformation($"Deleting developer id={id}");
+           
+            var response = _repository.Delete(id);
+            return Ok(response);
+        }
 
 
-        //[HttpPut]
-        //public JsonResult Put(Employee newEmployee)
-        //{
-        //    if (newEmployee != null)
-        //    {
-        //        var oldEmployee = repository.GetEmployee((long)newEmployee.EmployeeId);
 
-        //        repository.UpdateEmployee(newEmployee, oldEmployee);
-        //        return new JsonResult("Updated Successfully");
-        //    }
-        //    else
-        //    {
-        //        return new JsonResult("Error");
-        //    }
-        //}
-        //[HttpDelete("{id}")]
-        //public JsonResult Delete(int id)
-        //{
-        //    repository.DeleteEmployee(id);
-        //    return new JsonResult("Deleted Successfully");
-        //}
 
         [Route("SaveFile")]
         [HttpPost]
@@ -120,6 +123,8 @@ namespace EmployeeAPI.WebApi.Controllers
                 var postedFile = httpRequest.Files[0];
                 string filename = postedFile.FileName;
                 var physicalPath = _env.ContentRootPath + "/Photos/" + filename;
+                
+                _logger.LogInformation($"Saving File {filename}");
 
                 using (var stream = new FileStream(physicalPath, FileMode.Create))
                 {
@@ -128,9 +133,9 @@ namespace EmployeeAPI.WebApi.Controllers
                 return new JsonResult(filename);
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                _logger.LogInformation($"Exception {e.Message}");
                 return new JsonResult("anonymous.png");
             }
         }

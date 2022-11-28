@@ -1,0 +1,11 @@
+2022-11-28 12:24:18.390 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Ambiguous HTTP method for action - EmployeeAPI.WebApi.Controllers.DeveloperController.AddDeveloper (Employee.WebApi). Actions require an explicit HttpMethod binding for Swagger/OpenAPI 3.0
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwagger(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2022-11-28 12:25:45.377 +03:00 [ERR] {"StatusCode":500,"Message":"Internal Server Error from custom middleware","Path":"path-goes-here","Data":{},"InnerException":null,"HelpLink":null,"Source":null,"HResult":-2146233088,"StackTrace":null}
+2022-11-28 12:28:37.978 +03:00 [ERR] {"StatusCode":500,"Message":"Unable to resolve service for type 'EmployeeAPI.Repositories.Developers.IDeveloperRepository' while attempting to activate 'EmployeeAPI.WebApi.Controllers.DeveloperController'.","Path":"Microsoft.Extensions.DependencyInjection.Abstractions","Data":{},"InnerException":null,"HelpLink":null,"Source":null,"HResult":-2146233088,"StackTrace":null}
+2022-11-28 13:44:44.019 +03:00 [INF] Getting all Developers
+2022-11-28 13:44:44.098 +03:00 [INF] Getting all Developers

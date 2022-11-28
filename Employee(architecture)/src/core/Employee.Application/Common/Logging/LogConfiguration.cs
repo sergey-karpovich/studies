@@ -10,30 +10,34 @@ namespace EmployeeAPI.Application.Common.Logging
         
         public static void ConfigurateLogger(WebApplicationBuilder builder)
         {
-            // !!Надо будет применить конфигурацию из appsetting.json
+            // Не работает запись в базу данных
+            builder.Host.UseSerilog((ctx, lc) => lc
+                .WriteTo.Console()
+                .ReadFrom.Configuration(ctx.Configuration));
 
-            string connection = builder.Configuration
-                .GetConnectionString("EmployeeAPICon");
 
-            var sinkOpts = new MSSqlServerSinkOptions() 
-            {
-                TableName = "Logs" 
-            };
+            //string connection = builder.Configuration
+            //    .GetConnectionString("EmployeeAPICon");
 
-            Log.Logger = new LoggerConfiguration()
-            .MinimumLevel
-            .Error()
-            .WriteTo.Console()
-            .WriteTo.File($"logs/log.txt",
-            //outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
-            rollingInterval: RollingInterval.Day)
-            .WriteTo.MSSqlServer(
-                connectionString: connection,
-                sinkOptions: sinkOpts        
-            )
-            .CreateLogger();
+            //var sinkOpts = new MSSqlServerSinkOptions()
+            //{
+            //    TableName = "Log"
+            //};
 
-            builder.Host.UseSerilog();
+            //Log.Logger = new LoggerConfiguration()
+            //.MinimumLevel
+            //.Error()
+            //.WriteTo.Console()
+            //.WriteTo.File($"logs/log.txt",
+            ////outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
+            //rollingInterval: RollingInterval.Day)
+            //.WriteTo.MSSqlServer(
+            //    connectionString: connection,
+            //    sinkOptions: sinkOpts
+            //)
+            //.CreateLogger();
+
+            
         }
     }
 }
