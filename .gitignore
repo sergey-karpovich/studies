@@ -1,3 +1,5 @@
-/JavaScript/forkify/node_modules
-/JavaScript/forkify/dist
-/JavaScript/forkify/.parcel-cache
+**/.vs
+**/obj
+**/bin
+**/.vscode
+**/Logs

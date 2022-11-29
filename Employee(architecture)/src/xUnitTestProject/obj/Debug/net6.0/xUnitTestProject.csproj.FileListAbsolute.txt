@@ -377,3 +377,5 @@ C:\git\projects\PetProgects\studies\Employee(architecture)\src\xUnitTestProject\
 C:\git\projects\PetProgects\studies\Employee(architecture)\src\xUnitTestProject\obj\Debug\net6.0\xUnitTestProject.pdb
 C:\git\projects\PetProgects\studies\Employee(architecture)\src\xUnitTestProject\obj\Debug\net6.0\xUnitTestProject.genruntimeconfig.cache
 C:\git\projects\PetProgects\studies\Employee(architecture)\src\xUnitTestProject\obj\Debug\net6.0\ref\xUnitTestProject.dll
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\xUnitTestProject\bin\Debug\net6.0\Employee.Shared.dll
+C:\git\projects\PetProgects\studies\Employee(architecture)\src\xUnitTestProject\bin\Debug\net6.0\Employee.Shared.pdb

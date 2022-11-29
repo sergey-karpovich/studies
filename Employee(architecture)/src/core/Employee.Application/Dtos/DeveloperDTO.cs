@@ -29,8 +29,7 @@ namespace EmployeeAPI.Application.Dtos
     }
 
     public class TheDeveloperWithAuftragsDTO : DeveloperDTO
-    {
-        public int DeveloperId { get; set; }
+    {       
         public List<Auftrag>? Auftrags { get; set; }
         
     }

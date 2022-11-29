@@ -66,7 +66,8 @@ namespace EmployeeAPI.WebApi.Controllers
                 try
                 {
                     var developer = _repository.Create(developerDto);
-                    return CreatedAtAction("GetDeveloperById", new { id = developer.DeveloperId }, developer);
+                    return CreatedAtAction("GetDeveloperById",
+                        new { id = developer.DeveloperId }, developer);
                 }
                 catch (Exception e)
                 {

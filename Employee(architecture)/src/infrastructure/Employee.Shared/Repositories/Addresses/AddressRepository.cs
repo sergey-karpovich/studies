@@ -35,7 +35,7 @@ namespace EmployeeAPI.Repositories.Addresses
             var allAddressesDTO = _mapper.Map<List<AddressDTO>>(addresses);
             if (allAddressesDTO is null)
             {
-                _logger.LogError("AllDevelopersDTO  is null");
+                _logger.LogError("AllAddressesDTO  is null");
                 return new ServiceResponse<List<AddressDTO>>
                 {
                     Time = now,
@@ -56,6 +56,7 @@ namespace EmployeeAPI.Repositories.Addresses
             }
             catch (Exception e)
             {
+                _logger.LogError($"Exception {e.Message}, {e.StackTrace}");
                 return new ServiceResponse<List<AddressDTO>>
                 {
                     Time = now,
@@ -73,23 +74,37 @@ namespace EmployeeAPI.Repositories.Addresses
             try
             {
                 var address = _context.Address.Find(id);
+                //var address = _context.Address.FirstOrDefault(a => a.AddressId == id);
+                //if (address is null)
+                //{
+                //    return new ServiceResponse<AddressDTO>
+                //    {
+                //        Time = now,
+                //        IsSuccess = false,
+                //        Message = "Address not found",
+                //        Data = null
+                //    };
+
+                //}
+
                 var addressDTO = _mapper.Map<AddressDTO>(address);
                 return new ServiceResponse<AddressDTO>
                 {
                     Time = now,
-                    IsSuccess = false,
+                    IsSuccess = true,
                     Message = "Address by id",
                     Data = addressDTO
                 };
 
             }
-            catch
+            catch (Exception e)
             {
+                _logger.LogError($"Exception {e.Message}, {e.StackTrace}");
                 return new ServiceResponse<AddressDTO>
                 {
                     Time = now,
                     IsSuccess = false,
-                    Message = "Address not found",
+                    Message = e.StackTrace ?? "Something wrong in repository",
                     Data = null
                 };
             }
@@ -103,11 +118,11 @@ namespace EmployeeAPI.Repositories.Addresses
                 var address = _mapper.Map<Address>(addressDTO);
                 _context.Address.Add(address);
                 _context.SaveChanges();
-                return address;
-                
+                return address;                
             }
-            catch
+            catch (Exception e)
             {
+                _logger.LogError(e.Message, e.StackTrace, e.Source);
                 throw;               
             }
         }
@@ -142,6 +157,7 @@ namespace EmployeeAPI.Repositories.Addresses
             }
             catch (Exception e)
             {
+                _logger.LogError($"Exception {e.Message}, {e.StackTrace}");
                 return new ServiceResponse<bool>
                 {
                     Time = now,
@@ -190,6 +206,7 @@ namespace EmployeeAPI.Repositories.Addresses
             }
             catch (Exception e)
             {
+                _logger.LogError($"Exception {e.Message}, {e.StackTrace}");
                 return new ServiceResponse<bool>
                 {
                     Time = now,

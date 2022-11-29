@@ -1,5 +1,4 @@
 using EmployeeAPI.Data.Contexts;
-using EmployeeAPI.Domain.Settings;
 using Microsoft.EntityFrameworkCore;
 using EmployeeAPI.Services;
 using EmployeeAPI.Application;
@@ -11,8 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using EmployeeAPI.Repositories.Developers;
-using EmployeeAPI.Repositories.Addresses;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -81,11 +79,7 @@ builder.Services.AddDbContext<CompanyContext>(options =>
 // Configure repository
 EmployeeAPI.Shared.DependencyInjection.ConfigureRepository(builder.Services);
 
-
-
 builder.Services.AddScoped<IAuthManager, AuthManager>();
-builder.Services.AddScoped<IDeveloperRepository, DeveloperRepository>();
-builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 
 
 var app = builder.Build();
@@ -94,28 +88,29 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseSwagger();
+    //app.UseSwaggerUI();
 }
 app.UseMiddleware<CustomExceptionMiddleware>();
  
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
-app.UseResponseCaching();
 
-app.Use(async (context, next) =>
-{
-    context.Response.GetTypedHeaders().CacheControl =
-        new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
-        {
-            Public = true,
-            MaxAge = TimeSpan.FromSeconds(10)
-        };
-    context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
-        new string[] { "Accept-Encoding" };
+//app.UseResponseCaching();
 
-    await next();
-});
+//app.Use(async (context, next) =>
+//{
+//    context.Response.GetTypedHeaders().CacheControl =
+//        new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+//        {
+//            Public = true,
+//            MaxAge = TimeSpan.FromSeconds(10)
+//        };
+//    context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
+//        new string[] { "Accept-Encoding" };
+
+//    await next();
+//});
 
 app.UseAuthentication();
 app.UseAuthorization();

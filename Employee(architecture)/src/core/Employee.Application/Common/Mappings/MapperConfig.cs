@@ -19,6 +19,7 @@ namespace EmployeeAPI.Application.Common.Mappings
             CreateMap<Auftrag, AuftragDTO>().ReverseMap();
             CreateMap<Tarif, TarifDTO>().ReverseMap();
             CreateMap<Address, AddressDTO>().ReverseMap();
+            CreateMap<Client, ClientDTO>().ReverseMap();
             
         }
     }
