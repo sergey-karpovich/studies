@@ -17,9 +17,8 @@ namespace EmployeeAPI.Application.Dtos
         public string? Description { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public int? ClientId { get; set; }
-        public Client Client { get; set; }
-        public List<DeveloperDTO>? DeveloperDTO { get; set; }
-        public List<AuftragDTO>? AuftragDTO { get; set; }
+        public int ClientId { get; set; }
+        public List<DeveloperDTO>? DeveloperDTOList { get; set; }
+        public List<AuftragDTO>? AuftragDTOList { get; set; }
     }
 }

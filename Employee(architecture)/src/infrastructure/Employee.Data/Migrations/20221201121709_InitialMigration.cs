@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EmployeeAPI.Migrations
 {
-    public partial class initialMigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -84,6 +84,24 @@ namespace EmployeeAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "HoursInMonth",
+                columns: table => new
+                {
+                    HoursInMonthId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DeveloperId = table.Column<int>(type: "int", nullable: false),
+                    TotalHours = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ProjectId = table.Column<int>(type: "int", nullable: true),
+                    TarifId = table.Column<int>(type: "int", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HoursInMonth", x => x.HoursInMonthId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Log",
                 columns: table => new
                 {
@@ -100,24 +118,6 @@ namespace EmployeeAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Log", x => x.LogId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MonthTotalHours",
-                columns: table => new
-                {
-                    MonthTotalHoursId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DeveloperId = table.Column<int>(type: "int", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: false),
-                    TarifId = table.Column<int>(type: "int", nullable: false),
-                    TotalHours = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MonthTotalHours", x => x.MonthTotalHoursId);
                 });
 
             migrationBuilder.CreateTable(
@@ -382,6 +382,41 @@ namespace EmployeeAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DeveloperProject",
+                columns: table => new
+                {
+                    DeveloperProjectId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DeveloperId = table.Column<int>(type: "int", nullable: false),
+                    ProjectId = table.Column<int>(type: "int", nullable: false),
+                    TarifId = table.Column<int>(type: "int", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DeveloperProject", x => x.DeveloperProjectId);
+                    table.ForeignKey(
+                        name: "FK_DeveloperProject_Developer_DeveloperId",
+                        column: x => x.DeveloperId,
+                        principalTable: "Developer",
+                        principalColumn: "DeveloperId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DeveloperProject_Project_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Project",
+                        principalColumn: "ProjectId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DeveloperProject_Tarif_TarifId",
+                        column: x => x.TarifId,
+                        principalTable: "Tarif",
+                        principalColumn: "TarifId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DeveloperRechnungPosition",
                 columns: table => new
                 {
@@ -402,41 +437,6 @@ namespace EmployeeAPI.Migrations
                         column: x => x.RechnungPositionsRechnungPositionId,
                         principalTable: "RechnungPosition",
                         principalColumn: "RechnungPositionId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DevelopersAuftrag",
-                columns: table => new
-                {
-                    DeveloperProjectId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DeveloperId = table.Column<int>(type: "int", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: false),
-                    TarifId = table.Column<int>(type: "int", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DevelopersAuftrag", x => x.DeveloperProjectId);
-                    table.ForeignKey(
-                        name: "FK_DevelopersAuftrag_Developer_DeveloperId",
-                        column: x => x.DeveloperId,
-                        principalTable: "Developer",
-                        principalColumn: "DeveloperId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DevelopersAuftrag_Project_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Project",
-                        principalColumn: "ProjectId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DevelopersAuftrag_Tarif_TarifId",
-                        column: x => x.TarifId,
-                        principalTable: "Tarif",
-                        principalColumn: "TarifId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -500,24 +500,24 @@ namespace EmployeeAPI.Migrations
                 column: "TarifId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DeveloperRechnungPosition_RechnungPositionsRechnungPositionId",
-                table: "DeveloperRechnungPosition",
-                column: "RechnungPositionsRechnungPositionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DevelopersAuftrag_DeveloperId",
-                table: "DevelopersAuftrag",
+                name: "IX_DeveloperProject_DeveloperId",
+                table: "DeveloperProject",
                 column: "DeveloperId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DevelopersAuftrag_ProjectId",
-                table: "DevelopersAuftrag",
+                name: "IX_DeveloperProject_ProjectId",
+                table: "DeveloperProject",
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DevelopersAuftrag_TarifId",
-                table: "DevelopersAuftrag",
+                name: "IX_DeveloperProject_TarifId",
+                table: "DeveloperProject",
                 column: "TarifId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DeveloperRechnungPosition_RechnungPositionsRechnungPositionId",
+                table: "DeveloperRechnungPosition",
+                column: "RechnungPositionsRechnungPositionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Project_ClientId",
@@ -556,16 +556,16 @@ namespace EmployeeAPI.Migrations
                 name: "Auftrag");
 
             migrationBuilder.DropTable(
+                name: "DeveloperProject");
+
+            migrationBuilder.DropTable(
                 name: "DeveloperRechnungPosition");
 
             migrationBuilder.DropTable(
-                name: "DevelopersAuftrag");
+                name: "HoursInMonth");
 
             migrationBuilder.DropTable(
                 name: "Log");
-
-            migrationBuilder.DropTable(
-                name: "MonthTotalHours");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -574,22 +574,22 @@ namespace EmployeeAPI.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "RechnungPosition");
+                name: "Project");
 
             migrationBuilder.DropTable(
                 name: "Developer");
 
             migrationBuilder.DropTable(
-                name: "Project");
-
-            migrationBuilder.DropTable(
-                name: "Rechnung");
+                name: "RechnungPosition");
 
             migrationBuilder.DropTable(
                 name: "Address");
 
             migrationBuilder.DropTable(
                 name: "Tarif");
+
+            migrationBuilder.DropTable(
+                name: "Rechnung");
 
             migrationBuilder.DropTable(
                 name: "Client");

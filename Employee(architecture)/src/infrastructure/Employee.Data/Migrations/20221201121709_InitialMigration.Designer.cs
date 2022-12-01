@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeAPI.Migrations
 {
     [DbContext(typeof(CompanyContext))]
-    [Migration("20221124091041_initialMigration")]
-    partial class initialMigration
+    [Migration("20221201121709_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -294,7 +294,38 @@ namespace EmployeeAPI.Migrations
 
                     b.HasIndex("TarifId");
 
-                    b.ToTable("DevelopersAuftrag");
+                    b.ToTable("DeveloperProject");
+                });
+
+            modelBuilder.Entity("EmployeeAPI.Domain.Entities.HoursInMonth", b =>
+                {
+                    b.Property<int>("HoursInMonthId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HoursInMonthId"), 1L, 1);
+
+                    b.Property<int>("DeveloperId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("TarifId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalHours")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("HoursInMonthId");
+
+                    b.ToTable("HoursInMonth");
                 });
 
             modelBuilder.Entity("EmployeeAPI.Domain.Entities.Log", b =>
@@ -335,37 +366,6 @@ namespace EmployeeAPI.Migrations
                     b.HasKey("LogId");
 
                     b.ToTable("Log");
-                });
-
-            modelBuilder.Entity("EmployeeAPI.Domain.Entities.MonthTotalHours", b =>
-                {
-                    b.Property<int>("MonthTotalHoursId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MonthTotalHoursId"), 1L, 1);
-
-                    b.Property<int>("DeveloperId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("TarifId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalHours")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("MonthTotalHoursId");
-
-                    b.ToTable("MonthTotalHours");
                 });
 
             modelBuilder.Entity("EmployeeAPI.Domain.Entities.Project", b =>

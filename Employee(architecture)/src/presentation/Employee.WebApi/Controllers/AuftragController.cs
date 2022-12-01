@@ -1,4 +1,68 @@
-﻿
+﻿using EmployeeAPI.Application.Dtos;
+using EmployeeAPI.Repositories.Auftrags;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EmployeeAPI.WebApi.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AuftragController : ControllerBase
+    {
+        private readonly IAuftragRepository _repository;
+        public AuftragController(IAuftragRepository repository)
+        {
+            _repository = repository;
+        }
+
+        [HttpGet]
+        public ActionResult GetAll()
+        {
+            var auftrags = _repository.GetAll();
+            return Ok(auftrags);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult GetAuftragById(int id)
+        {
+            var auftrag = _repository.GetById(id);
+            if (auftrag == null)
+                return NotFound();
+            return Ok(auftrag);
+        }
+
+        [HttpPost]
+        public ActionResult Add(AuftragDTO auftragDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var auftrag = _repository.Create(auftragDTO);
+                return CreatedAtAction(nameof(GetAuftragById),
+                    new { id = auftrag.AuftragId }, auftrag);
+            }
+            return BadRequest();
+        }
+
+        [HttpPut]
+        public ActionResult Put(AuftragDTO auftragDTO)
+        {
+            var response = _repository.Update(auftragDTO);
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            var response = _repository.Delete(id);
+            return Ok(response);
+        }
+
+
+    }
+}
+
+
+
+
 // using Microsoft.AspNetCore.Mvc;
 
 
@@ -42,7 +106,7 @@
 //                 }                
 //             }
 //             project.Employees = employees;
-            
+
 //             context.SaveChanges();
 //             return new JsonResult(project);
 //         }

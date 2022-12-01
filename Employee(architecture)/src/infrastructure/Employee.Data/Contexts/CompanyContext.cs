@@ -10,15 +10,15 @@ namespace EmployeeAPI.Data.Contexts
            : base(options) { }
         public DbSet<Tarif> Tarif { get; set; }
         public DbSet<Developer> Developer { get; set; }
-        public DbSet<DeveloperProject> DevelopersAuftrag { get; set; }
+        public DbSet<DeveloperProject> DeveloperProject { get; set; }
         public DbSet<Auftrag> Auftrag { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<Client> Client { get; set; }
         public DbSet<Log> Log { get; set; }
         public DbSet<Rechnung> Rechnung { get; set; }
-        public DbSet<RechnungPosition> RechnungPosition { get; set; }
-        public DbSet<MonthTotalHours> MonthTotalHours { get; set; }
+        public DbSet<RechnungPosition> RechnungPosition { get; set; }       
         public DbSet<Address> Address { get; set; }
+        public DbSet<HoursInMonth> HoursInMonth { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

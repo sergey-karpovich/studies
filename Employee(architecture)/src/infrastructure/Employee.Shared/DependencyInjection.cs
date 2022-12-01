@@ -1,4 +1,6 @@
-﻿using EmployeeAPI.Repositories.Addresses;
+﻿using EmployeeAPI.Projects.ProjectService;
+using EmployeeAPI.Repositories.Addresses;
+using EmployeeAPI.Repositories.Auftrags;
 using EmployeeAPI.Repositories.Clients;
 using EmployeeAPI.Repositories.Developers;
 using EmployeeAPI.Services;
@@ -18,6 +20,8 @@ public static class DependencyInjection
         services.AddScoped<IAddressRepository, AddressRepository>();
         services.AddScoped<ITarifRepository, TarifRepository>();
         services.AddScoped<IClientRepository, ClientRepository>();
+        services.AddScoped<IAuftragRepository, AuftragRepository>();
+        services.AddScoped<IProjectRepository, ProjectRepository>();
 
     }
 }

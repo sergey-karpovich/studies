@@ -38,33 +38,33 @@ namespace EmployeeAPI.Repositories.Clients
         public ServiceResponse<ClientDTO> GetById(int id)
         {
             var now = DateTime.UtcNow;
-            var client = _context.Client.FirstOrDefault(cl => cl.ClientId == id);
+            var model = _context.Client.FirstOrDefault(cl => cl.ClientId == id);
             //var client = _context.Client.Find(id);
-            var DTO = _mapper.Map<ClientDTO>(client);
+            var DTO = _mapper.Map<ClientDTO>(model);
             return new ServiceResponse<ClientDTO>
             {
                 Time = now,
-                IsSuccess = client != null,
+                IsSuccess = model != null,
                 Message = "Getting client by id",
                 Data = DTO
             };
         }
 
-        public Client Create(ClientDTO clientDTO)
+        public Client Create(ClientDTO DTO)
         {
-            var client = _mapper.Map<Client>(clientDTO);
-            _context.Client.Add(client);
+            var model = _mapper.Map<Client>(DTO);
+            _context.Client.Add(model);
             _context.SaveChanges();
 
-            return client;
+            return model;
         }
 
         public ServiceResponse<bool> Update(ClientDTO clientDTO)
         {
             var now = DateTime.UtcNow;
-            var client = _mapper.Map<Client>(clientDTO);
-            _context.Attach(client);
-            _context.Entry(client).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            var model = _mapper.Map<Client>(clientDTO);
+            _context.Attach(model);
+            _context.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             var response = _context.SaveChanges();
 
             return new ServiceResponse<bool>

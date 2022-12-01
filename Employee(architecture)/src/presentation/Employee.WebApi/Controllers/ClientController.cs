@@ -1,6 +1,5 @@
 ﻿using EmployeeAPI.Application.Dtos;
 using EmployeeAPI.Repositories.Clients;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeAPI.WebApi.Controllers
